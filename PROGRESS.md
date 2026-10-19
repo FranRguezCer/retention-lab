@@ -280,3 +280,15 @@ labels, but independent operational truth is not claimed.
 **Phase 1 is not marked DONE:** developer acceptance of this limited estimand is
 pending. No Phase 2 execution. The next action is acceptance of this contract;
 then explicit EDA authorization, with subscriber partitions frozen first.
+
+## 2026-10-19 — Account for remaining workspace changes
+
+- At the developer's request, included the pending leading-blank-line removal
+  in `.agents/skills/retention-stage/SKILL.md`; skill semantics are unchanged.
+- Added `.atl/` to `.gitignore`: generated registry/cache contains machine-local
+  absolute paths and is reproducible with `gentle-ai skill-registry refresh`.
+- Registry refresh reported cache-hit. Raw data and audit reports remain ignored.
+- Checked skill frontmatter, ignore coverage and `git diff --check`; no runtime
+  code changed, so unit tests were not rerun for this repository-hygiene change.
+- Methodological decision and phase status unchanged; restricted-protocol
+  acceptance remains the next task. No Phase 2 work performed.

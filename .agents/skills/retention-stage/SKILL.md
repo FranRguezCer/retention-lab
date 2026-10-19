@@ -1,4 +1,3 @@
-
 ---
 name: retention-stage
 description: Guide the incremental implementation, review and verification of a Retention Lab development stage. Use when the developer asks to start, continue, review or complete a roadmap phase. Do not use for unrelated repository questions.
