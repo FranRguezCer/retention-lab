@@ -1,20 +1,20 @@
 # Retention Lab — Progress Log
 
-> Last updated: 2026-10-18  
-> **State: planning complete; implementation not started.**  
+> Last updated: 2026-10-19
+> **State: real local audit verified; temporal protocol pending; Phase 1 incomplete.**
 > This file records *actual progress*, not intentions. `PROJECT.md` is the scope reference and `ROADMAP.md` contains acceptance gates.
 
 ## Current focus
 
 **Phase 1 — KKBOX feasibility audit and prediction-time contract**  
-Status: `NOT STARTED`  
+Status: `IN PROGRESS`
 Next objective: verify the dataset and determine whether a leakage-free historical campaign evaluation is feasible.
 
 ## Phase tracker
 
 | Phase | Status | Evidence / blocker |
 |---|---|---|
-| 1. Dataset feasibility | NOT STARTED | Official files have not been downloaded or audited |
+| 1. Dataset feasibility | IN PROGRESS | Two real audit runs verified; official provenance and temporal protocol pending |
 | 2. EDA | NOT STARTED | Depends on Phase 1 |
 | 3. Feature engineering | NOT STARTED | Depends on approved temporal contract |
 | 4. Baselines + models | NOT STARTED | No scores or models trained |
@@ -108,3 +108,37 @@ No blocker is confirmed until relevant evidence has been inspected.
 ---
 
 **Progress rule:** Never mark a phase `DONE` based solely on a generated file. Link its acceptance evidence and note which checks actually ran.
+
+## 2026-10-19 — Minimal KKBOX audit increment
+
+- Added `scripts/audit_kkbox.py`, a standard-library streaming CSV audit with
+  aggregate validation, source hashes and deterministic create-or-compare reports.
+- Added `tests/test_audit_kkbox.py` and `docs/problem_definition.md`; ignored
+  local reports in `.gitignore`. Existing skill and `.atl/` changes preserved.
+- Observed RED before implementation; `python3 -m unittest discover -s tests -v`
+  then passed all seven synthetic tests. No empirical metrics were generated.
+- `python3 scripts/audit_kkbox.py` exited 2: target files absent. Real two-run
+  source/report hash verification remains NOT RUN.
+- Official Kaggle data page exposed no readable catalog to the browser. Names,
+  sizes, terms and label semantics remain unverified; no agreements accepted.
+- Next bounded task: developer reviews conditions, provides official catalog,
+  downloads only confirmed targets manually; then run real audit twice.
+- Historical eligibility, cohort comparisons and backtest approval remain pending.
+  Phase 1 is not complete. No commits, models, scaffold or deployment.
+
+## 2026-10-19 — Local files now available
+
+- Inspected both target CSVs: train 45,635,134 bytes / 970,960 rows;
+  transactions 115,394,513 bytes / 1,431,009 rows.
+- Ran the real auditor twice: both exited 0. SHA-256 of both originals stayed
+  unchanged across runs; report SHA-256 also stayed unchanged.
+- No missing fields, invalid labels or invalid calendar dates in implemented
+  checks. Transaction range: 2015-01-01–2017-03-31; expiry range:
+  2016-04-19–2036-10-15. Far-future expiry requires semantic investigation.
+- `git check-ignore -v` confirms both CSVs ignored by existing `data/raw/**`;
+  `git ls-files -- data/raw` is empty. No ignore change was necessary.
+- Updated `docs/problem_definition.md` with aggregate evidence and hashes.
+- Supersedes the earlier local-file blocker, not the unverified provenance,
+  conditions, label maturity or historical eligibility. Phase 1 remains open.
+- Next task: verify official source/terms and temporal semantics; no models,
+  commits or deployment performed.

@@ -102,3 +102,6 @@ Thumbs.db
 scratch/
 .local/
 
+
+# Local dataset audit evidence (not approved for publication)
+data/audit/
