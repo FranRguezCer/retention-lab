@@ -7,7 +7,7 @@
 ## Current focus
 
 **Phase 2 — Isolated training-only EDA**
-Status: `DONE — verified; publication bookkeeping below`
+Status: `DONE — published; clean-environment reproducibility audit verified below`
 Authorized Phase 2 only; no operational-backtest claim or Phase 3 implementation.
 
 ## Phase tracker
@@ -19,9 +19,9 @@ Authorized Phase 2 only; no operational-backtest claim or Phase 3 implementation
 | 3. Feature engineering | NOT STARTED | Depends on approved temporal contract |
 | 4. Baselines + models | NOT STARTED | No scores or models trained |
 | 5. Capacity evaluation | NOT STARTED | No empirical ranking curves calculated |
-| 6. Validation + tests | NOT STARTED | 14 Phase 1 audit tests pass; no model validation |
+| 6. Validation + tests | NOT STARTED | 25 synthetic/structural tests pass; no model validation |
 | 7. React demo | NOT STARTED | No frontend created or deployed |
-| 8. Portfolio + storytelling | NOT STARTED | No empirical results or public claims |
+| 8. Portfolio + storytelling | NOT STARTED | Final portfolio narrative pending; training-only EDA aggregates available |
 
 ## Decisions already made (project design, not implementation)
 
@@ -444,3 +444,47 @@ ID for ties. It has not been implemented or tuned on any held-out outcome.
   the runner's intentional generic rejection pattern, not a private path; the
   concrete-path/identifier scan passed. Local `git write-tree` required the same
   Git-metadata sandbox escalation as branch creation/staging; no code check failed.
+
+
+## 2026-10-19 — Clean-environment reproducibility audit
+
+- User requested current documentation, complete dependency declarations and
+  commit/push of justified corrections. Baseline `b7e70b8` was already published
+  on `origin/feat/kkbox-eda`; this follow-up does not advance Phase 3.
+- Found missing root README, two directly used dependencies only declared
+  transitively (`jupyter-client`, `matplotlib-inline`), and direct requirements
+  resolving without the verified full constraints. These were reproducibility
+  gaps even though the existing development environment worked.
+- Added README with supported target, data-free install/tests and links to full
+  reproduction/results. Updated methodology with explicit ensurepip/external-pip
+  setup, private-data prerequisites, temporary disk/kernel permissions, read-only
+  notebook verification and intentional output-regeneration instructions.
+- Declared all seven direct packages and constrained `requirements-eda.txt` using
+  `-c requirements-eda.lock`. No package versions, modeling dependencies, analysis
+  code, source data, notebook or aggregate outputs changed. The full 48-package
+  lock remains byte-identical to the original verified Phase 2 commit.
+- Added regression checks for direct/static/runtime imports, locked-version
+  alignment, constraint inclusion and README links. Observed RED (two failures,
+  one missing-README error), then GREEN (three tests pass).
+- Created an empty, isolated CPython 3.12.3 environment outside the checkout;
+  confirmed pandas absent, then installed the full lock from PyPI. All **48 exact
+  pinned packages** installed with no extras. External pip 26.2.1 used the
+  documented `--python` option because system Python lacks ensurepip; the existing
+  analysis environment was not reused or modified. `pip check` passed and a
+  no-index dry run of the direct requirements was already fully satisfied.
+- Fresh-environment full suite: **25 tests passed**. Fresh-environment notebook
+  `--check`: **two clean kernels reproduced all published text and five figures**;
+  aggregate SHA-256 unchanged:
+  `bdef546b4e271083a53d15e690d44b688c097231cafc4d65de98c5ada1a482bf`.
+- Independent verification passed in a separate scratch checkout **without raw
+  or processed data**: three focused tests, 25 full tests, 48 package/version
+  checks, 68 active dependency constraints, relative documentation links and
+  byte-identical analysis code/notebook/outputs. No real auditors or data
+  preparation were rerun; no validation/final outcome inspection occurred.
+- Supported proof is **Linux x86_64 / CPython 3.12.3**. Package pins are not
+  distribution-byte hashes or an offline bundle; other operating systems and
+  cross-machine PNG identity remain unverified. Private input acquisition and
+  local kernel socket permissions remain explicit prerequisites, not bundled
+  capabilities. RDD remains globally off. Engram unavailable; no memory claim.
+- Next: requested documentation/dependency correction commit and push on the
+  existing feature branch; review the EDA before any separate Phase 3 approval.

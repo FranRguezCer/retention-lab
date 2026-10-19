@@ -1,6 +1,9 @@
-# Python 3.12.3; no modeling packages. Full verified environment: requirements-eda.lock.
+# CPython 3.12.3 / Linux x86_64; exact transitive versions: requirements-eda.lock.
+-c requirements-eda.lock
 pandas==2.2.3
 matplotlib==3.9.4
+matplotlib-inline==0.2.2
 nbformat==5.10.4
 nbclient==0.10.2
 ipykernel==6.29.5
+jupyter-client==8.10.0

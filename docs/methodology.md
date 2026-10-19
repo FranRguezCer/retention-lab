@@ -6,31 +6,97 @@ No operational campaign simulation, causal retention claim or model is implied.
 
 ## Reproduce
 
-Use Python **3.12.3**. The existing unrelated `.venv` is not reused: it runs Python
-3.15. The dedicated ignored `.venv-eda` contains verified pandas 2.2.3,
-matplotlib 3.9.4, nbformat 5.10.4, nbclient 0.10.2 and ipykernel 6.29.5.
-`requirements-eda.lock` pins the full observed environment, including transitive
-packages; `requirements-eda.txt` records the five direct dependencies. No
-modeling library is installed. Install only from an authorized package source.
+Run every command from the repository root. The verified target is **CPython
+3.12.3 / Linux x86_64**; do not assume Windows/macOS or another Python version is
+covered by this lock. Python must include SQLite and virtual-environment support.
+Keep an existing unrelated environment untouched; `.venv-eda` is a dedicated,
+ignored analysis environment. The repository is not a pip-installable package:
+its scripts explicitly add `src/` to the import path.
+
+### Install and test without private data
 
 ```sh
 python3.12 -m venv .venv-eda
 .venv-eda/bin/python -m pip install -r requirements-eda.lock
-.venv-eda/bin/python scripts/prepare_kkbox_eda.py --verify-real-population
-.venv-eda/bin/python scripts/prepare_kkbox_eda.py --verify-real-population
+.venv-eda/bin/python -m pip check
 .venv-eda/bin/python -m unittest discover -s tests -v
-.venv-eda/bin/python scripts/run_eda_notebook.py
+```
+
+All tests use synthetic fixtures or committed aggregate notebook content; no raw
+KKBOX data is required. The seven direct dependencies are pandas 2.2.3,
+matplotlib 3.9.4, matplotlib-inline 0.2.2, nbformat 5.10.4, nbclient 0.10.2,
+ipykernel 6.29.5 and jupyter-client 8.10.0. The last two launch and manage local
+kernels; matplotlib-inline supplies the explicitly selected figure backend.
+No modeling packages or interactive JupyterLab/Notebook server are needed.
+
+`requirements-eda.lock` pins the complete environment, including transitive
+packages. `requirements-eda.txt` declares direct dependencies and includes
+`-c requirements-eda.lock`, so installing it cannot silently choose newer
+transitive versions. The lock uses version pins, not distribution-file hashes:
+it is not a hermetic/offline bundle or a cross-platform guarantee. Installing
+requires an available authorized package index and compatible distributions.
+The test suite checks imported packages against direct declarations and their
+locked versions; changing dependencies requires a fresh installation, `pip check`,
+tests and notebook reconstruction, not just editing the direct pins.
+
+### Python without ensurepip
+
+If `python3.12 -m venv` cannot bootstrap pip, use an **already available pip
+22.3 or newer** via its explicit target-interpreter option, as documented by
+[pip](https://pip.pypa.io/en/stable/topics/python-option/):
+
+```sh
+python3.12 -m venv --without-pip .venv-eda
+python3 -m pip --python .venv-eda install -r requirements-eda.lock
+python3 -m pip --python .venv-eda check
+.venv-eda/bin/python -m unittest discover -s tests -v
+```
+
+Here `python3 -m pip` is the installer already available on the host, not a
+requirement that it use the analysis interpreter. The `--python` argument selects
+the analysis environment. If neither ensurepip nor a recent external pip is
+available, install your operating system's Python 3.12 venv/pip support first;
+do not assume an unrelated local `.venv` exists or install into system Python.
+The analysis environment intentionally lacks pip under this fallback, so its
+`python -m pip check` is unavailable: use the external-pip command above.
+
+### Prepare and execute
+
+Prerequisites beyond the environment:
+- Legally acquired **original** `data/raw/transactions.csv` and `data/raw/train.csv`.
+  Acquire them through the [official competition](https://www.kaggle.com/competitions/kkbox-churn-prediction-challenge/data)
+  under its access/rules; no download credential or data is included here.
+- Writable `data/processed/` and system temporary storage, with several GB free
+  for exact SQLite deduplication. Observed preparation time: about four minutes
+  per run on the development machine, not a performance guarantee.
+- Permission to start local Jupyter kernels and open their localhost sockets.
+  A sandbox denying sockets cannot provide notebook-execution proof.
+
+```sh
+.venv-eda/bin/python scripts/prepare_kkbox_eda.py --verify-real-population
+.venv-eda/bin/python scripts/prepare_kkbox_eda.py --verify-real-population
 .venv-eda/bin/python scripts/run_eda_notebook.py --check
 ```
 
-On a Python installation without `ensurepip`, create the environment with
-`--without-pip`, then use an already installed pip's `--python .venv-eda`
-option to install the lock. Do not overwrite an existing unrelated environment.
-The notebook runner creates its kernel specification and matplotlib/IPython
-caches in system temporary storage, executes two fresh kernels, compares
-aggregate text and image bytes and removes its temporary directory. The
-`--check` mode additionally compares both executions to published outputs.
-Failure to start a kernel is missing proof, not a successful EDA run.
+Do not run the real Phase 1 auditors for this workflow: they inspect global label
+values. Expected preparation counts are 874,581 candidates and 874,580 assigned
+users: 523,998 training, 175,651 validation, 174,931 final; one unlabeled candidate
+is excluded. Source byte identity is recorded in the private manifest. The
+fingerprint/conflict rules below intentionally refuse incompatible existing
+artifacts; do not delete or overwrite evidence to make a rerun pass.
+
+The notebook runner uses the invoking interpreter, creates its own temporary kernel
+specification and matplotlib/IPython caches, executes two fresh kernels and removes
+temporary state. `--check` is read-only for published artifacts and compares both
+runs to the committed notebook and `artifacts/eda_summary.json`. To intentionally
+regenerate outputs after an authorized analysis change, run the command **without**
+`--check`, review its notebook/JSON diff and rerun `--check` before publishing.
+
+Same-machine clean executions must have identical aggregate text and figure
+bytes. Cross-machine PNG bytes may differ with fonts/rendering/system libraries
+that this Python package lock does not capture; compare aggregate results and
+investigate rendering differences rather than silently replacing accepted outputs.
+A failed install, kernel start or output comparison is missing proof, not success.
 
 ## Freeze first, extract labels second
 
