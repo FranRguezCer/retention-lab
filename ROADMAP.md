@@ -1,6 +1,6 @@
 # Retention Lab — Incremental Roadmap
 
-> Status: Phase 1 DONE — RESTRICTED GO; Phase 2 not started · Updated: 2026-10-19
+> Status: Phase 2 DONE — isolated training-only EDA; Phase 3 not started · Updated: 2026-10-19
 > Follow `PROJECT.md` for scope and methodology, `AGENTS.md` for operating conventions, and `PROGRESS.md` for actual progress.
 
 ## Working method
@@ -52,17 +52,22 @@ closure does not assert complete labeler reconstruction or verified arrival time
 **Goal:** understand the development population, target and signals before model training; do not inspect final holdout labels.
 
 **Tasks**
-- [ ] Before EDA or final evaluation label access, materialize and verify the approved deterministic user partitions (SHA-256 of `retention-lab-feb2017-v1|` + ID, integer modulo 10: 0–5 train, 6–7 validation, 8–9 final); record counts, repeatability, disjointness and coverage without outcome values; isolate final labels from development.
-- [ ] Characterize churn prevalence, cohort size and available history.
-- [ ] Inspect nulls, duplicates, invalid dates, rare categories and outliers.
-- [ ] Compare relevant subscription/transaction signals by outcome without claiming causality.
-- [ ] Analyze activity only if it can be joined and sliced safely.
-- [ ] Choose a plausible, cutoff-safe business baseline and document assumptions.
-- [ ] Write 3–5 interpreted charts and 2–3 testable hypotheses.
+- [x] Before EDA or final evaluation label access, materialize and verify the approved deterministic user partitions (SHA-256 of `retention-lab-feb2017-v1|` + ID, integer modulo 10: 0–5 train, 6–7 validation, 8–9 final); record counts, repeatability, disjointness and coverage without outcome values; isolate final labels from development.
+- [x] Characterize churn prevalence, cohort size and available history.
+- [x] Inspect nulls, duplicates, invalid dates, rare categories and outliers.
+- [x] Compare relevant subscription/transaction signals by outcome without claiming causality.
+- [x] Activity analysis not applicable: approved scope uses original transactions only.
+- [x] Choose a plausible, cutoff-safe business baseline and document assumptions.
+- [x] Write 3–5 interpreted charts and 2–3 testable hypotheses.
 
 **Deliverable:** `notebooks/01_eda.ipynb` and concise notes in `docs/methodology.md`.
 
 **Acceptance gate:** verified frozen user partitions and isolated final labels; development-only findings, data issues and a justified business-rule candidate; no post-cutoff inputs used as predictors.
+
+**Verified 2026-10-19.** Two identical partition reconstructions, five interpreted
+training-only charts, three exploratory hypotheses and documented-only rule;
+22 tests and independent isolation/dependency verification. See `PROGRESS.md`
+for observations and `docs/methodology.md` for limitations. No Phase 3 work.
 
 ## Phase 3 — Reproducible feature engineering
 

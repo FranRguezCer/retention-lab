@@ -306,3 +306,12 @@ final evaluation labels: record counts, repeatability, disjointness and complete
 population coverage without outcome values, and isolate final labels from
 development. Partitions have not yet been materialized or verified. Later EDA
 uses development users only. No Phase 2 work is performed by this closure.
+
+
+### Subsequent Phase 2 status (2026-10-19)
+
+The Phase 1 closure and next-step statements above are historical. Phase 2 was
+subsequently authorized: partitions were frozen and reproduced, training-only EDA
+was verified, and no validation/final outcome prevalence was inspected by that
+flow. See [methodology](methodology.md) and the final Phase 2 entry in
+[progress](../PROGRESS.md). Phase 3 has not been authorized.

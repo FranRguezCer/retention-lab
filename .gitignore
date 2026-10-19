@@ -107,3 +107,9 @@ scratch/
 data/audit/
 # Local AI runtime state
 .atl/
+
+# Local CodeGraph index
+.codegraph/
+
+# Dedicated Python 3.12 EDA environment
+.venv-eda/

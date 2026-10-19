@@ -1,21 +1,21 @@
 # Retention Lab — Progress Log
 
 > Last updated: 2026-10-19
-> **State: Phase 1 DONE — RESTRICTED GO; original February retrospective benchmark explicitly accepted.**
+> **State: Phase 2 DONE — verified training-only EDA; restricted retrospective benchmark.**
 > This file records *actual progress*, not intentions. `PROJECT.md` is the scope reference and `ROADMAP.md` contains acceptance gates.
 
 ## Current focus
 
-**Phase 1 — KKBOX feasibility audit and prediction-time contract**  
-Status: `DONE — RESTRICTED GO`
-Developer acceptance recorded on 2026-10-19. Phase 2 remains NOT STARTED and requires separate authorization; no operational-backtest claim.
+**Phase 2 — Isolated training-only EDA**
+Status: `DONE — verified; publication bookkeeping below`
+Authorized Phase 2 only; no operational-backtest claim or Phase 3 implementation.
 
 ## Phase tracker
 
 | Phase | Status | Evidence / blocker |
 |---|---|---|
 | 1. Dataset feasibility | DONE — RESTRICTED GO | Four-source audit and restricted contract: `docs/problem_definition.md` §§2–7; explicit developer acceptance below |
-| 2. EDA | NOT STARTED | Await explicit authorization; materialize and verify partitions before EDA/final label access |
+| 2. EDA | DONE | Frozen verified partitions, five interpreted training-only charts and independent isolation/dependency verification |
 | 3. Feature engineering | NOT STARTED | Depends on approved temporal contract |
 | 4. Baselines + models | NOT STARTED | No scores or models trained |
 | 5. Capacity evaluation | NOT STARTED | No empirical ranking curves calculated |
@@ -325,3 +325,122 @@ commit or push. Engram unavailable; no memory save or session summary claimed.
 
 Next small task: after separate Phase 2 authorization, materialize and verify
 the frozen subscriber partitions and holdout isolation, without EDA or model work.
+
+
+## 2026-10-19 — Isolated Phase 2 implementation
+
+### Scope and implementation
+
+- User authorized the supplied Phase 2 plan, including aggregate publication,
+  existing SSH for fetch/push, `feat/kkbox-eda`, and the completion commit only
+  after all checks. No PR, Phase 3, model, baseline implementation or deployment.
+- Fetch confirmed `main` = `origin/main` = `ec3e456`; feature branch absent locally
+  and remotely before creation. Main remains untouched. RDD globally off, unchanged.
+- Added `src/retention_lab/eda_prepare.py` and preparation CLI: streaming original
+  transactions, exact all-field SQLite deduplication, latest-day eligibility,
+  deterministic SHA-256 partitions and private create-once artifacts. Existing
+  auditors remain untouched and were not rerun on real data.
+- Manifest/assignments are verified before interpreting only training label values.
+  Label-source fingerprint hashes sorted identifiers only; transaction fingerprint
+  hashes full bytes. Training artifact has a separate byte fingerprint. This
+  deliberately makes non-training outcome changes irrelevant to preparation.
+- Added training-only aggregate/plot logic, five interpreted notebook figures,
+  `artifacts/eda_summary.json`, methodology, pinned direct/full dependency files
+  and a two-clean-kernel execution/privacy-check command. No raw rows or IDs published.
+- Python 3.12.3 environment is `.venv-eda`; existing Python 3.15 `.venv` preserved.
+  Direct versions: pandas 2.2.3, matplotlib 3.9.4, nbformat 5.10.4,
+  nbclient 0.10.2, ipykernel 6.29.5. Full environment pinned and pip check passed.
+  Sandbox PyPI DNS and kernel socket attempts failed; authorized out-of-sandbox
+  installation/local execution succeeded. No failed execution outputs were published.
+- Local generated `.codegraph/` and `.venv-eda/` are ignored. Engram unavailable;
+  no memory mirror, save or session summary is claimed.
+
+### Real partition and training-only evidence
+
+- Preparation executed twice, exiting 0 in 238 and 244 seconds. Both reconstructed
+  874,581 candidates, 874,580 labeled identifiers and one unlabeled exclusion.
+- Train **523,998 (59.9142%)**; validation **175,651 (20.0840%)**;
+  final **174,931 (20.0017%)**. No validation/final label prevalence calculated.
+- All four private artifact hashes matched byte-for-byte; parent rechecked them.
+  Assignment SHA-256: `9bacf5cf7c279c40c98dd96df0bd842f5ce59592f4443a912929638095d87edd`.
+- Training: **29,015 churners / 523,998 users (5.5372%)**. History contains
+  7,792,865 exact distinct transactions and 1,452 duplicate copies. No missing
+  selected latest fields or missing numeric raw values among these training records.
+- Historical training diagnostics: 3,907 ambiguous auto-renew subscriber-days;
+  31,458 distinct transactions with recorded expiry before event date; zero
+  recorded expiry beyond the diagnostic February 1, 2018 threshold. These are
+  descriptions, not invalidity adjudications. Validated calendar dates fail closed
+  if malformed; future recorded expiry is not excluded simply for being future.
+
+### Observed findings and hypotheses
+
+| Training-only comparison | Observed churn | Interpretation |
+|---|---|---|
+| Auto-renew off vs on | 19,294/63,335 = 30.46%; 9,721/460,663 = 2.11% | Descriptive direction supports hypothesis 1; no intervention effect |
+| Shortest vs longest observed-history quartile | 9,583/131,260 = 7.30%; 4,287/130,002 = 3.30% | Supports hypothesis 2 descriptively; not actual tenure |
+| January transactions: 0–1 vs >1 | 28,739/520,925 = 5.52%; 276/3,073 = 8.98% | Tied marginal quartiles collapse; transaction count is not payment success |
+| Latest duration <=30 vs >30 | 22,707/510,754 = 4.45%; 6,308/13,244 = 47.63% | Plan/renewal/channel mix can confound this association |
+| Latest amount <=99; >99–149; >149 | 2.09% (231,723); 5.13% (231,813); 20.29% (60,462) | Recorded amounts, not verified revenue or price elasticity |
+| Observed on-to-off vs always on | 1,879/13,586 = 13.83%; 8,660/428,138 = 2.02% | Supports hypothesis 3 descriptively; ambiguous days break transition chains |
+
+Numeric groups use training marginal quartiles, never label-optimized cutpoints.
+Every chart includes all training users with explicit unknown treatment and group
+denominators. The three hypotheses are exploratory, not significance tests.
+Candidate rule is documented only: renewal off first, ascending split digest then
+ID for ties. It has not been implemented or tuned on any held-out outcome.
+
+### Verification and limits
+
+- Synthetic preparation RED: four missing-CLI failures; GREEN: four passed,
+  including exact hash, ordering, duplicate/conflict eligibility, cutoff and
+  non-training-label poisoning. Aggregate RED: missing module; GREEN: two passed.
+- Full suite initially 20 passed. A structural notebook regression test then
+  exposed removed required display-output metadata; retained empty metadata,
+  added pre-publication nbformat validation, and reran the suite.
+- Two-kernel execution matched aggregate text and all five PNGs exactly before
+  and after numeric interval ordering/observed interpretations. Final `--check`
+  and independent verifier results remain pending below; Phase 2 is not DONE yet.
+- The official Kaggle data-page body was unreadable. Methodology links the canonical
+  reference and uses conservative recorded-field semantics; no new unverified
+  currency, revenue or successful-payment claim. Existing labeler/arrival and
+  single-cohort limitations remain. Historical Phase 1 label exposure cannot be undone.
+- Pipeline isolation is not an OS filesystem sandbox. No actual process-level
+  restriction against manually opening raw labels is claimed.
+- No completion commit or push yet. Next: finish independent verification and
+  privacy/diff checks, then perform only the authorized commit and push.
+
+
+### Final acceptance and delivery preparation
+
+- Full final suite: `.venv-eda/bin/python -m unittest discover -s tests -v` —
+  **22 passed**, including committed regression coverage for the independent
+  verifier's ambiguous-day, multiline non-training label and rejected-artifact
+  immutability probes. No tests read git history or real raw outcomes.
+- `.venv-eda/bin/python scripts/run_eda_notebook.py --check` — **passed**:
+  two fresh kernels matched each other and the published aggregate text and five
+  PNGs exactly. Notebook schema validates; required empty display metadata retained.
+  Aggregate SHA-256: `bdef546b4e271083a53d15e690d44b688c097231cafc4d65de98c5ada1a482bf`.
+- Independent scratch verification: baseline 14 tests and candidate 21 tests at
+  review time passed; extra public-interface probes passed; three original auditor
+  CLI differentials (stdout/stderr/exit/report bytes) matched the baseline.
+  Subsequent change only adds the probe regression test; final suite is 22 tests.
+- Independent checks verified isolation, all-field deduplication, temporal limits,
+  unknown agreement and unchanged artifacts after rejected commands. Notebook five
+  PNGs/denominators and installed lock versions validated; 68 active dependency
+  constraints satisfied. `.venv/bin/pip --python .venv-eda check` passed. The venv
+  lacks pip intentionally, so invoking that environment's `python -m pip check`
+  is unavailable; the documented external-pip interpreter option was verified.
+- No reproducible blockers. Official-page unreadability remains an explicit
+  source-semantic limitation, not evidence of independently verified meanings.
+- **Phase 2 DONE** on its analytical acceptance gate. Requested completion commit
+  and push follow final staged privacy/diff review; their exact SHA and remote
+  confirmation belong in the delivery report, not a self-referential commit hash.
+  No PR creation or advancement to Phase 3. Next suggested task: review the EDA
+  findings and authorize a small cutoff-safe feature-engineering task separately.
+- Final staged publication scan passed: 19 files / 280,275 bytes before this
+  evidence note; no subscriber IDs, raw records, private paths, credential markers
+  or raw/processed data in the index. Five aggregate PNGs and notebook schema valid;
+  staged diff whitespace check passed. A broad path-pattern scan first matched
+  the runner's intentional generic rejection pattern, not a private path; the
+  concrete-path/identifier scan passed. Local `git write-tree` required the same
+  Git-metadata sandbox escalation as branch creation/staging; no code check failed.

@@ -1,6 +1,6 @@
 # Retention Lab — Project Specification
 
-> Status: **Phase 1 DONE — RESTRICTED GO; retrospective benchmark approved**
+> Status: **Phase 2 DONE — isolated training-only EDA; restricted retrospective benchmark**
 > Last updated: 2026-10-19
 > This document is the source of truth for the **what and why** of the project. See `ROADMAP.md` for phase deliverables and `PROGRESS.md` for actual work status. Working conventions belong in `AGENTS.md`.
 
@@ -120,7 +120,9 @@ simulation or temporal validation between cohorts.
   ID, interpreted as an integer modulo 10; 0–5 train, 6–7 validation, 8–9 final.
   Verify repeatability, disjointness, full population coverage and record actual
   counts without using outcome values. Keep final labels isolated from development.
-  Partitions are specified, not yet materialized or verified.
+  Phase 2 subsequently materialized and verified these partitions twice: 523,998
+  train, 175,651 validation, 174,931 final. See `PROGRESS.md` and
+  `docs/methodology.md`; validation/final outcome values remain isolated.
 - Preprocessing fits on train only; baseline/model selection uses development
   only; all three policies share the same final labeled population and capacities.
 - Coverage is record-based and conditioned on supplied competition labels, not
@@ -131,7 +133,8 @@ simulation or temporal validation between cohorts.
 
 Full-field duplicate handling, source isolation, remaining label/coverage limits
 and publication restrictions remain as documented in `docs/problem_definition.md`.
-This approval closes Phase 1 only; Phase 2 execution requires separate authorization.
+This approval closed Phase 1 only. Phase 2 was subsequently authorized and verified;
+Phase 3 still requires separate authorization. See `PROGRESS.md`.
 
 ## 4. Planned technical approach
 

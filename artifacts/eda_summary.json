@@ -1,0 +1,238 @@
+{
+  "charts": {
+    "auto_renew": [
+      {
+        "churn_rate": 0.3046340885766164,
+        "churners": 19294,
+        "group": "Off",
+        "users": 63335
+      },
+      {
+        "churn_rate": 0.02110219401167448,
+        "churners": 9721,
+        "group": "On",
+        "users": 460663
+      }
+    ],
+    "january_transactions": [
+      {
+        "churn_rate": 0.05516917022604022,
+        "churners": 28739,
+        "group": "(-0.001, 1.0]",
+        "users": 520925
+      },
+      {
+        "churn_rate": 0.08981451350471852,
+        "churners": 276,
+        "group": "(1.0, 6.0]",
+        "users": 3073
+      }
+    ],
+    "latest_amount": [
+      {
+        "churn_rate": 0.02092153131109126,
+        "churners": 4848,
+        "group": "(-0.001, 99.0]",
+        "users": 231723
+      },
+      {
+        "churn_rate": 0.05132153934421279,
+        "churners": 11897,
+        "group": "(99.0, 149.0]",
+        "users": 231813
+      },
+      {
+        "churn_rate": 0.2029373821573881,
+        "churners": 12270,
+        "group": "(149.0, 2000.0]",
+        "users": 60462
+      }
+    ],
+    "latest_plan_days": [
+      {
+        "churn_rate": 0.044457801603120094,
+        "churners": 22707,
+        "group": "(0.999, 30.0]",
+        "users": 510754
+      },
+      {
+        "churn_rate": 0.47629115070975536,
+        "churners": 6308,
+        "group": "(30.0, 450.0]",
+        "users": 13244
+      }
+    ],
+    "observed_history_days": [
+      {
+        "churn_rate": 0.0730077708365077,
+        "churners": 9583,
+        "group": "(-0.001, 260.0]",
+        "users": 131260
+      },
+      {
+        "churn_rate": 0.06627672879236189,
+        "churners": 8691,
+        "group": "(260.0, 478.0]",
+        "users": 131132
+      },
+      {
+        "churn_rate": 0.04904106258168445,
+        "churners": 6454,
+        "group": "(478.0, 734.0]",
+        "users": 131604
+      },
+      {
+        "churn_rate": 0.03297641574745004,
+        "churners": 4287,
+        "group": "(734.0, 761.0]",
+        "users": 130002
+      }
+    ]
+  },
+  "churners": 29015,
+  "distributions": {
+    "distinct_transactions": {
+      "25%": 8.0,
+      "50%": 15.0,
+      "75%": 23.0,
+      "count": 523998.0,
+      "max": 63.0,
+      "mean": 14.871936534108908,
+      "min": 1.0,
+      "std": 8.340879968490945
+    },
+    "january_transactions": {
+      "25%": 1.0,
+      "50%": 1.0,
+      "75%": 1.0,
+      "count": 523998.0,
+      "max": 6.0,
+      "mean": 0.9795438150527292,
+      "min": 0.0,
+      "std": 0.19088903829620707
+    },
+    "latest_amount": {
+      "25%": 99.0,
+      "50%": 149.0,
+      "75%": 149.0,
+      "count": 523998.0,
+      "max": 2000.0,
+      "mean": 149.777854113947,
+      "min": 0.0,
+      "std": 169.04718088969315
+    },
+    "latest_list_price": {
+      "25%": 99.0,
+      "50%": 149.0,
+      "75%": 149.0,
+      "count": 523998.0,
+      "max": 2000.0,
+      "mean": 150.14447765067806,
+      "min": 0.0,
+      "std": 168.89137612535114
+    },
+    "latest_plan_days": {
+      "25%": 30.0,
+      "50%": 30.0,
+      "75%": 30.0,
+      "count": 523998.0,
+      "max": 450.0,
+      "mean": 35.32261000996187,
+      "min": 1.0,
+      "std": 39.00462359624552
+    },
+    "observed_history_days": {
+      "25%": 260.0,
+      "50%": 478.0,
+      "75%": 734.0,
+      "count": 523998.0,
+      "max": 761.0,
+      "mean": 467.6048324611926,
+      "min": 0.0,
+      "std": 243.22178770422812
+    }
+  },
+  "hypothesis_transition": [
+    {
+      "churn_rate": 0.02022712303042477,
+      "churners": 8660,
+      "group": "Always on",
+      "users": 428138
+    },
+    {
+      "churn_rate": 0.13830413661121743,
+      "churners": 1879,
+      "group": "Observed on-to-off",
+      "users": 13586
+    },
+    {
+      "churn_rate": 0.22456669178598343,
+      "churners": 18476,
+      "group": "Other / unknown",
+      "users": 82274
+    }
+  ],
+  "missing_fields": {
+    "always_auto_on": 0,
+    "ambiguous_auto_days": 0,
+    "auto_on_to_off": 0,
+    "auto_renew": 0,
+    "distinct_transactions": 0,
+    "duplicate_rows": 0,
+    "expiry_before_event": 0,
+    "far_future_expiry": 0,
+    "is_churn": 0,
+    "january_transactions": 0,
+    "latest_amount": 0,
+    "latest_list_price": 0,
+    "latest_payment_method": 0,
+    "latest_plan_days": 0,
+    "missing_numeric_fields": 0,
+    "observed_history_days": 0
+  },
+  "payment_method_counts": {
+    "10": 21,
+    "11": 41,
+    "12": 135,
+    "13": 176,
+    "14": 264,
+    "15": 41,
+    "16": 391,
+    "17": 16,
+    "18": 393,
+    "19": 291,
+    "20": 720,
+    "22": 598,
+    "23": 1016,
+    "26": 22,
+    "27": 1044,
+    "28": 1069,
+    "29": 9295,
+    "3": 5,
+    "30": 8107,
+    "31": 5823,
+    "32": 5030,
+    "33": 7765,
+    "34": 16743,
+    "35": 557,
+    "36": 37059,
+    "37": 21012,
+    "38": 35971,
+    "39": 262,
+    "40": 42607,
+    "41": 327504,
+    "6": 7,
+    "8": 13
+  },
+  "prevalence": 0.055372348749422706,
+  "quality_totals": {
+    "ambiguous_auto_days": 3907,
+    "distinct_transactions": 7792865,
+    "duplicate_rows": 1452,
+    "expiry_before_event": 31458,
+    "far_future_expiry": 0,
+    "missing_numeric_fields": 0
+  },
+  "scope": "training only",
+  "training_users": 523998
+}
