@@ -1,6 +1,6 @@
 # Retention Lab — Incremental Roadmap
 
-> Status: Phase 2 DONE — isolated training-only EDA; Phase 3 not started · Updated: 2026-10-19
+> Status: Phase 3 DONE — reproducible cutoff-safe features; Phase 4 not started · Updated: 2026-10-19
 > Follow `PROJECT.md` for scope and methodology, `AGENTS.md` for operating conventions, and `PROGRESS.md` for actual progress.
 
 ## Working method
@@ -74,18 +74,24 @@ for observations and `docs/methodology.md` for limitations. No Phase 3 work.
 **Goal:** turn raw events into a model-ready **subscriber-at-cutoff** table.
 
 **Tasks**
-- [ ] Implement input schema and parsing checks.
-- [ ] Select eligible subscribers and attach valid target labels.
-- [ ] Compute cutoff-safe subscription/payment features.
-- [ ] Add limited activity aggregates only if useful and affordable.
-- [ ] Address missing values and document categorical encoding plans.
-- [ ] Check user/cohort uniqueness, date boundaries and source provenance.
-- [ ] Reuse and verify the deterministic subscriber partitions frozen before Phase 2 EDA; do not substitute chronological or cross-cohort partitions.
-- [ ] Keep processing in `src/retention_lab/`, not embedded only in a notebook.
+- [x] Implement input schema and parsing checks.
+- [x] Reuse eligible subscribers; attach training labels and isolate validation labels; no final-label export.
+- [x] Compute cutoff-safe subscription/payment features.
+- [x] Activity aggregates not applicable: approved original-transactions-only scope.
+- [x] Address missing values and document categorical encoding plans.
+- [x] Check user/cohort uniqueness, date boundaries and source provenance.
+- [x] Reuse and verify the deterministic subscriber partitions frozen before Phase 2 EDA; do not substitute chronological or cross-cohort partitions.
+- [x] Keep processing in `src/retention_lab/`, not embedded only in a notebook.
 
 **Deliverables:** `data.py`, `features.py`, tests and local processed tables (gitignored).
 
 **Acceptance gate:** every column has meaning and an availability rule; no future events; reproducible output; integrity tests pass.
+
+**Verified 2026-10-19:** 41 synthetic/structural tests, independent differential
+and outcome-isolation probes, real frozen population and seven-column tables,
+byte-identical cached outputs, four byte-identical rebuilt EDA artifacts and
+unchanged two-kernel notebook reproduction. See `docs/features.md` and
+`PROGRESS.md`. No Phase 4 work performed.
 
 ## Phase 4 — Baselines and first ML models
 

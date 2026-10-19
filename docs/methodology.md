@@ -215,3 +215,12 @@ Results and exact verification evidence are recorded in `PROGRESS.md`. No Phase 
 feature-engineering, model, three-strategy curves, frontend, PR or deployment is
 authorized by this phase. Review the aggregate findings and limitations before any
 separate authorization to advance.
+
+## Subsequent authorized Phase 3
+
+The Phase 2 next-step boundary above is historical. Phase 3 was separately
+authorized and reuses the same deterministic preparation and frozen population.
+See [feature schema and reproduction](features.md) for the seven predictors,
+separate keys/labels, conservative missingness, cached source-bound regeneration
+and train-only preprocessing contract for a future Phase 4. No modeling or
+cross-cohort/operational claim is introduced.

@@ -1,14 +1,14 @@
 # Retention Lab — Progress Log
 
 > Last updated: 2026-10-19
-> **State: Phase 2 DONE — verified training-only EDA; restricted retrospective benchmark.**
+> **State: Phase 3 DONE — verified reproducible cutoff-safe features; restricted retrospective benchmark.**
 > This file records *actual progress*, not intentions. `PROJECT.md` is the scope reference and `ROADMAP.md` contains acceptance gates.
 
 ## Current focus
 
-**Phase 2 — Isolated training-only EDA**
-Status: `DONE — published; clean-environment reproducibility audit verified below`
-Authorized Phase 2 only; no operational-backtest claim or Phase 3 implementation.
+**Phase 3 — Reproducible cutoff-safe feature engineering**
+Status: `DONE — synthetic, independent, real-data and EDA compatibility checks passed`
+Authorized Phase 3 only; no modeling, operational-backtest claim, PR or merge.
 
 ## Phase tracker
 
@@ -16,10 +16,10 @@ Authorized Phase 2 only; no operational-backtest claim or Phase 3 implementation
 |---|---|---|
 | 1. Dataset feasibility | DONE — RESTRICTED GO | Four-source audit and restricted contract: `docs/problem_definition.md` §§2–7; explicit developer acceptance below |
 | 2. EDA | DONE | Frozen verified partitions, five interpreted training-only charts and independent isolation/dependency verification |
-| 3. Feature engineering | NOT STARTED | Depends on approved temporal contract |
+| 3. Feature engineering | DONE | Seven predictors; exact real frozen population, cache repeatability and byte-identical EDA reconstruction |
 | 4. Baselines + models | NOT STARTED | No scores or models trained |
 | 5. Capacity evaluation | NOT STARTED | No empirical ranking curves calculated |
-| 6. Validation + tests | NOT STARTED | 25 synthetic/structural tests pass; no model validation |
+| 6. Validation + tests | NOT STARTED | 41 synthetic/structural tests pass; no model validation |
 | 7. React demo | NOT STARTED | No frontend created or deployed |
 | 8. Portfolio + storytelling | NOT STARTED | Final portfolio narrative pending; training-only EDA aggregates available |
 
@@ -49,15 +49,14 @@ Authorized Phase 2 only; no operational-backtest claim or Phase 3 implementation
 
 ## Pending validations and open questions
 
-1. Phase 2 execution still requires explicit authorization.
-2. Before EDA or final evaluation label access, materialize, verify and record the documented subscriber partitions and counts;
-   keep the final holdout inaccessible to development. Do not build features now.
-3. Confirm permitted future publication of derived artifacts separately; the
-   indexed official rules do not provide blanket redistribution permission.
-4. If broader future work uses v2 labels: authenticate its full cohort/window
-   specification and resolve source-vintage/event semantics first.
-5. Historical logging completeness, event arrival, Scala labeler boundaries and
-   older mature training cohorts remain unproved for an operational backtest.
+1. Phase 4 requires separate authorization; no preprocessing fitting, baseline
+   ranking, model selection or final-label evaluation has occurred.
+2. Confirm permitted future publication of derived evaluation artifacts
+   separately; no raw or individual feature/label data is published in Phase 3.
+3. Historical arrival times, logging completeness, labeler boundaries and
+   cross-month generalization remain unverified; preserve RESTRICTED GO.
+4. Other operating systems/Python versions and cross-machine image identity
+   remain unverified. See methodology for the supported environment.
 
 ## Risks / blockers
 
@@ -75,14 +74,10 @@ Authorized Phase 2 only; no operational-backtest claim or Phase 3 implementation
 
 ## Immediate next task for Codex
 
-**After explicit Phase 2 authorization: materialize and verify user partitions only.**
-
-Use SHA-256 of `retention-lab-feb2017-v1|` + ID, interpreted as an integer
-modulo 10: 0–5 train, 6–7 validation, 8–9 final. Verify repeatability,
-subscriber disjointness and complete study-population coverage; record counts
-without consulting outcome values and isolate final labels from development.
-Do this before EDA or final evaluation label access. No partitions were built
-in this closure; later EDA must remain development-only.
+Review the Phase 3 branch before merge, concentrating on shared-state extraction,
+final-outcome membership gating, predictor/key alignment and cache provenance.
+After separate authorization only, begin Phase 4 with training-only preprocessing
+and the documented baselines. No Phase 4 implementation is authorized by closure.
 
 ## Verification record
 
@@ -488,3 +483,109 @@ ID for ties. It has not been implemented or tuned on any held-out outcome.
   capabilities. RDD remains globally off. Engram unavailable; no memory claim.
 - Next: requested documentation/dependency correction commit and push on the
   existing feature branch; review the EDA before any separate Phase 3 approval.
+
+
+## 2026-10-19 — Authorized Phase 3 implementation
+
+- Started from clean `main` = `origin/main` = `abf493e` after `git fetch origin`;
+  created `feat/kkbox-feature-engineering`. Git metadata required sandbox
+  escalation; no direct main modification, reset or previous local work lost.
+- Extracted the existing deterministic event/state/assignment preparation and
+  history calculation to `data.py`, preserving EDA helper imports and CLI.
+  Added seven-feature export with separate technical keys and train/validation
+  labels; no final-label artifact, feature decisions from validation, fitted
+  preprocessing, model, additional dependency or new notebook.
+- `docs/features.md` records source fields, computation, cutoff safety, unknowns,
+  ambiguity, exceptional records, private file schemas and future train-only
+  preprocessing contract. Output directory is owner-only; raw/processed data
+  remain ignored. Cache checks hashes and coverage instead of deduplicating
+  transactions again. A cold build still requires original events: the existing
+  EDA has no validation/final histories.
+- New public-interface feature tests observed RED (five missing-CLI failures),
+  then GREEN. Intermediate extraction errors (indentation and moved-local
+  references) were fixed before full verification; not represented as successful
+  tests. Final synthetic/structural suite at this point: **41 passed**.
+- Independent data-free scratch verification: **41 passed**, exact baseline
+  `abf493e`/candidate EDA stdout/stderr/exit and all four artifact bytes matched;
+  explicit feature/coverage, ambiguity/missing/duplicates, cold/cached final-label
+  poisoning, separate validation changes, rejected-command immutability and
+  0700 output probes all passed. No reproducible implementation blockers.
+- Real EDA notebook `--check` initially failed at sandbox-denied localhost
+  sockets. Authorized out-of-sandbox rerun passed: two clean kernels reproduced
+  text and five figures; aggregate SHA-256 remains
+  `bdef546b4e271083a53d15e690d44b688c097231cafc4d65de98c5ada1a482bf`.
+- RDD status is globally off, unchanged; no native review started. Optional native
+  assessment refused untracked inventory before staging (not a functional test);
+  named risk still requires and received independent verification.
+- Real feature generation/cache rerun and full private EDA reconstruction are
+  pending. Phase 3 is **not DONE** until their evidence and staged privacy checks
+  are recorded. No completion commit/push yet.
+- Engram is unavailable; repository task log is retained, memory mirror and
+  session summary unavailable, not claimed.
+
+### Phase 3 final acceptance evidence
+
+- **Real build PASS:** original-source preparation exited 0 in **251.70 s**;
+  reconstructed 874,581 candidates, 874,580 eligible labeled IDs, one exclusion,
+  **523,998 train / 175,651 validation / 174,931 final**. No new eligibility or
+  partition rule. Each matrix has exactly seven predictors, separate aligned
+  technical keys, and no target/ID predictor. All training feature values and
+  permitted labels match the frozen EDA internally.
+- **Real cache PASS:** 7.64 s after explicit owner-only directory adjustment;
+  parent reran the same CLI successfully in 8.82 s. Every output hash is identical.
+  The first in-flight build had imported the pre-permission-check implementation;
+  its directory was 0755, so the updated cache conservatively refused (exit 2,
+  0.02 s). Tightened only that newly created private directory to **0700**;
+  all artifact bytes remained unchanged. Final cold-build permission behavior
+  is separately covered by synthetic tests and independent probes.
+- **Real EDA compatibility PASS:** full reconstruction with shared code to an
+  external temporary directory exited 0 in **232.05 s**. `cmp` matched all four
+  manifest/assignment/training/quality artifacts byte for byte; preexisting EDA
+  hashes also remained unchanged. Phase 1 global-label auditors were not run.
+- Feature-matrix SHA-256: train
+  `30a59e243fa153883a4c568c3e2904ea4b667515c64988752414466a313fbf46`,
+  validation `d7923848f2e48ebd24ba4bfde04316d39887f6b22442166f4d9223aeac702407`,
+  final `870a894cc53c54667fadfecdb61c77184f0432a04c484d3fa3d7f61f4a6f174a`.
+  Private completion-manifest SHA-256:
+  `95853404439592bcd91c64866cc3a134f76be32218cefae7be97b1b9fee87bbd`.
+- **Final synthetic suite PASS: 41 tests**, including repeated inherited EDA
+  compatibility cases, not 41 independent new rules. Parent independently reran
+  the verifier's complete differential/invariant probe in fresh scratch: PASS.
+  The first attempt to rerun its one-shot fixture script in already-used scratch
+  stopped at `FileExistsError`; fresh scratch resolved this harness-state issue,
+  without source changes. No functional assertion failed.
+- **Reproducibility:** identical-source reruns verify byte identity; independent
+  cold synthetic rebuilds and source-row/future-event invariance pass. The real
+  feature matrix was cold-built once, then cache-verified repeatedly, not falsely
+  claimed as two independent real cold builds. Real EDA was fully rebuilt once
+  and compared against previously verified artifacts. Notebook two-kernel proof
+  is recorded above and unchanged.
+- **Privacy/leakage:** separate train/validation label artifacts only; no final
+  labels converted, validated, hashed or exported and no final prevalence or
+  metrics calculated. CSV parsing necessarily transports the second field;
+  isolation is data-flow, not OS denial or a claim that raw bytes are unread.
+  All private outputs are ignored; output directory is 0700. Only source,
+  synthetic tests, schema/configuration and aggregate verification evidence
+  belong in the completion commit. Final staged scan follows below.
+- **Phase 3 DONE** on all analytical/engineering acceptance criteria. No model,
+  learned imputation/scaling/encoding, Phase 4, PR, merge or deployment. Existing
+  source authenticity/arrival/labeler, left-truncated history, record-based
+  population and single-cohort limits remain. Counts are records, not successful
+  payments; identified churn is not retention causality.
+- Delivery: the requested single completion commit/push follows final staged
+  checks; exact local/remote SHA is reported in the delivery response rather
+  than embedded self-referentially. RDD remains globally off, unchanged.
+- Final staged privacy scan passed: 12 UTF-8 text files, 142,167 bytes before
+  this note; no matching frozen subscriber IDs, credential signatures, absolute
+  home paths, private data paths or binary files. `git diff --cached --check`
+  passed; all private feature outputs are ignored. Main/origin-main remained
+  `abf493e0f1b823415d865aaff1152912b1ee5984`.
+- Informative native assessment initially required staged inventory and then
+  sandbox-denied temporary Git-index access. Authorized assessment rerun passed
+  with risk **high**, explicitly escalated item 3 (shared EDA contract). The
+  independent verifier above supplies functional proof; globally disabled RDD
+  remains disabled/unmanaged, with no review transaction or fabricated receipt.
+- Temporary verification copies, synthetic fixtures and duplicated private EDA
+  reconstruction were removed by the parent after checks; canonical ignored
+  feature outputs and prior EDA remain available. Suggested next action: human
+  branch review, then separately authorize Phase 4 if accepted.

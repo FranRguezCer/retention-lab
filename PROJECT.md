@@ -1,6 +1,6 @@
 # Retention Lab — Project Specification
 
-> Status: **Phase 2 DONE — isolated training-only EDA; restricted retrospective benchmark**
+> Status: **Phase 3 DONE — reproducible cutoff-safe features; restricted retrospective benchmark**
 > Last updated: 2026-10-19
 > This document is the source of truth for the **what and why** of the project. See `ROADMAP.md` for phase deliverables and `PROGRESS.md` for actual work status. Working conventions belong in `AGENTS.md`.
 
@@ -134,7 +134,9 @@ simulation or temporal validation between cohorts.
 Full-field duplicate handling, source isolation, remaining label/coverage limits
 and publication restrictions remain as documented in `docs/problem_definition.md`.
 This approval closed Phase 1 only. Phase 2 was subsequently authorized and verified;
-Phase 3 still requires separate authorization. See `PROGRESS.md`.
+Phase 3 was subsequently authorized and verified; its seven-feature schema and
+reproduction contract are in `docs/features.md`. Phase 4 still requires separate
+authorization. See `PROGRESS.md`.
 
 ## 4. Planned technical approach
 

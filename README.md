@@ -1,9 +1,9 @@
 # Retention Lab
 
 A retrospective subscription-churn study: how many future churners can be
-identified when outreach capacity is limited? **Phase 2 is complete:** five
-interpreted training-only EDA charts, frozen user partitions and tested data
-preparation. No model, capacity-comparison curves or deployed application yet.
+identified when outreach capacity is limited? **Phase 3 is complete:** seven
+reproducible cutoff-safe predictors, frozen user partitions, isolated outcomes
+and five interpreted training-only EDA charts. No model, capacity-comparison curves or deployed application yet.
 Identifying churn is not evidence that an intervention saves customers.
 
 ## Start here
@@ -51,3 +51,15 @@ only after setup. The published aggregates do not replace those private inputs.
 The pinned environment was tested on the stated platform, not all operating
 systems. Package version pins are not package-byte hashes; offline installation,
 other-platform wheels and cross-machine PNG identity are not guaranteed.
+
+## Reproduce Phase 3 features
+
+With the verified private Phase 2 artifacts available, run:
+
+```sh
+.venv-eda/bin/python scripts/prepare_kkbox_features.py --verify-real-population
+```
+
+The [feature contract](docs/features.md) documents the seven predictors, private
+outputs, separate validation labels, unlabeled final features and cache checks.
+No imputer/scaler/encoder or model is fitted by this command.
