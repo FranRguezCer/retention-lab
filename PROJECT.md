@@ -1,7 +1,7 @@
 # Retention Lab — Project Specification
 
-> Status: **planned; dataset feasibility not yet validated**  
-> Last updated: 2026-10-18  
+> Status: **Phase 1 DONE — RESTRICTED GO; retrospective benchmark approved**
+> Last updated: 2026-10-19
 > This document is the source of truth for the **what and why** of the project. See `ROADMAP.md` for phase deliverables and `PROGRESS.md` for actual work status. Working conventions belong in `AGENTS.md`.
 
 ## 1. Project in one sentence
@@ -14,8 +14,8 @@
 
 - **Primary user:** retention / customer-success manager at a digital subscription service.
 - **Decision:** given a fixed outreach capacity, which subscribers should be reviewed first?
-- **User experience:** interactive simulator comparing historical *churn identified* under three selection policies.
-- **Business framing:** a periodic (conceptually monthly) retention campaign; the exact prediction date, eligible population and horizons must be validated against the data.
+- **User experience:** interactive retrospective comparison of historical *churn identified* under three selection policies.
+- **Business framing:** limited outreach capacity motivates the comparison; the approved experiment is not a historical operational campaign simulation.
 - **Professional goal:** demonstrate supervised ML, feature engineering, temporally honest evaluation, ranking metrics, clear communication and proportionate product engineering.
 
 **Important boundary:** predicting or identifying a future churner does **not** prove that contacting them prevents churn. Retention Lab does not estimate incremental retention, treatment effects or realized revenue saved.
@@ -24,7 +24,7 @@
 
 For each eligible subscriber at a specified historical prediction cutoff:
 
-1. Construct features using **only information available at that cutoff**.
+1. Construct features from original-source records dated on or before the cutoff; event dates are retrospective proxies, not verified arrival timestamps.
 2. Estimate churn risk or generate a rank using each strategy.
 3. Evaluate on a **common, held-out, labeled evaluation population**.
 4. Select the top K users where K corresponds to X% of that population (document rounding and tie-breaking).
@@ -65,12 +65,12 @@ Additional evaluation, as justified: average precision / PR-AUC, ROC-AUC, calibr
 
 **No fabricated empirical numbers in the published demo.** Mock curves are permitted only for temporary UI development when explicitly labeled and removed before release.
 
-## 3. Data source: KKBOX (candidate, not yet confirmed)
+## 3. Data source: KKBOX (approved restricted benchmark)
 
-**WSDM — KKBOX Churn Prediction Challenge**  
+**WSDM — KKBOX Churn Prediction Challenge**
 https://www.kaggle.com/competitions/kkbox-churn-prediction-challenge/data
 
-Expected file families to investigate (verify what is actually available):
+File families considered during feasibility review (only the original transaction/label pair is approved for benchmark inputs):
 
 - `train.csv`, `train_v2.csv` — labeled subscribers / cohorts.
 - `transactions.csv`, `transactions_v2.csv` — payments, plan amounts, expiration and auto-renewal signals.
@@ -79,7 +79,7 @@ Expected file families to investigate (verify what is actually available):
 
 **Do not assume** file sizes, schemas, completeness, historical coverage or permitted redistribution until verified locally and against competition rules.
 
-The competition's churn definition is associated with failure to renew within a period after subscription expiry (commonly described as 30 days); **verify exact label semantics, cutoff dates and exceptions from primary documentation** before using them in the project.
+The benchmark accepts supplied original February `is_churn` outcomes under the official 30-day non-renewal concept. Exact labeler boundary/event adjudication remains unverified; labels are not independently regenerated. See `docs/problem_definition.md` for evidence and limitations.
 
 ### Required feasibility gate (Phase 1)
 
@@ -99,6 +99,39 @@ Investigate and document:
 **Critical example:** labels for subscriptions expiring late in February may not be known at the start of March if the outcome window extends 30 days after expiration. Never train a simulated March deployment using such unavailable labels and claim operational realism.
 
 **Gate outcome:** (a) approve a defensible protocol, (b) approve an explicitly limited retrospective comparison, or (c) propose a better dataset. Make the decision and limitations explicit before advancing.
+
+### Approved gate outcome — 2026-10-19
+
+The developer explicitly accepted **RESTRICTED GO**: an offline retrospective
+benchmark of the original February 2017 cohort, not an operational historical
+simulation or temporal validation between cohorts.
+
+- Index: start of February 1, 2017; input: `transactions.csv` only, with
+  `transaction_date <= 20170131`. No v2, profiles or activity inputs.
+- Eligibility: latest observed day has one agreed expiry/cancel/auto-renew state,
+  recorded expiry February 1–28 and `is_cancel=0`. Of 874,581 candidates,
+  874,580 have supplied `train.csv` labels; the one unlabeled candidate is excluded.
+- Outcomes: supplied February-cohort labels; follow-up can extend through March 30.
+  Fit only retrospectively after outcomes mature and are supplied; conservatively
+  March 31 plus processing lag, with actual release time unknown. No claim that
+  a model or training labels were available on February 1 or March 1.
+- Before Phase 2 EDA or access to final evaluation label values, materialize and
+  verify deterministic user partitions: SHA-256 of `retention-lab-feb2017-v1|` +
+  ID, interpreted as an integer modulo 10; 0–5 train, 6–7 validation, 8–9 final.
+  Verify repeatability, disjointness, full population coverage and record actual
+  counts without using outcome values. Keep final labels isolated from development.
+  Partitions are specified, not yet materialized or verified.
+- Preprocessing fits on train only; baseline/model selection uses development
+  only; all three policies share the same final labeled population and capacities.
+- Coverage is record-based and conditioned on supplied competition labels, not
+  the complete active subscriber population. Exclude ambiguous selected-state
+  days; other latest-field features need separate tie checks. Arrival times,
+  logging completeness and exact event semantics remain unproved. There is no
+  February-to-March or other cross-cohort temporal validation.
+
+Full-field duplicate handling, source isolation, remaining label/coverage limits
+and publication restrictions remain as documented in `docs/problem_definition.md`.
+This approval closes Phase 1 only; Phase 2 execution requires separate authorization.
 
 ## 4. Planned technical approach
 

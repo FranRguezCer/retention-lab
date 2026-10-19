@@ -1,21 +1,21 @@
 # Retention Lab — Progress Log
 
 > Last updated: 2026-10-19
-> **State: four-file audit passed; RESTRICTED GO proposed for a February retrospective benchmark; acceptance pending.**
+> **State: Phase 1 DONE — RESTRICTED GO; original February retrospective benchmark explicitly accepted.**
 > This file records *actual progress*, not intentions. `PROJECT.md` is the scope reference and `ROADMAP.md` contains acceptance gates.
 
 ## Current focus
 
 **Phase 1 — KKBOX feasibility audit and prediction-time contract**  
-Status: `RESTRICTED GO — pending developer acceptance; not DONE`
-Next objective: accept or reject the explicit single-cohort retrospective contract in `docs/problem_definition.md`; no operational-backtest claim or Phase 2 execution.
+Status: `DONE — RESTRICTED GO`
+Developer acceptance recorded on 2026-10-19. Phase 2 remains NOT STARTED and requires separate authorization; no operational-backtest claim.
 
 ## Phase tracker
 
 | Phase | Status | Evidence / blocker |
 |---|---|---|
-| 1. Dataset feasibility | RESTRICTED GO proposed | Four sources audited; original-only February subset established; developer acceptance pending |
-| 2. EDA | NOT STARTED | Depends on Phase 1 |
+| 1. Dataset feasibility | DONE — RESTRICTED GO | Four-source audit and restricted contract: `docs/problem_definition.md` §§2–7; explicit developer acceptance below |
+| 2. EDA | NOT STARTED | Await explicit authorization; materialize and verify partitions before EDA/final label access |
 | 3. Feature engineering | NOT STARTED | Depends on approved temporal contract |
 | 4. Baselines + models | NOT STARTED | No scores or models trained |
 | 5. Capacity evaluation | NOT STARTED | No empirical ranking curves calculated |
@@ -32,7 +32,7 @@ Next objective: accept or reject the explicit single-cohort retrospective contra
 - Three policies: random selection, simple business rule, supervised ML score.
 - Main chart: **Churn Captured vs. Outreach Capacity**.
 - Main metrics: Recall@K, Precision@K, Lift@K.
-- Data candidate: WSDM KKBOX Churn Prediction Challenge; **not yet validated**.
+- Data source: WSDM KKBOX; original February cohort approved only for the restricted retrospective benchmark.
 - Engineering direction: notebooks for exploration, Python modules for reproducible processing/evaluation, React/Vite static app on Netlify, precomputed aggregate JSON.
 - Public interpretation: *future churners identified*, **not** customers saved or actual impact of interventions.
 - Scope: small MVP; no online inference, CRM or causal uplift estimates.
@@ -44,14 +44,13 @@ Next objective: accept or reject the explicit single-cohort retrospective contra
 - [x] Portfolio/LinkedIn/interview narrative outlined at a conceptual level.
 - [x] All four local CSVs structurally inspected, hashed and checked for row/ID overlap and cutoff coverage; official download authenticity not independently verified.
 - [x] Restricted original-February retrospective contract specified with audited source/cutoff population.
-- [ ] Developer accepts the restricted protocol; operational temporal reconstruction remains unapproved.
+- [x] Developer explicitly accepted the restricted protocol on 2026-10-19; operational temporal reconstruction remains unapproved.
 - [x] Legacy auditor preserved; four-file/population auditor and 14 synthetic tests verified. No model, graph or deployment.
 
 ## Pending validations and open questions
 
-1. Does the developer accept the original-February single-cohort benchmark,
-   rather than require a realistic historical deployment or temporal transfer?
-2. Before EDA, freeze and record the documented subscriber partition counts;
+1. Phase 2 execution still requires explicit authorization.
+2. Before EDA or final evaluation label access, materialize, verify and record the documented subscriber partitions and counts;
    keep the final holdout inaccessible to development. Do not build features now.
 3. Confirm permitted future publication of derived artifacts separately; the
    indexed official rules do not provide blanket redistribution permission.
@@ -62,8 +61,8 @@ Next objective: accept or reject the explicit single-cohort retrospective contra
 
 ## Risks / blockers
 
-- **Scope acceptance (pending):** the restricted contract is recommended, not
-  silently substituted for an approved operational simulation.
+- **Scope accepted (restricted):** retrospective single-cohort comparison only;
+  no operational simulation or temporal validation between cohorts.
 - **Operational risk (excluded claim):** February labels need March follow-up;
   they cannot be treated as available for February or March 1 deployment.
 - **Release risk (controlled):** v2 adds backdated, nonidentical records and
@@ -76,15 +75,14 @@ Next objective: accept or reject the explicit single-cohort retrospective contra
 
 ## Immediate next task for Codex
 
-**Wait for acceptance of the restricted contract. Do not start Phase 2 here.**
+**After explicit Phase 2 authorization: materialize and verify user partitions only.**
 
-If accepted and Phase 2 explicitly authorized: freeze the documented subscriber
-partitions, then create a bounded EDA notebook on development users only, with
-3–5 interpreted charts, 2–3 hypotheses and a cutoff-safe rule candidate. Preserve
-final holdout isolation; no model training or feature pipeline in this audit.
-
-If the operational objective is retained instead, its original evidence gaps
-remain blocking; do not turn this RESTRICTED GO into an operational GO.
+Use SHA-256 of `retention-lab-feb2017-v1|` + ID, interpreted as an integer
+modulo 10: 0–5 train, 6–7 validation, 8–9 final. Verify repeatability,
+subscriber disjointness and complete study-population coverage; record counts
+without consulting outcome values and isolate final labels from development.
+Do this before EDA or final evaluation label access. No partitions were built
+in this closure; later EDA must remain development-only.
 
 ## Verification record
 
@@ -292,3 +290,38 @@ then explicit EDA authorization, with subscriber partitions frozen first.
   code changed, so unit tests were not rerun for this repository-hygiene change.
 - Methodological decision and phase status unchanged; restricted-protocol
   acceptance remains the next task. No Phase 2 work performed.
+
+## 2026-10-19 — Phase 1 formal closure
+
+**DONE — RESTRICTED GO.** Developer acceptance (verbatim):
+
+> He revisado y **acepto expresamente el contrato RESTRICTED GO** de la Fase 1 de Retention Lab: benchmark retrospectivo de la cohorte original de febrero de 2017.
+
+### Acceptance evidence
+
+| Phase 1 criterion | Evidence and restricted interpretation |
+|---|---|
+| Who is eligible | `docs/problem_definition.md` §§4–5: original-source pre-cutoff state, February recorded expiry, non-cancelled/unambiguous state; 874,581 candidates, 874,580 supplied labels |
+| What is known at index | Original transactions dated through January 31 for February 1 index; event date is a proxy, not verified arrival time; no v2 inputs |
+| When churn is measured / known | Supplied original February labels; follow-up through March 30, conservatively March 31 plus lag; actual release unknown; fitting is retrospective only |
+| No unresolved critical leak in adopted protocol | User-disjoint deterministic split specified before EDA/final-label access; development-only selection and same final population for all policies; implementation checks remain future gates, not claimed complete |
+| Explicit scope acceptance | Developer statement above accepts the limited estimand; broader operational and cross-cohort claims remain excluded |
+
+Coverage, missing labels, ambiguous events, unverified labeler/arrival semantics,
+source provenance and lack of temporal validation between cohorts remain limits,
+not resolved facts. Publication permissions remain a separate pending decision.
+Prior log entries are historical; this entry supersedes acceptance-pending status.
+
+Updated `PROJECT.md`, `ROADMAP.md`, `PROGRESS.md` and status/next-step wording in
+`docs/problem_definition.md`. Roadmap changes only remove contradictions with
+the accepted scope and partition ordering. No new scientific results are claimed.
+
+Verification: documentary acceptance/consistency readback and `git diff --check`
+passed. Existing audit suite: `python3 -m unittest discover -s tests -v` —
+14 passed. Raw-data audits were not rerun for this documentation-only closure;
+prior measured evidence is cited above, not represented as newly reproduced.
+No data downloads, EDA, features, training, frontend, split materialization,
+commit or push. Engram unavailable; no memory save or session summary claimed.
+
+Next small task: after separate Phase 2 authorization, materialize and verify
+the frozen subscriber partitions and holdout isolation, without EDA or model work.

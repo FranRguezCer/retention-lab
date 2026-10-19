@@ -1,6 +1,6 @@
 # Retention Lab — Incremental Roadmap
 
-> Status: planned, not started · Updated: 2026-10-18  
+> Status: Phase 1 DONE — RESTRICTED GO; Phase 2 not started · Updated: 2026-10-19
 > Follow `PROJECT.md` for scope and methodology, `AGENTS.md` for operating conventions, and `PROGRESS.md` for actual progress.
 
 ## Working method
@@ -24,7 +24,13 @@ The phase-level estimates are rough and may total beyond the nominal range depen
 
 ## Phase 1 — Data audit and prediction-time contract
 
-**Goal:** determine whether a defensible historical subscription-retention campaign can be studied with KKBOX.
+**Goal:** determine whether a defensible KKBOX study is feasible.
+
+**Closed: DONE — RESTRICTED GO (2026-10-19).** The developer accepted the
+original February 2017 single-cohort retrospective benchmark in
+`docs/problem_definition.md`, not an operational campaign simulation.
+Feasibility investigations below are bounded by its documented limitations;
+closure does not assert complete labeler reconstruction or verified arrival times.
 
 **Tasks**
 - [ ] Verify official dataset access, actual filenames, rules and local sizes.
@@ -43,9 +49,10 @@ The phase-level estimates are rough and may total beyond the nominal range depen
 
 ## Phase 2 — EDA and hypothesis formation
 
-**Goal:** understand the actual cohort, target and signals before model training.
+**Goal:** understand the development population, target and signals before model training; do not inspect final holdout labels.
 
 **Tasks**
+- [ ] Before EDA or final evaluation label access, materialize and verify the approved deterministic user partitions (SHA-256 of `retention-lab-feb2017-v1|` + ID, integer modulo 10: 0–5 train, 6–7 validation, 8–9 final); record counts, repeatability, disjointness and coverage without outcome values; isolate final labels from development.
 - [ ] Characterize churn prevalence, cohort size and available history.
 - [ ] Inspect nulls, duplicates, invalid dates, rare categories and outliers.
 - [ ] Compare relevant subscription/transaction signals by outcome without claiming causality.
@@ -55,7 +62,7 @@ The phase-level estimates are rough and may total beyond the nominal range depen
 
 **Deliverable:** `notebooks/01_eda.ipynb` and concise notes in `docs/methodology.md`.
 
-**Acceptance gate:** clear findings, data issues and a justified business-rule candidate; no post-cutoff inputs used as predictors.
+**Acceptance gate:** verified frozen user partitions and isolated final labels; development-only findings, data issues and a justified business-rule candidate; no post-cutoff inputs used as predictors.
 
 ## Phase 3 — Reproducible feature engineering
 
@@ -68,7 +75,7 @@ The phase-level estimates are rough and may total beyond the nominal range depen
 - [ ] Add limited activity aggregates only if useful and affordable.
 - [ ] Address missing values and document categorical encoding plans.
 - [ ] Check user/cohort uniqueness, date boundaries and source provenance.
-- [ ] Prepare chronological train/validation/evaluation partitions as permitted by Phase 1.
+- [ ] Reuse and verify the deterministic subscriber partitions frozen before Phase 2 EDA; do not substitute chronological or cross-cohort partitions.
 - [ ] Keep processing in `src/retention_lab/`, not embedded only in a notebook.
 
 **Deliverables:** `data.py`, `features.py`, tests and local processed tables (gitignored).

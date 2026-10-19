@@ -2,8 +2,9 @@
 
 **Decision: RESTRICTED GO for a single-cohort, offline comparison.**
 **Not approved:** an operational historical campaign or a February-to-March
-forward-transfer claim. Phase 1 is ready for the developer's acceptance of this
-restricted contract, not marked DONE and not authorization to begin Phase 2.
+forward-transfer claim. The developer explicitly accepted this restricted
+contract on 2026-10-19: **Phase 1 DONE — RESTRICTED GO**. This is not
+authorization to begin Phase 2.
 
 Updated: 2026-10-19. Branch: `feat/kkbox-minimal-audit`.
 This supersedes the two-file NO-GO: the original history resolves most input
@@ -298,10 +299,10 @@ original pair and avoids the large row-hash sets. No identifiers or individual
 event rows are written to reports, stdout or normal validation errors. Existing two-file
 `audit_kkbox.py` remains available unchanged.
 
-**Next decision:** developer accepts the February single-cohort retrospective
-contract or retains the broader backtest objective, which remains blocked.
-Phase 1 can close for the former only; PROGRESS is not marked DONE prematurely.
-After acceptance and explicit Phase 2 authorization, inspect development data
-only in the EDA notebook, document 3–5 interpreted charts and 2–3 hypotheses,
-and justify a cutoff-safe rule candidate. Do not expose the final holdout or
-begin those tasks in this audit.
+**Phase 1 closure:** developer acceptance is recorded in `PROGRESS.md`.
+After separate Phase 2 authorization, the first small task is to materialize
+and verify the specified deterministic user partitions before EDA or access to
+final evaluation labels: record counts, repeatability, disjointness and complete
+population coverage without outcome values, and isolate final labels from
+development. Partitions have not yet been materialized or verified. Later EDA
+uses development users only. No Phase 2 work is performed by this closure.
