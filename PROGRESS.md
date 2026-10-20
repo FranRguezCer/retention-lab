@@ -739,3 +739,41 @@ ID for ties. It has not been implemented or tuned on any held-out outcome.
   retaining their verification evidence here. Canonical private model/features
   and local notes remain untouched. No completion SHA is embedded in its own
   commit; local/remote confirmation belongs in the delivery report.
+
+
+## 2026-10-20 — Phase 4 extension: second candidate and pre-test freeze
+
+- Clean local/remote model branch at `471525b` verified before writes. User
+  authorized exactly HGB as the second and last candidate, then one final
+  capacity evaluation only after a separate committed freeze. No main change.
+- Added `selection.py`, pure `evaluate.py` and a separate CLI; original Phase4
+  training/baseline/feature/data code and all original artifacts are unchanged.
+  Original LR is reused after checksum/provenance and prediction verification;
+  serialized bytes preserved. Re-pickling equivalent objects can change alias
+  encoding, so cross-API reproducibility tests use predictions as well as exact
+  same-context artifact checks. No HGB parameter search or technical retuning.
+- Capacity floor and practical selection threshold fixed before results. HGB
+  passed that validation-only criterion and is selected. New empirical values
+  are documented in private `kkbox-selection-v1/validation.json`, not published.
+- Pure metric tests observed RED missing module, then GREEN3; comparison tests
+  observed RED missing functionality, then GREEN5. Independent data-free final
+  candidate suite **62 passed**; baseline **54 passed**; six prior CLI help
+  stdout/stderr/status identical. Rehashed ranking corruption refused.
+- Three real comparison runs, including independent output reconstruction,
+  produced all nine artifacts byte-identically. Both candidates use exactly
+  seven features; HGB native missingness, no scaling/early stopping/external
+  validation fitting. Original LR predictions match validation/final scores.
+- Real two-kernel EDA reproduction passed after authorized socket escalation;
+  existing aggregate hash unchanged. Parent reran real freeze relationship and
+  174,931-user coverage checks. No raw/final outcomes opened at this point.
+- Public `artifacts/model_freeze.json` anchors decision/configuration and private
+  manifest/model/key/score/ranking/report hashes. The final evaluator must verify
+  this anchor in an explicit ancestor commit AND actual artifact relationships.
+- **Publication blocker:** indexed official KKBOX rules sections7–8 checked
+  again; educational/research use and restricted data sharing do not establish
+  clearance for new project aggregates. Keep all new real metrics/plots private.
+  Existing aggregates are untouched; not treated as permission for new releases.
+- Phase4 extension analytically verified; pre-test commit follows privacy scan.
+  Phase5 is not executed yet. Its public completion/push remains blocked by
+  unresolved publication rights. RDD remains globally disabled/unmanaged.
+  Engram unavailable; local task log retained, memory mirror pending.

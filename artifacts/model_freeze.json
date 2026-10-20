@@ -1,0 +1,38 @@
+{
+  "final_keys": {
+    "sha256": "37dbcb7ff11feaa3890efa85ed6dead63abbfd227bef5e58d8cb10e6a62908d3",
+    "size_bytes": 8046832
+  },
+  "final_outcomes": "Not opened; requires explicit ancestor freeze commit and artifact verification",
+  "final_rankings": {
+    "sha256": "be3f3da4f87f66d38206314d638849453e9180ee599fb6ad566ee0673f15071d",
+    "size_bytes": 3515172
+  },
+  "final_scores": {
+    "sha256": "c12363eb5fb4f638d54377a687bd04f2f326f3b2659c6889317fd663bbc17e21",
+    "size_bytes": 5172379
+  },
+  "manifest": {
+    "sha256": "b7a3db99c626330900dcd1d8aac5470ec879e8dc93acaa4b9e7e73c84552568d",
+    "size_bytes": 4603
+  },
+  "model": {
+    "sha256": "b5918095c584c538e85ff375ec5201b627561dafdef3b24d93bd670539d26186",
+    "size_bytes": 382953
+  },
+  "publication": "New empirical aggregates remain private pending KKBOX publication clearance",
+  "rule": {
+    "minimum_absolute_gain": 0.01,
+    "otherwise": "logistic",
+    "primary": "validation Recall@10%",
+    "rounding": "floor(N * decimal_percentage / 100)",
+    "secondary": "no decrease in validation Recall@5% or Recall@20%",
+    "significance": "practical threshold, not statistical significance"
+  },
+  "selected_model": "hgb",
+  "validation_report": {
+    "sha256": "d5c68d3e856d1b250545a6e6ff9393834f0d7b0299a7324544a0630b15fca568",
+    "size_bytes": 4517
+  },
+  "version": 1
+}

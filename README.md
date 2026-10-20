@@ -78,3 +78,12 @@ aggregates only. The chosen Logistic Regression converged in 21 iterations;
 validation AP is 0.335492 and ROC-AUC 0.812455. These are **not final evaluation
 results** or proof of improvement at a particular outreach capacity. Frozen final
 scores contain no labels; the main Recall@K comparison is reserved for Phase 5.
+
+## Authorized model comparison and capacity protocol
+
+The HGB extension is implemented separately without changing the original LR
+reproduction command. See [model selection and freezing](docs/models.md#authorized-second-and-final-candidate-2026-10-20)
+and [capacity definitions/publication hold](docs/results.md). HGB is selected
+by the fixed validation-only rule; new empirical aggregates remain private until
+KKBOX publication rights are established. A committed freeze and verified artifact
+relationships are mandatory before the single final evaluation. No Phase6/frontend.

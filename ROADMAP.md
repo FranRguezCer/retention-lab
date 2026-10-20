@@ -101,7 +101,7 @@ unchanged two-kernel notebook reproduction. See `docs/features.md` and
 - [x] Define deterministic expected random baseline or reproducible random draws.
 - [x] Implement and freeze the commercial rule, including ties.
 - [x] Train logistic regression with train-only preprocessing.
-- [x] Optional alternative considered and not needed: retain the technically valid Logistic Regression; no tree model trained.
+- [x] Subsequently authorized second/final candidate: HGB compared using validation Recall@10%; selected under the predeclared rule. Original LR remains reproducible; new metrics private pending publication clearance.
 - [x] Generate out-of-sample risk scores / rankings without inspecting final labels to tune choices.
 - [x] Record training configuration, seed, metrics and limitations.
 

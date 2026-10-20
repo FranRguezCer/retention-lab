@@ -149,3 +149,68 @@ label-free rankings and publication privacy. Existing source-arrival/labeler,
 left-truncated history, record-based eligibility and single-cohort limitations
 remain unchanged. No final-label access, Phase 5 work, PR or merge is authorized
 by this implementation.
+
+## Authorized second and final candidate (2026-10-20)
+
+The extension keeps `train.py`, the original CLI and `kkbox-models-v1` immutable.
+It adds `selection.py` and a separate private `kkbox-selection-v1` identity:
+
+```sh
+.venv/bin/python scripts/select_kkbox_model.py --verify-real-population
+```
+
+Exactly one HGB configuration is compared with the byte-reproduced original LR.
+HGB uses the same seven predictors and training rows, native missing-value routing
+and categorical `auto_renew`, no imputer/scaler, learning rate 0.1, 200 boosting
+rounds, at most 15 leaves per tree, at least 50 rows per leaf, L2=1 and seed42.
+Early stopping is disabled: neither the external validation cohort nor an internal
+holdout determines training length. One numerical thread is used. No search,
+extra features, third model or final outcomes enter this comparison.
+
+Before measuring results, the practical rule is fixed: select HGB only if
+validation Recall@10% improves by at least **one percentage point** and Recall@5%
+and Recall@20% do not decrease; otherwise retain LR. This is a simplicity
+preference, **not a significance test**. AP and ROC-AUC are secondary score
+diagnostics. Realized random AP/ROC use its hash permutation as an arbitrary
+continuous ordering; expected random capacity results are reported separately.
+
+Contact budget is `K=floor(N*percentage/100)`, computed with decimal arithmetic.
+Actual capacity is `K/N`; rounding never exceeds the requested allowance.
+`evaluate.py` implements Recall=TP/P, Precision=TP/K, Lift=Precision/(P/N).
+At K=0, precision/lift are null; recall is zero if P>0. At P=0, recall/lift are
+null, precision is zero for K>0. At K=N with P>0, recall/lift are one.
+Invalid percentages, labels, incomplete/duplicated permutations and duplicate
+alignment keys fail closed. Existing purpose-specific hash tie policies remain.
+
+The private freeze records both serialized candidates, permitted validation
+scores/report, final keys/scores/rankings, parameters, feature/source/environment
+hashes and selection rule. Verification recomputes validation diagnostics and
+final predictions from the frozen models and features, checks exact permutations,
+then confirms the decision. An explicit ancestor Git commit must contain the
+matching `artifacts/model_freeze.json` and exact implementation bytes before the
+separate final evaluator can open outcomes. A manifest's mere existence is not
+sufficient. The freeze closes permanently when final evaluation starts.
+
+### Publication hold
+
+The [official KKBOX rules, sections 7–8](https://www.kaggle.com/c/kkbox-churn-prediction-challenge/rules)
+were checked again on 2026-10-20 using indexed official text. They describe
+educational/research use and restrict redistribution of competition data, without
+explicit clearance for this project's new derived aggregates. No such clearance
+is inferred here. **New real validation/final aggregates and figures remain
+private**; the public anchor contains only configuration, decision and checksums,
+not new measured metrics. This is a documented publication blocker, not legal
+advice, not evidence of prohibition of every aggregate, and not permission to
+publish. Previously committed Phase 2/4 artifacts are unchanged; their existence
+does not establish permission for further outputs.
+
+The real comparison selected **HGB** using the fixed rule; full validation
+measurements are in private `data/processed/kkbox-selection-v1/validation.json`.
+Both model and final-ranking hashes are anchored in public
+[`model_freeze.json`](../artifacts/model_freeze.json), without publishing new
+empirical aggregates. All nine private files reproduced byte-for-byte in three
+CLI runs, including independent output reconstruction. Exact original LR bytes
+are preserved; its scores are verified against the original run. Cross-process
+serialization is not a general guarantee for arbitrary equivalent pickle object
+graphs. Known NumPy/joblib deserialization deprecation warnings are nonfatal; no
+new package versions were introduced to silence them.

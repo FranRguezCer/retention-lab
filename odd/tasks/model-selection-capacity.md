@@ -1,0 +1,29 @@
+# Model extension and capacity evaluation
+Branch: `feat/kkbox-model-baselines`; base: `471525b34afdef2783350a734c4c2cfdd8366749`.
+Two sequential deliverables, two requested commit boundaries; no PR/merge/Phase 6. Runner: `.venv/bin/python -m unittest discover -s tests -v`.
+
+## Specs
+- S1: "Trabaja en la rama existente: `feat/kkbox-model-baselines`"; verify base/local/remote and preserve pending work.
+- S2: "Añade `HistGradientBoostingClassifier` de scikit-learn como segundo y último candidato supervisado." Exactly seven frozen features, same training users/labels; native missing handling, no scaling, fixed bounded parameters/seed, no search. Preserve original LogisticRegression and its artifact bytes.
+- S3: "Utiliza **Recall@10 % en validación como criterio principal de elección**"; "Ante diferencias pequeñas o inconsistentes, favorece la regresión logística por simplicidad." Before results: HGB needs >=1 percentage point Recall@10 improvement and no Recall@5/20 decrease. This is practical, not statistical significance. Report AP/ROC-AUC and capacity diagnostics for both models/rule/random permutation; expected random distinct.
+- S4: "Implementa las definiciones de capacidad y K antes de observar los resultados." Use floor(N*percent/100), Decimal arithmetic. Undefined ratios are null, not invented zero. Check K=0/N, P=0, invalid inputs/permutations/duplicates/ties.
+- S5: "ANTES de acceder a cualquier etiqueta de evaluación final" freeze parameters/preprocessing/code/seed/features/model, final scores/rankings, coverage and hashes; verify relationships, not just manifest existence. "Realiza un commit separado al cerrar la comparación de modelos y **antes de abrir las etiquetas finales**".
+- S6: "una única evaluación final" after the gate, exact label/key/ranking union. Final-label evaluator separate; no post-test tuning/retraining/selection. Persistent exclusive start record consumes the attempt before opening labels; verified cached readback never reopens labels.
+- S7: "Churn Captured vs. Outreach Capacity"; three policies, full unsmoothed empirical step curves, theoretical expected random, 5/10/20 business table, signed absolute recall differences in percentage points. No causal/ROI claims.
+- S8: "Antes de publicar agregados, comprueba también las restricciones de uso y redistribución de KKBOX; si no puede justificarse su publicación, conserva los resultados localmente y documenta el bloqueo." New real metrics and graphics remain private pending clearance; no automatic public export.
+- S9: Tests, real model execution, isolated leakage/gate review, prior EDA/features compatibility, docs/progress/roadmap. No Phase 6/frontend. Push two commits only if Phase 5 criteria are met; otherwise preserve state and report blocker honestly.
+
+## Tasks
+- T1 S1–S5: inline; verified. New pure metrics and comparison/freeze CLI, tests/docs. No independent parallel write units. Risk item 3 (new consumed frozen contract), item 1 (one-shot final-outcome boundary).
+- T2 S2–S5,S9: inline + per-action checks; verified, freeze commit pending. Real development comparison/reproduction and independent gate verification; first commit BEFORE final labels.
+- T3 S4–S9: inline; pending. Separate one-shot final evaluator, synthetic RED/GREEN and independent leakage review BEFORE real labels; one real final pass, private table/curve/provenance; second delivery only if acceptance/publication conditions hold.
+
+## Log
+- L1: User authorized "Retention Lab — Phase 4 Extension + Phase 5 Capacity Evaluation", sequential development-only HGB comparison/freeze commit then one final evaluation, no PR/merge/Phase6. Binding verbatim clauses are quoted in S1–S9; the detailed conversation remains controlling scope.
+- L2: Clean fetch: HEAD and remote branch both `471525b34afdef2783350a734c4c2cfdd8366749`. Read-only explorer loaded all required docs and mapped contracts via synced CodeGraph. Engram unavailable; mirror pending. RDD globally off, unchanged.
+- L3: Official Kaggle rules (2026-10-20, indexed /c/.../rules sections7–8) allow educational/research use after acceptance and restrict data redistribution. No explicit clearance for this project's new aggregates found. Keep new development/final metrics and graphs private; document publication blocker. No inference of permission from other repositories.
+- L4: Architecture: leave original train.py/baselines/features/data and original output identity unchanged. Add versioned comparison/freeze and pure capacity functions. HGB: 200 boosting iterations, learning_rate .1, 15 leaves, min_samples_leaf50, l2_regularization1, early_stoppingFalse, seed42; native NaN and categorical binary auto_renew. No outside validation used for fitting. Selection and integer capacity rules declared to user before measurements.
+
+- L5: Pure capacity tests RED missing module then GREEN3. Selection RED5 missing functionality then targeted GREEN under refinement. Discovered that equivalent refit/re-pickled sklearn objects can have context-dependent pickle aliasing. Preserve original LR serialized bytes by verified copy, and compare its predictions to original scores rather than require a new pickle identity. Test HGB numerical reproducibility across API/CLI contexts, and exact artifacts across identical CLI reruns. No model parameters were tuned or corrected from results.
+
+- L6: A independent verification PASS: fresh candidate62/baseline54 tests, six priorCLI help differentials, real EDA2kernels. Three real comparison runs reproduced all9 artifacts byte-for-byte. HGB selected under fixed practical rule; new metrics remain in private validation.json. Parent spot-check verify_freeze real relationships/coverage PASS; no evaluation_started record or final outcome access. Public model_freeze.json contains hashes/decision/configuration only. Freeze commit before B follows staged scan.
