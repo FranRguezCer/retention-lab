@@ -20,7 +20,7 @@ and subsequent Phase 4 work on a separate branch; no model has been trained.
 | 3. Feature engineering | DONE | Seven predictors; exact real frozen population, cache repeatability and byte-identical EDA reconstruction |
 | 4. Baselines + models | NOT STARTED | No scores or models trained |
 | 5. Capacity evaluation | NOT STARTED | No empirical ranking curves calculated |
-| 6. Validation + tests | NOT STARTED | 41 synthetic/structural tests pass; no model validation |
+| 6. Validation + tests | NOT STARTED | 42 synthetic/structural tests pass; no model validation |
 | 7. React demo | NOT STARTED | No frontend created or deployed |
 | 8. Portfolio + storytelling | NOT STARTED | Final portfolio narrative pending; training-only EDA aggregates available |
 
@@ -614,3 +614,38 @@ ID for ties. It has not been implemented or tuned on any held-out outcome.
   Receipt-driven review remains globally disabled, unchanged.
 - Existing retrospective/source-availability/labeler limitations remain. This
   verification does not demonstrate operational deployment or causal retention.
+
+## 2026-10-20 — Consolidate the local Python environment
+
+- Added root-only `/aclaraciones.md` to `.gitignore`; preserved the local notes
+  unchanged and excluded them from staging.
+- Replaced `requirements-eda.txt` and `requirements-eda.lock` with one
+  `requirements.txt`. All **48 package/version pairs are unchanged**, including
+  transitive dependencies; no ML dependency or Phase 4 behavior was introduced.
+- Recreated `.venv` with **CPython 3.12.3** using the documented external-pip
+  fallback. The previous `.venv` used Python 3.15 and contained no application
+  packages. Did not relocate `.venv-eda`: console scripts embed interpreter paths.
+  Removed both superseded environments only after successful replacement checks.
+- Updated README, methodology and feature reproduction commands to `.venv` and
+  the single manifest. Earlier session commands remain historical evidence.
+- New manifest/navigation tests observed RED before consolidation, then GREEN.
+  Fresh full suite in `.venv`: **42 passed**. External-pip dependency check:
+  **no broken requirements**. Installed inventory exactly matches all 48 pins.
+- Real feature-cache verification passed with unchanged population:
+  **523,998 train / 175,651 validation / 174,931 final**. This was a cache/source
+  integrity check, not a new cold reconstruction or final-label evaluation.
+- `.venv/bin/python scripts/run_eda_notebook.py --check`: **PASS**, two clean
+  kernels produced identical aggregate text and figures; aggregate SHA-256 remains
+  `bdef546b4e271083a53d15e690d44b688c097231cafc4d65de98c5ada1a482bf`.
+- Initial package installation lacked sandbox DNS access; expanded-permission
+  installation succeeded. Notebook execution required authorized localhost sockets.
+  This host lacks Python 3.12 ensurepip; use the documented external-pip commands.
+- Independent verification: **PASS**, fresh scratch copy ran all **42 tests**;
+  baseline pins, new manifest and installed inventory matched exactly. Confirmed
+  one environment, ignored notes, current documentation and dependency health.
+  No production Python or notebook bytes changed.
+- Risk: item 5 (dependency manifest and environment setup). No production CLI behavior changed, so a CLI
+  differential probe is not applicable; unchanged pins and real EDA outputs
+  provide the relevant compatibility evidence.
+- Next task remains the separately authorized Phase 4 implementation. No merge
+  to main, PR, model training or Phase 5 work is part of this environment cleanup.

@@ -22,10 +22,10 @@ x86_64**. A Python installation with `venv`/`ensurepip` support is required for
 this quick path. Do not overwrite an existing environment used for other work.
 
 ```sh
-python3.12 -m venv .venv-eda
-.venv-eda/bin/python -m pip install -r requirements-eda.lock
-.venv-eda/bin/python -m pip check
-.venv-eda/bin/python -m unittest discover -s tests -v
+python3.12 -m venv .venv
+.venv/bin/python -m pip install -r requirements.txt
+.venv/bin/python -m pip check
+.venv/bin/python -m unittest discover -s tests -v
 ```
 
 The tests use synthetic fixtures and committed aggregate notebook outputs, not
@@ -34,9 +34,9 @@ packaged as an installable distribution; its CLIs load `src/` explicitly.
 See [the pip-free environment fallback](docs/methodology.md#python-without-ensurepip)
 if your Python installation cannot bootstrap pip.
 
-[`requirements-eda.lock`](requirements-eda.lock) pins the complete verified
-analysis environment. [`requirements-eda.txt`](requirements-eda.txt) declares
-all direct dependencies and constrains their resolution to that same lock.
+[`requirements.txt`](requirements.txt) is the only dependency manifest and pins
+the complete verified environment, including direct and transitive dependencies.
+Use the single ignored `.venv` environment for analysis and feature preparation.
 No modeling library or interactive JupyterLab/Notebook server is needed; execution
 uses nbclient and an ipykernel in a fresh local process.
 
@@ -57,7 +57,7 @@ other-platform wheels and cross-machine PNG identity are not guaranteed.
 With the verified private Phase 2 artifacts available, run:
 
 ```sh
-.venv-eda/bin/python scripts/prepare_kkbox_features.py --verify-real-population
+.venv/bin/python scripts/prepare_kkbox_features.py --verify-real-population
 ```
 
 The [feature contract](docs/features.md) documents the seven predictors, private

@@ -1,4 +1,4 @@
-"""Keep direct imports, pinned versions and reproduction entry points aligned."""
+"""Keep imports, the single pinned manifest and reproduction entry points aligned."""
 import ast
 import json
 from pathlib import Path
@@ -21,9 +21,8 @@ def pins(path: Path) -> dict[str, str]:
 
 
 class DependencyManifestTests(unittest.TestCase):
-    def test_runtime_imports_are_declared_directly_and_locked(self):
-        direct = pins(ROOT / 'requirements-eda.txt')
-        locked = pins(ROOT / 'requirements-eda.lock')
+    def test_runtime_imports_are_explicitly_pinned(self):
+        direct = pins(ROOT / 'requirements.txt')
         sources = list((ROOT / 'scripts').glob('*.py'))
         sources += list((ROOT / 'src').rglob('*.py'))
         sources += list((ROOT / 'tests').glob('*.py'))
@@ -44,17 +43,31 @@ class DependencyManifestTests(unittest.TestCase):
         external |= {'ipykernel', 'matplotlib_inline'}
         expected = {re.sub(r'[-_.]+', '-', name).lower() for name in external}
         self.assertTrue(expected <= direct.keys(),
-                        f'Undeclared direct imports: {expected - direct.keys()}')
-        for name, version in direct.items():
-            self.assertEqual(locked.get(name), version, name)
+                        f'Unpinned imports: {expected - direct.keys()}')
 
-    def test_direct_install_uses_the_verified_constraints(self):
-        lines = (ROOT / 'requirements-eda.txt').read_text().splitlines()
-        self.assertIn('-c requirements-eda.lock', lines)
+    def test_single_manifest_is_self_contained_and_exactly_pinned(self):
+        manifests = sorted(p.name for p in ROOT.glob('requirements*') if p.is_file())
+        self.assertEqual(manifests, ['requirements.txt'])
+        lines = [line.strip() for line in (ROOT / 'requirements.txt').read_text().splitlines()
+                 if line.strip() and not line.lstrip().startswith('#')]
+        self.assertTrue(lines)
+        self.assertEqual(len(lines), len(pins(ROOT / 'requirements.txt')))
+        for line in lines:
+            self.assertRegex(line, r'^[A-Za-z0-9_.-]+==[^\s;]+$')
+
+    def test_current_instructions_use_the_single_environment(self):
+        for path in ('README.md', 'docs/methodology.md', 'docs/features.md'):
+            text = (ROOT / path).read_text()
+            self.assertIn('.venv', text)
+            self.assertNotIn('.venv-eda', text)
+            self.assertNotIn('requirements-eda', text)
+        ignored = (ROOT / '.gitignore').read_text().splitlines()
+        self.assertIn('/aclaraciones.md', ignored)
+        self.assertIn('.venv/', ignored)
 
     def test_readme_points_to_reproduction_and_current_results(self):
         readme = (ROOT / 'README.md').read_text()
-        for target in ('docs/methodology.md', 'requirements-eda.lock',
+        for target in ('docs/methodology.md', 'requirements.txt',
                        'notebooks/01_eda.ipynb', 'PROGRESS.md'):
             self.assertIn(target, readme)
             self.assertTrue((ROOT / target).is_file())

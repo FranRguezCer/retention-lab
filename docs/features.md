@@ -13,10 +13,10 @@ acquired original `transactions.csv` and `train.csv`. No new dependencies,
 `members`, `user_logs`, v2 releases or notebook are needed.
 
 ```sh
-.venv-eda/bin/python -m unittest discover -s tests -v
-.venv-eda/bin/python scripts/prepare_kkbox_features.py --verify-real-population
-.venv-eda/bin/python scripts/prepare_kkbox_features.py --verify-real-population
-.venv-eda/bin/python scripts/run_eda_notebook.py --check
+.venv/bin/python -m unittest discover -s tests -v
+.venv/bin/python scripts/prepare_kkbox_features.py --verify-real-population
+.venv/bin/python scripts/prepare_kkbox_features.py --verify-real-population
+.venv/bin/python scripts/run_eda_notebook.py --check
 ```
 
 Prerequisite: verified private `data/processed/kkbox-eda-v1/` artifacts from

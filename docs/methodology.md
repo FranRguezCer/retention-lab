@@ -9,17 +9,17 @@ No operational campaign simulation, causal retention claim or model is implied.
 Run every command from the repository root. The verified target is **CPython
 3.12.3 / Linux x86_64**; do not assume Windows/macOS or another Python version is
 covered by this lock. Python must include SQLite and virtual-environment support.
-Keep an existing unrelated environment untouched; `.venv-eda` is a dedicated,
-ignored analysis environment. The repository is not a pip-installable package:
+Use one ignored `.venv` environment for this project. Do not overwrite an
+environment used by another project. The repository is not a pip-installable package:
 its scripts explicitly add `src/` to the import path.
 
 ### Install and test without private data
 
 ```sh
-python3.12 -m venv .venv-eda
-.venv-eda/bin/python -m pip install -r requirements-eda.lock
-.venv-eda/bin/python -m pip check
-.venv-eda/bin/python -m unittest discover -s tests -v
+python3.12 -m venv .venv
+.venv/bin/python -m pip install -r requirements.txt
+.venv/bin/python -m pip check
+.venv/bin/python -m unittest discover -s tests -v
 ```
 
 All tests use synthetic fixtures or committed aggregate notebook content; no raw
@@ -29,14 +29,13 @@ ipykernel 6.29.5 and jupyter-client 8.10.0. The last two launch and manage local
 kernels; matplotlib-inline supplies the explicitly selected figure backend.
 No modeling packages or interactive JupyterLab/Notebook server are needed.
 
-`requirements-eda.lock` pins the complete environment, including transitive
-packages. `requirements-eda.txt` declares direct dependencies and includes
-`-c requirements-eda.lock`, so installing it cannot silently choose newer
-transitive versions. The lock uses version pins, not distribution-file hashes:
+`requirements.txt` is the only dependency manifest. It pins the complete
+environment, including direct and transitive packages, and lists the direct
+dependencies in its header. It uses version pins, not distribution-file hashes:
 it is not a hermetic/offline bundle or a cross-platform guarantee. Installing
 requires an available authorized package index and compatible distributions.
-The test suite checks imported packages against direct declarations and their
-locked versions; changing dependencies requires a fresh installation, `pip check`,
+The test suite checks imported packages against exact pins and verifies that
+the manifest is self-contained; changing dependencies requires a fresh installation, `pip check`,
 tests and notebook reconstruction, not just editing the direct pins.
 
 ### Python without ensurepip
@@ -46,17 +45,17 @@ If `python3.12 -m venv` cannot bootstrap pip, use an **already available pip
 [pip](https://pip.pypa.io/en/stable/topics/python-option/):
 
 ```sh
-python3.12 -m venv --without-pip .venv-eda
-python3 -m pip --python .venv-eda install -r requirements-eda.lock
-python3 -m pip --python .venv-eda check
-.venv-eda/bin/python -m unittest discover -s tests -v
+python3.12 -m venv --without-pip .venv
+python3 -m pip --python .venv install -r requirements.txt
+python3 -m pip --python .venv check
+.venv/bin/python -m unittest discover -s tests -v
 ```
 
 Here `python3 -m pip` is the installer already available on the host, not a
 requirement that it use the analysis interpreter. The `--python` argument selects
 the analysis environment. If neither ensurepip nor a recent external pip is
 available, install your operating system's Python 3.12 venv/pip support first;
-do not assume an unrelated local `.venv` exists or install into system Python.
+do not install dependencies into system Python.
 The analysis environment intentionally lacks pip under this fallback, so its
 `python -m pip check` is unavailable: use the external-pip command above.
 
@@ -73,9 +72,9 @@ Prerequisites beyond the environment:
   A sandbox denying sockets cannot provide notebook-execution proof.
 
 ```sh
-.venv-eda/bin/python scripts/prepare_kkbox_eda.py --verify-real-population
-.venv-eda/bin/python scripts/prepare_kkbox_eda.py --verify-real-population
-.venv-eda/bin/python scripts/run_eda_notebook.py --check
+.venv/bin/python scripts/prepare_kkbox_eda.py --verify-real-population
+.venv/bin/python scripts/prepare_kkbox_eda.py --verify-real-population
+.venv/bin/python scripts/run_eda_notebook.py --check
 ```
 
 Do not run the real Phase 1 auditors for this workflow: they inspect global label

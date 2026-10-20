@@ -111,5 +111,5 @@ data/audit/
 # Local CodeGraph index
 .codegraph/
 
-# Dedicated Python 3.12 EDA environment
-.venv-eda/
+# Private local project notes
+/aclaraciones.md
