@@ -314,4 +314,6 @@ The Phase 1 closure and next-step statements above are historical. Phase 2 was
 subsequently authorized: partitions were frozen and reproduced, training-only EDA
 was verified, and no validation/final outcome prevalence was inspected by that
 flow. See [methodology](methodology.md) and the final Phase 2 entry in
-[progress](../PROGRESS.md). Phase 3 has not been authorized.
+[progress](../PROGRESS.md). Phase 3 was subsequently authorized and completed;
+see the seven-predictor [feature contract](features.md). The original authorization
+boundaries above are historical, not the current project status.

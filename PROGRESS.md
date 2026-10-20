@@ -1,6 +1,6 @@
 # Retention Lab — Progress Log
 
-> Last updated: 2026-10-19
+> Last updated: 2026-10-20
 > **State: Phase 3 DONE — verified reproducible cutoff-safe features; restricted retrospective benchmark.**
 > This file records *actual progress*, not intentions. `PROJECT.md` is the scope reference and `ROADMAP.md` contains acceptance gates.
 
@@ -8,7 +8,8 @@
 
 **Phase 3 — Reproducible cutoff-safe feature engineering**
 Status: `DONE — synthetic, independent, real-data and EDA compatibility checks passed`
-Authorized Phase 3 only; no modeling, operational-backtest claim, PR or merge.
+Phase 3 pre-merge review passed. The developer authorized integration into main
+and subsequent Phase 4 work on a separate branch; no model has been trained.
 
 ## Phase tracker
 
@@ -49,8 +50,8 @@ Authorized Phase 3 only; no modeling, operational-backtest claim, PR or merge.
 
 ## Pending validations and open questions
 
-1. Phase 4 requires separate authorization; no preprocessing fitting, baseline
-   ranking, model selection or final-label evaluation has occurred.
+1. Phase 4 is authorized after Phase 3 integration into main. No preprocessing
+   fitting, baseline ranking, model selection or final-label evaluation has occurred.
 2. Confirm permitted future publication of derived evaluation artifacts
    separately; no raw or individual feature/label data is published in Phase 3.
 3. Historical arrival times, logging completeness, labeler boundaries and
@@ -74,10 +75,10 @@ Authorized Phase 3 only; no modeling, operational-backtest claim, PR or merge.
 
 ## Immediate next task for Codex
 
-Review the Phase 3 branch before merge, concentrating on shared-state extraction,
-final-outcome membership gating, predictor/key alignment and cache provenance.
-After separate authorization only, begin Phase 4 with training-only preprocessing
-and the documented baselines. No Phase 4 implementation is authorized by closure.
+Integrate the verified Phase 3 branch into main and publish it, as explicitly
+authorized on 2026-10-20. Then create `feat/kkbox-model-baselines` from main for
+the separately authorized Phase 4. Preserve the frozen population and final-label
+isolation; do not advance to Phase 5.
 
 ## Verification record
 
@@ -589,3 +590,27 @@ ID for ties. It has not been implemented or tuned on any held-out outcome.
   reconstruction were removed by the parent after checks; canonical ignored
   feature outputs and prior EDA remain available. Suggested next action: human
   branch review, then separately authorize Phase 4 if accepted.
+
+## 2026-10-20 — Phase 3 pre-merge readiness review
+
+- Independent read-only review found no confirmed implementation blocker. Checked
+  shared EDA extraction, cutoff/eligibility, final-outcome membership gating,
+  key/feature alignment, cache provenance and immutable output conflicts.
+- Fresh full suite: `.venv-eda/bin/python -m unittest discover -s tests -v`:
+  **41 passed** (parent and independent reviewer). These are synthetic/structural
+  checks, not a new real cold reconstruction.
+- Real `.venv-eda/bin/python scripts/prepare_kkbox_features.py
+  --verify-real-population`: **PASS**, verified existing cache and original-source
+  identity; 523,998 train / 175,651 validation / 174,931 final.
+- `.venv-eda/bin/python scripts/run_eda_notebook.py --check`: **PASS**, two clean
+  kernels reproduced aggregate text and figures; aggregate SHA-256 unchanged:
+  `bdef546b4e271083a53d15e690d44b688c097231cafc4d65de98c5ada1a482bf`.
+  Initial sandbox execution could not create Jupyter sockets; the authorized
+  expanded-permission execution passed.
+- Corrected a stale Phase 3 authorization statement in the problem definition.
+  No feature algorithm, frozen artifact, dependency or final outcome was changed.
+- Developer authorized merge/push of verified Phase 3 and a new Phase 4 branch.
+  Local untracked `aclaraciones.md` remains untouched and excluded from commits.
+  Receipt-driven review remains globally disabled, unchanged.
+- Existing retrospective/source-availability/labeler limitations remain. This
+  verification does not demonstrate operational deployment or causal retention.
