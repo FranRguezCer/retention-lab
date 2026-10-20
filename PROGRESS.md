@@ -1,17 +1,18 @@
 # Retention Lab — Progress Log
 
 > Last updated: 2026-10-20
-> **State: Phase 4 extension DONE; Phase 5 evaluated privately once, publication BLOCKED (not DONE).**
+> **State: Phase 4 DONE; Phase 5 four-strategy post-hoc extension VERIFIED; Phase 6 NOT STARTED.**
 > This file records *actual progress*, not intentions. `PROJECT.md` is the scope reference and `ROADMAP.md` contains acceptance gates.
 
 ## Current focus
 
-**Phase 5 — Capacity evaluation, private execution complete**
-Status: `BLOCKED — publication clearance unresolved; not DONE`
-HGB was selected using validation only and committed before the single final
-evaluation. Final results/plot are private. No result-based model changes,
-publication of empirical results, PR, merge or Phase6 work.
-The developer subsequently authorized committing/pushing code and documentation only.
+**Phase 5 — Four frozen strategies, post-hoc descriptive extension**
+Original HGB/Random/Business evaluation remains consumed and unchanged. Original
+LR ranking verified before reuse; no training/scoring/selection/raw CSV access.
+Owner conditionally authorizes global aggregates under the documented rules review.
+Full suite and independent privacy/integrity verification passed. Commit/push and
+remote confirmation are reported separately after the completion commit.
+No PR, merge or Phase 6.
 
 ## Phase tracker
 
@@ -21,7 +22,7 @@ The developer subsequently authorized committing/pushing code and documentation 
 | 2. EDA | DONE | Frozen verified partitions, five interpreted training-only charts and independent isolation/dependency verification |
 | 3. Feature engineering | DONE | Seven predictors; exact real frozen population, cache repeatability and byte-identical EDA reconstruction |
 | 4. Baselines + models | DONE (extended) | LR preserved; HGB selected on validation, private rankings/models anchored in pre-test commit; docs/models.md |
-| 5. Capacity evaluation | BLOCKED — not DONE | One authorized private final evaluation and curve complete; KKBOX aggregate-publication clearance unresolved |
+| 5. Capacity evaluation | DONE — verified four-strategy extension | Original evaluation preserved; post-hoc LR, sampled aggregates, four-curve PNG, conditions review and independent checks passed |
 | 6. Validation + tests | NOT STARTED | Phase-specific tests and development diagnostics exist; final robustness audit remains future scope |
 | 7. React demo | NOT STARTED | No frontend created or deployed |
 | 8. Portfolio + storytelling | NOT STARTED | Final portfolio narrative pending; training-only EDA aggregates available |
@@ -52,15 +53,14 @@ The developer subsequently authorized committing/pushing code and documentation 
 
 ## Pending validations and open questions
 
-1. Phase 4 extension is complete. The separately authorized Phase5 final
-   evaluation has been consumed once; do not reopen outcomes or reselect models.
-   Publication and final delivery remain blocked pending aggregate clearance.
-2. Confirm permitted future publication of derived evaluation artifacts
-   separately; no raw or individual feature/label data is published in Phase 3.
-3. Historical arrival times, logging completeness, labeler boundaries and
-   cross-month generalization remain unverified; preserve RESTRICTED GO.
-4. Other operating systems/Python versions and cross-machine image identity
-   remain unverified. See methodology for the supported environment.
+1. Full-suite and independent verification passed. Completion commit/push and
+   exact remote confirmation are recorded in the delivery report.
+2. Final test access remains consumed; no retraining, reselection or raw-label
+   reopening. New LR results are post-hoc descriptive only.
+3. Historical arrival times, label adjudication and temporal generalization
+   remain unverified. No Phase 6 or causal/retention-impact claim.
+4. Publication is limited to owner-authorized global aggregates under the
+   reviewed conditions, not an express derivative license; see attribution.
 
 ## Risks / blockers
 
@@ -73,15 +73,15 @@ The developer subsequently authorized committing/pushing code and documentation 
 - **Population risk (explicit limit):** record-based eligible subset, not all
   subscribers or all official targets. Same-day selected-state ambiguity is
   excluded; supplied labels are not independently regenerated.
-- **Publication risk (pending):** developer confirms applicable conditions before
-  any raw/derived data publication; educational local audit is not a clearance.
+- **Publication boundary:** current limited owner authorization and official-terms
+  review permit only the described aggregate release; no raw/individual data or
+  express derivative license. Stop affected publication if incompatible terms emerge.
 
 ## Immediate next task for Codex
 
-Integrate the verified Phase 3 branch into main and publish it, as explicitly
-authorized on 2026-10-20. Then create `feat/kkbox-model-baselines` from main for
-the separately authorized Phase 4. Preserve the frozen population and final-label
-isolation; do not advance to Phase 5.
+Human review of the verified four-strategy branch before any separately
+authorized merge; completion commit/push identity belongs in the delivery report.
+Do not begin Phase 6, create a PR or change main.
 
 ## Verification record
 
@@ -857,3 +857,75 @@ ID for ties. It has not been implemented or tuned on any held-out outcome.
   No PR/merge/main changes. Phase5 remains blocked for empirical publication.
 - Engram tools remain unavailable; this local log preserves the handoff. Exact
   new commit and remote confirmation belong in the user-facing delivery report.
+
+
+## 2026-10-20 — Four-strategy descriptive extension
+
+- User authorized implementation, completion commit and push on the current
+  branch, not PR/merge/Phase6. See `odd/tasks/four-strategy-comparison.md`.
+- Original LR SHA-256 `93dba88b049c39c650872f49a08fe588ba27978ae5f6f0deb66cc1e012df431d`;
+  original final ranking `e2ed3d83b4c30535aa139e6a98daa8c8993877819a0ff9a3d1e771b23d827773`.
+  All original model, freeze, evaluation outputs/manifests and consumed marker
+  retain their exact fingerprints. Model/ranking manifest identity anchored in
+  pre-test `471525b`; HGB freeze `7f21d9b`; original evaluator `ec3e58e`.
+- Read-only independent preflight verified all outputs, exact same 174931 keys,
+  seven features, unchanged baseline orders/scores and 9527 outcomes reconstructed
+  from all three private cached arrays. Canonical outcome digest matches original.
+  No original CSV opened, model loaded/fitted/scored or selection rerun.
+- Separate `posthoc.py` and CLI reverify historical identities before metrics,
+  recover outcomes in memory, require whole-original-results equivalence and
+  add only original LR order. No changes to previous Python/CLI/dependencies.
+- New JSON exports only integer-percentage budgets plus 5/10/20 tables; private
+  every-K arrays used solely in memory for the unsmoothed raster visualization.
+  Original image and original results stay private and untouched.
+- New official rules review and owner authorization supersede the earlier local
+  publication hold only for global aggregates/visualizations: no express
+  aggregate prohibition identified in retrievable indexed official text, no
+  express derivative license claimed. See `docs/data_attribution.md`.
+- RED observed: five missing-module errors before implementation. Focused GREEN:
+  six synthetic tests pass, including public-interface manual values, hash
+  corruption, historical rehash rejection, no raw/training/selection/score path,
+  original equality/immutability, byte-identical PNG and CLI conflict retention.
+  Warnings from existing pinned matplotlib/pyparsing packages are nonfatal.
+- Real extension succeeded using only verified private evidence. At 5/10/20%,
+  LR captures 3876/5845/6793; HGB 3993/5968/7410; rule 2664/5327/6612.
+  HGB minus LR recall: 1.23/1.29/6.48 percentage points (display-rounded).
+  HGB remains selected; these results cannot reopen the validation decision.
+- Pending: complete suite, independent verification, public privacy scan,
+  commit/push/remote/cleanliness. Phase5 not DONE until those checks pass.
+- Risk: item 2 (privacy boundary when recovering outcomes and exporting public
+  aggregates). Independent verification required. RDD globally off, unchanged.
+  Engram memory/mirror/session summary unavailable; local handoff retained.
+
+
+### Final local acceptance and authorized delivery
+
+- Independent corrected fresh scratch full suite: **77/77 PASS**, 63.360s,
+  `.venv/bin/python -m unittest discover -s tests -v`. Earlier scratch-copy
+  omission of `.gitignore` caused one setup error; corrected full rerun passed,
+  not merely a selective test waiver. Parent final focused spot-check: **6/6 PASS**.
+- Independent verification found no blockers: all101 budgets/five differences
+  validated independently, eight original CLI help outputs/exit statuses
+  equivalent, all existing Python source/scripts/tests unchanged from `ec3e58e`.
+  No new dependencies, no empirical training or new dataset evaluation in tests.
+- Real guarded cached export reproduced JSON/table/PNG exactly with raw CSV,
+  training, scoring, selection and original evaluator entry points blocked.
+  Every original LR/freeze/evaluation manifest and file, including consumed
+  marker and original PNG, reverified unchanged. HGB stays selected on validation.
+- Parent visually inspected the four-curve PNG and scanned all13 candidate files
+  against all174931 final identifiers, private home paths and credential markers:
+  PASS. Only placeholders tracked under raw/processed; all private data/model/
+  ranking/cache outputs ignored. Public JSON has101 sampled budgets, not every K.
+- `git diff --check`: PASS. Public deliverables: v2 JSON/table/PNG, cache-only
+  module/CLI/tests, updated README/progress/roadmap/models/results and attribution.
+  Original CSVs, individual evidence, models and every-K arrays remain private.
+- **Phase5 DONE on verified analytical/aggregate-publication acceptance** under
+  the owner's limited authorization and documented conditions review, not an
+  express derivative license. Push completion/SHA and clean-tree state cannot be
+  embedded in their own commit and are confirmed in the final delivery report.
+  Phase4 remains DONE; Phase6 NOT STARTED. No PR, merge, force-push or data removal.
+- Risk: item2 (derived-outcome/public-export privacy boundary); independent
+  verification passed. RDD remained globally disabled/unmanaged. No new review
+  consent/transaction started. Engram persistence unavailable, local log retained.
+- Next suggested action: human review before merge, especially post-hoc framing,
+  frozen evidence lineage and aggregate-only publication. Do not begin Phase6.

@@ -1,6 +1,6 @@
 # Retention Lab — Incremental Roadmap
 
-> Status: Phase 4 extension DONE; Phase 5 private execution complete, publication BLOCKED; Phase 6 not started · Updated: 2026-10-20
+> Status: Phase 4 extension DONE; Phase 5 four-strategy post-hoc extension DONE; Phase 6 not started · Updated: 2026-10-20
 > Follow `PROJECT.md` for scope and methodology, `AGENTS.md` for operating conventions, and `PROGRESS.md` for actual progress.
 
 ## Working method
@@ -127,17 +127,21 @@ Independent scratch checks and prior EDA reproduction passed. See
 - [x] Compute metrics for capacities from 0% to 100% with focus on 5%, 10%, 20%.
 - [x] Build the same-population curves: Random, Business Rule and ML.
 - [x] Compute ML-vs-rule and ML-vs-random differences at selected capacities.
-- [ ] Export versioned, aggregated results with cohort metadata and no user identifiers.
+- [x] Export separate v2 sampled four-strategy aggregates, retaining the original three-strategy evaluation and post-hoc LR distinction.
 - [x] Document exactly what was measured and what is *not* inferred (no prevented churn).
 
 **Deliverables:** `evaluate.py`, `export.py`, reproducible chart, metrics table and candidate JSON artifacts.
 
 **Acceptance gate:** empirical metrics match hand-checkable samples; graph uses real evaluation results and answers the central research question.
 
-**BLOCKED — not DONE:** the single authorized final pass and empirical curve
-exist in private owner-only storage after the committed HGB freeze. New public
-aggregate JSON/plot delivery remains blocked pending KKBOX publication clearance.
-No second results commit/push or Phase6 work. See `docs/results.md` and `PROGRESS.md`.
+**DONE — four-strategy post-hoc extension verified (2026-10-20):** original
+one-shot evaluation preserved; original frozen LR added only descriptively from
+private cached outcomes. No training, scoring, reselection or raw CSV access.
+HGB remains selected. Separate sampled JSON, tables and four-curve PNG follow the
+owner's limited publication authorization and documented conditions review, not
+an asserted express derivative license. Full suite77/77 and independent
+privacy/integrity/formula/compatibility verification passed. See `docs/results.md`
+and `PROGRESS.md`. No Phase6; human review precedes any separately authorized merge.
 
 ## Phase 6 — Reliability, audit and limitations
 

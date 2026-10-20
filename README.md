@@ -1,11 +1,45 @@
 # Retention Lab
 
-A retrospective subscription-churn study: how many future churners can be
-identified when outreach capacity is limited? **Phase 4 is complete:** reproducible random,
-business-rule and Logistic Regression rankings on frozen cutoff-safe features.
-The subsequently authorized Phase5 evaluation and curve exist privately, but
-publication is blocked pending KKBOX clearance. No deployed application.
-Identifying churn is not evidence that an intervention saves customers.
+A retrospective subscription-churn study: how many observed future churners can
+be identified when outreach capacity is limited? **Four frozen strategies are
+now compared:** Random expected, Business Rule, Logistic Regression and
+HistGradientBoosting. HGB was selected on validation before the original final
+evaluation; LR is a **post-hoc descriptive addition**, not a new model selection
+or an independent confirmatory test. No deployed application or Phase 6 work.
+
+![Churn Captured vs. Outreach Capacity](artifacts/capacity_comparison_v2.png)
+
+On the shared 174,931-subscriber final cohort (9,527 observed churners), at 10%
+capacity HGB identifies 5,968 churners (62.64% recall), versus 5,845 (61.35%) for
+LR and 5,327 (55.91%) for the rule. HGB's descriptive gain over LR is **1.29
+percentage points**; at 5% and 20% it is 1.23 and 6.48 points. These results do
+not show that contacts prevented churn, nor demonstrate temporal generalization.
+See [full tables and limitations](docs/results.md) and
+[versioned aggregate JSON](artifacts/capacity_comparison_v2.json).
+
+Data: **WSDM 2018 — KKBOX Churn Prediction Challenge**
+([source](https://www.kaggle.com/c/kkbox-churn-prediction-challenge),
+[rules](https://www.kaggle.com/c/kkbox-churn-prediction-challenge/rules),
+[data](https://www.kaggle.com/c/kkbox-churn-prediction-challenge/data)).
+Independent educational project; not affiliated with or endorsed by KKBOX or
+Kaggle. Acquire originals from the authorized source; never redistribute them.
+See [attribution and limited aggregate-publication review](docs/data_attribution.md).
+No express permission for derivative-data publication is asserted.
+
+## Reproduce the descriptive extension (no raw CSV access)
+
+With the intact private original LR, HGB freeze and consumed evaluation cache:
+
+```sh
+.venv/bin/python scripts/extend_kkbox_comparison.py
+```
+
+This verifies historical hashes, reuses outcomes from private cached counts in
+memory, and exports only separate v2 aggregate JSON/table/PNG. Repeat runs compare
+existing outputs rather than overwrite them. Do not rerun training, selection or
+`evaluate_kkbox.py` for this extension. Original three-strategy evidence stays
+private and byte-identical. Preparation/training commands below document the
+historical workflow, not authorization to run it again on this consumed test.
 
 ## Start here
 
@@ -79,18 +113,15 @@ aggregates only. The original Logistic Regression converged in 21 iterations;
 validation AP is 0.335492 and ROC-AUC 0.812455. These are **not final evaluation
 results** or proof of improvement at a particular outreach capacity. That original iteration froze final
 scores without labels; the subsequently authorized Phase5 comparison is now
-computed privately, with publication blocked.
+preserved privately; the separate post-hoc aggregate comparison is linked above.
 
-## Authorized model comparison and capacity protocol
+## Model selection and original evaluation
 
-The HGB extension is implemented separately without changing the original LR
-reproduction command. See [model selection and freezing](docs/models.md#authorized-second-and-final-candidate-2026-10-20)
-and [capacity definitions/publication hold](docs/results.md). HGB is selected
-by the fixed validation-only rule; new empirical aggregates remain private until
-KKBOX publication rights are established. A committed freeze and verified artifact
-relationships are mandatory before the single final evaluation. No Phase6/frontend.
-
-The single final evaluation has now completed on the pre-test committed HGB.
-Its table/curve remain local and ignored; **Phase5 is not marked DONE** because
-publication clearance is unresolved. The developer separately authorized publishing the evaluator code/tests/docs;
-this does not authorize publication of the private empirical outputs. Do not repeat final-label evaluation; use verified cached outputs only.
+The [model guide](docs/models.md#authorized-second-and-final-candidate-2026-10-20)
+and [original protocol](docs/results.md#historical-original-evaluation-protocol)
+document the validation-only HGB selection and committed pre-test freeze. One
+original final evaluation compared Random, Business Rule and HGB. Its consumed
+marker, outputs and plot are retained unchanged. The separately versioned LR
+addition reuses the same already-observed outcomes; it cannot reopen selection.
+The earlier aggregate-publication hold is superseded only by the owner's limited
+authorization and the [documented conditions review](docs/data_attribution.md).

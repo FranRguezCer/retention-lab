@@ -1,3 +1,10 @@
+> **Current comparison (2026-10-20):** HGB remains selected from pre-test
+> validation. The original Logistic Regression ranking is added only as a
+> post-hoc descriptive comparison of the same already-observed final cohort.
+> No training, scoring or selection is rerun. See [results](results.md) and
+> [attribution/publication update](data_attribution.md). Publication holds and
+> pre-evaluation statements below describe their historical stage.
+
 # Reproduce Phase 4 rankings
 
 Phase 4 freezes **random, business-rule and Logistic Regression rankings**. It
