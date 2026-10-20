@@ -1,6 +1,6 @@
 # Retention Lab — Incremental Roadmap
 
-> Status: Phase 4 DONE — reproducible baselines and frozen model scores; Phase 5 not started · Updated: 2026-10-20
+> Status: Phase 4 extension DONE; Phase 5 private execution complete, publication BLOCKED; Phase 6 not started · Updated: 2026-10-20
 > Follow `PROJECT.md` for scope and methodology, `AGENTS.md` for operating conventions, and `PROGRESS.md` for actual progress.
 
 ## Working method
@@ -115,24 +115,29 @@ users. Three real runs (one independent output) reproduced all 13 private files
 byte-for-byte; train-only preprocessing and final-outcome isolation verified.
 Independent scratch checks and prior EDA reproduction passed. See
 [`docs/models.md`](docs/models.md), aggregate development diagnostics and
-`PROGRESS.md`. No final evaluation metrics or Recall@K curves; Phase 5 is not started.
+`PROGRESS.md`. Those checks preceded the separately authorized Phase5 private evaluation below.
 
 ## Phase 5 — Capacity curves: the core research result
 
 **Goal:** quantify the proportion of future churners identified at each outreach capacity.
 
 **Tasks**
-- [ ] Implement tested `Recall@K`, `Precision@K` and `Lift@K` definitions.
-- [ ] Define the K rounding rule and tie handling; test K=0, K=N, no positives, and invalid inputs.
-- [ ] Compute metrics for capacities from 0% to 100% with focus on 5%, 10%, 20%.
-- [ ] Build the same-population curves: Random, Business Rule and ML.
-- [ ] Compute ML-vs-rule and ML-vs-random differences at selected capacities.
+- [x] Implement tested `Recall@K`, `Precision@K` and `Lift@K` definitions.
+- [x] Define the K rounding rule and tie handling; test K=0, K=N, no positives, and invalid inputs.
+- [x] Compute metrics for capacities from 0% to 100% with focus on 5%, 10%, 20%.
+- [x] Build the same-population curves: Random, Business Rule and ML.
+- [x] Compute ML-vs-rule and ML-vs-random differences at selected capacities.
 - [ ] Export versioned, aggregated results with cohort metadata and no user identifiers.
-- [ ] Document exactly what was measured and what is *not* inferred (no prevented churn).
+- [x] Document exactly what was measured and what is *not* inferred (no prevented churn).
 
 **Deliverables:** `evaluate.py`, `export.py`, reproducible chart, metrics table and candidate JSON artifacts.
 
 **Acceptance gate:** empirical metrics match hand-checkable samples; graph uses real evaluation results and answers the central research question.
+
+**BLOCKED — not DONE:** the single authorized final pass and empirical curve
+exist in private owner-only storage after the committed HGB freeze. New public
+aggregate JSON/plot delivery remains blocked pending KKBOX publication clearance.
+No second results commit/push or Phase6 work. See `docs/results.md` and `PROGRESS.md`.
 
 ## Phase 6 — Reliability, audit and limitations
 

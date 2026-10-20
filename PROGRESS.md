@@ -1,15 +1,17 @@
 # Retention Lab — Progress Log
 
 > Last updated: 2026-10-20
-> **State: Phase 4 DONE — reproducible baselines and converged Logistic Regression; final scores frozen without final outcomes.**
+> **State: Phase 4 extension DONE; Phase 5 evaluated privately once, publication BLOCKED (not DONE).**
 > This file records *actual progress*, not intentions. `PROJECT.md` is the scope reference and `ROADMAP.md` contains acceptance gates.
 
 ## Current focus
 
-**Phase 4 — Baselines and first ML models**
-Status: `DONE — synthetic, independent, real-training, reproducibility and EDA checks passed`
-Three frozen rankings share the original partitions. Logistic Regression is selected
-using development diagnostics only. Phase 5 is not started; review before merge.
+**Phase 5 — Capacity evaluation, private execution complete**
+Status: `BLOCKED — publication clearance unresolved; not DONE`
+HGB was selected using validation only and committed before the single final
+evaluation. Final results/plot are private. No result-based model changes,
+publication of empirical results, PR, merge or Phase6 work.
+The developer subsequently authorized committing/pushing code and documentation only.
 
 ## Phase tracker
 
@@ -18,8 +20,8 @@ using development diagnostics only. Phase 5 is not started; review before merge.
 | 1. Dataset feasibility | DONE — RESTRICTED GO | Four-source audit and restricted contract: `docs/problem_definition.md` §§2–7; explicit developer acceptance below |
 | 2. EDA | DONE | Frozen verified partitions, five interpreted training-only charts and independent isolation/dependency verification |
 | 3. Feature engineering | DONE | Seven predictors; exact real frozen population, cache repeatability and byte-identical EDA reconstruction |
-| 4. Baselines + models | DONE | Three reproducible rankings, converged Logistic Regression, train-only preprocessing, isolated final scores; docs/models.md |
-| 5. Capacity evaluation | NOT STARTED | No empirical ranking curves calculated |
+| 4. Baselines + models | DONE (extended) | LR preserved; HGB selected on validation, private rankings/models anchored in pre-test commit; docs/models.md |
+| 5. Capacity evaluation | BLOCKED — not DONE | One authorized private final evaluation and curve complete; KKBOX aggregate-publication clearance unresolved |
 | 6. Validation + tests | NOT STARTED | Phase-specific tests and development diagnostics exist; final robustness audit remains future scope |
 | 7. React demo | NOT STARTED | No frontend created or deployed |
 | 8. Portfolio + storytelling | NOT STARTED | Final portfolio narrative pending; training-only EDA aggregates available |
@@ -50,8 +52,9 @@ using development diagnostics only. Phase 5 is not started; review before merge.
 
 ## Pending validations and open questions
 
-1. Phase 4 is complete. Review the branch before merge; Phase 5 final-label
-   evaluation and capacity curves require separate authorization.
+1. Phase 4 extension is complete. The separately authorized Phase5 final
+   evaluation has been consumed once; do not reopen outcomes or reselect models.
+   Publication and final delivery remain blocked pending aggregate clearance.
 2. Confirm permitted future publication of derived evaluation artifacts
    separately; no raw or individual feature/label data is published in Phase 3.
 3. Historical arrival times, logging completeness, labeler boundaries and
@@ -777,3 +780,80 @@ ID for ties. It has not been implemented or tuned on any held-out outcome.
   Phase5 is not executed yet. Its public completion/push remains blocked by
   unresolved publication rights. RDD remains globally disabled/unmanaged.
   Engram unavailable; local task log retained, memory mirror pending.
+
+
+### Phase 5 — Single private final evaluation and publication blocker
+
+- Freeze commit **`7f21d9bb615ca5834e92fdc3fdf8f0928a62b7e8`** was created
+  at **2026-10-20 17:44:26 UTC**. Actual artifact/model/prediction/ranking/commit
+  relationships passed before outcome access. Final evaluation started at
+  **17:53:34.786995 UTC**, completed at **17:53:37.195000 UTC**. This is local
+  Git/log evidence, not an externally trusted timestamp or an OS security boundary.
+- Independent PRE-OUTCOME review **PASS**: fresh data-free suite **68 passed**;
+  semantic tampering with recalculated hashes/anchor, exact source/final joins,
+  opaque nonfinal-label poisoning, manual metrics and one-shot/cached behavior
+  probes passed. Two simultaneous attempts caused one outcome-file read; fsync
+  preceded opening. Parent focused6 passed before the real pass. No power-loss
+  simulation was performed; an interrupted consumed attempt fails closed.
+- The real final CLI ran exactly once, using the committed HGB and three frozen
+  policies on the same **174,931** keys. Only final-key outcome values were
+  interpreted/hashed; original identifiers verified; no nonfinal outcome values
+  interpreted. No new training, model choice, tie or parameter changes followed.
+- Private `data/processed/kkbox-evaluation-v1/`: `results.json`,
+  `capacity_curve.png`, `curve_counts.npz` and completion `manifest.json`. The
+  every-K arrays can reconstruct ordered outcomes and must never be published.
+  New outcome counts, prevalence, capacity table and measured curves remain private.
+- Parent verified all output hashes and evaluator/source identity, reproduced
+  the PNG byte-for-byte from cached counts without labels, and verified cached
+  CLI readback with a nonexistent raw-label path. This was NOT another evaluation.
+  Model freeze/source files and original LR artifacts remain unchanged.
+- Private completion-manifest SHA-256:
+  `b405bd78a3ececf8cfe33a2f0dd6788c4e9c821da8d3aec7f6483025467ae8e7`.
+  Sampled aggregate JSON SHA-256:
+  `2ec7d9d4866dbefe709b7d1565ff25fd54219620cacdefd641e31b85d71a9243`.
+  PNG SHA-256:
+  `ad23622d688018ccfa669b8dac5583b0ce50526d4792a68c76945d4ea939dce0`.
+- **Phase5 NOT DONE:** computation/engineering completed privately, but no
+  documented right to publish these derived results is established. The
+  conditional second results commit/push is not performed. Preserve B edits
+  locally and A commit locally; do not present private execution as a public
+  completed release. No PR/merge/Phase6/frontend. RDD remains off.
+- Next: obtain documented aggregate-publication clearance; then review/export
+  only approved sampled aggregates and PNG from verified cache, without
+  reopening labels or changing model/policies. Engram unavailable; memory
+  summary/mirror pending, not claimed. Final tests/privacy evidence follows.
+
+- **Final checks PASS:** fresh data-free full suite **71 tests**, including
+  duplicate/missing original-ID and concurrent-start regressions. A source/anchor
+  and B evaluator/CLI bytes remain identical to their verified snapshots. All
+  private selection/evaluation hashes, start marker and directory permissions
+  passed independent postchecks. No raw labels were reopened by those checks.
+- Source/dependency/EDA compatibility evidence above remains valid; no new raw
+  cold reconstruction or temporal-generalization test is claimed. Publication
+  scan and remote-state confirmation follow as read-only handoff checks.
+
+- Final read-only remote confirmation: branch still at
+  `471525b34afdef2783350a734c4c2cfdd8366749`; main still at
+  `7efdd4fd138005c451d5be5e4840df947be1d7b7`. A freeze commit remains local.
+  Nine B source/test/doc files remain intentionally uncommitted; no push was
+  attempted under the failed publication condition. Final candidate privacy and
+  whitespace scans passed; no new empirical aggregates in public candidate files.
+- Parent removed only reported verification/rebuild/plot scratch copies after
+  retaining evidence in canonical private manifests and this log. All canonical
+  raw/features/original LR/selection/evaluation outputs and local notes preserved.
+
+
+## 2026-10-20 — Explicit authorization to publish the current code state
+
+- Developer requested: "comitea y pushea el estado actual en esta rama al remoto".
+  This authorizes the pending evaluator/tests/documentation commit and push of
+  both local work units on `feat/kkbox-model-baselines`, not publication of
+  private empirical outputs or clearance of the Phase5 publication blocker.
+- Prior observed full suite: **71 passed**; no production source or tests changed
+  since that verification. Evaluator/CLI hashes still match the one-shot real
+  evaluation manifest. Do not rerun final labels.
+- Commit/push proceeds after exact staged privacy/whitespace review. Models,
+  keys, scores, outcomes, new metrics/plots and every-K arrays remain ignored.
+  No PR/merge/main changes. Phase5 remains blocked for empirical publication.
+- Engram tools remain unavailable; this local log preserves the handoff. Exact
+  new commit and remote confirmation belong in the user-facing delivery report.

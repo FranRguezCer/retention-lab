@@ -44,3 +44,69 @@ whether a contact changes their outcome. No prevented churn, saved revenue or RO
 is estimated. Limits include one cohort, no cross-month temporal validation,
 unverified historical arrival times and label adjudication, left-truncated
 history, record-based eligibility, and no intervention/causal evidence.
+
+## Private one-shot execution
+
+After the explicit freeze commit has been verified, the authorized command is:
+
+```sh
+.venv/bin/python scripts/evaluate_kkbox.py \
+  --freeze-commit 7f21d9bb615ca5834e92fdc3fdf8f0928a62b7e8 \
+  --verify-real-population
+```
+
+Do not run this as a development experiment. `--labels` defaults to original
+`data/raw/train.csv`; `--frozen-dir`, `--feature-dir`, `--eda-dir` and
+`--output-dir` select explicit nonoverlapping private locations. No v2 source.
+The gate verifies committed anchor/source bytes, model/provenance/environment,
+recomputed predictions, exact final keys and all policy permutations before
+outcome access. Then an exclusive `evaluation_started.json` record is flushed
+and fsynced in the freeze directory **before** opening outcomes. Any subsequent
+failure leaves the attempt consumed; there is no silent label-read retry.
+
+CSV parsing transports all fields, but the evaluator converts and hashes outcome
+values only after final-key membership. All source identifiers are checked against
+the frozen identifier-only fingerprint; final labels must join exactly to keys.
+Nonfinal outcome values are not validated, interpreted or hashed. This is a
+data-flow guarantee, not physical selective disk access or OS isolation.
+
+Default private output is `data/processed/kkbox-evaluation-v1/` (0700):
+`results.json` has 101 measured budgets and a 5/10/20 table;
+`capacity_curve.png` shows the full empirical step curves at **every integer K**
+and theoretical random expectation; `curve_counts.npz` retains every-K counts
+for reproduction without reopening labels. **Never publish the every-K arrays:**
+differencing them can recover ordered outcomes. The completion manifest hashes
+all outputs and binds the start record, freeze commit/manifest, evaluator code
+and selected-label provenance. There are no exported subscriber IDs.
+
+An identical later CLI call verifies and reads the completed cache without
+opening or even requiring raw labels. A different destination, changed identity,
+partial run or corrupt output is refused. This is not permission to repeat the
+final experiment. Plot reproduction uses the cached counts with `render_curve`;
+no training or label source is needed. A writable external `MPLCONFIGDIR` avoids
+sandbox home-cache warnings. Package deprecation warnings are not convergence
+failures and do not justify changing the frozen numerical environment.
+
+## Observed execution status
+
+**Private evaluation complete; Phase5 publication BLOCKED, not DONE.** Freeze
+commit `7f21d9bb615ca5834e92fdc3fdf8f0928a62b7e8` predates outcome opening.
+All three policies cover the same 174,931 final keys. One real evaluation ran;
+no selection/training/policy changes followed. All new empirical numbers and
+figures remain private. The PNG was reproduced byte-for-byte from cached counts;
+a verified cache readback succeeded without any available raw-label file.
+Neither operation constitutes a second final evaluation.
+
+Private manifest/model/output hashes, run chronology, actually executed tests
+and publication blocker are recorded in `PROGRESS.md`. The developer separately authorized committing/pushing the current evaluator
+code, tests and documentation, without the private empirical outputs. If clearance is obtained, export only
+approved sampled aggregates and the PNG from this frozen cache; never export
+subscriber records, scores, model pickle, every-K counts or the raw outcomes.
+Do not rerun the final experiment to prepare publication.
+
+For an interview, explain the decision chain: compare the fixed LR and bounded
+HGB on validation, choose using the predeclared limited-capacity criterion, commit
+that choice, and measure once on untouched final outcomes. Better Recall@10%
+means more observed churners included within the same contact count, not more
+customers retained. The private table quantifies that difference; no causal
+or cross-month generalization claim follows.

@@ -15,8 +15,8 @@ Two sequential deliverables, two requested commit boundaries; no PR/merge/Phase 
 
 ## Tasks
 - T1 S1–S5: inline; verified. New pure metrics and comparison/freeze CLI, tests/docs. No independent parallel write units. Risk item 3 (new consumed frozen contract), item 1 (one-shot final-outcome boundary).
-- T2 S2–S5,S9: inline + per-action checks; verified, freeze commit pending. Real development comparison/reproduction and independent gate verification; first commit BEFORE final labels.
-- T3 S4–S9: inline; pending. Separate one-shot final evaluator, synthetic RED/GREEN and independent leakage review BEFORE real labels; one real final pass, private table/curve/provenance; second delivery only if acceptance/publication conditions hold.
+- T2 S2–S5,S9: inline + per-action checks; done, commit `7f21d9bb615ca5834e92fdc3fdf8f0928a62b7e8`. Real development comparison/reproduction and independent gate verification; first commit BEFORE final labels.
+- T3 S4–S9: inline; private execution verified; publication BLOCKED, not DONE; no second commit/push. Separate one-shot final evaluator, synthetic RED/GREEN and independent leakage review BEFORE real labels; one real final pass, private table/curve/provenance; second delivery only if acceptance/publication conditions hold.
 
 ## Log
 - L1: User authorized "Retention Lab — Phase 4 Extension + Phase 5 Capacity Evaluation", sequential development-only HGB comparison/freeze commit then one final evaluation, no PR/merge/Phase6. Binding verbatim clauses are quoted in S1–S9; the detailed conversation remains controlling scope.
@@ -27,3 +27,15 @@ Two sequential deliverables, two requested commit boundaries; no PR/merge/Phase 
 - L5: Pure capacity tests RED missing module then GREEN3. Selection RED5 missing functionality then targeted GREEN under refinement. Discovered that equivalent refit/re-pickled sklearn objects can have context-dependent pickle aliasing. Preserve original LR serialized bytes by verified copy, and compare its predictions to original scores rather than require a new pickle identity. Test HGB numerical reproducibility across API/CLI contexts, and exact artifacts across identical CLI reruns. No model parameters were tuned or corrected from results.
 
 - L6: A independent verification PASS: fresh candidate62/baseline54 tests, six priorCLI help differentials, real EDA2kernels. Three real comparison runs reproduced all9 artifacts byte-for-byte. HGB selected under fixed practical rule; new metrics remain in private validation.json. Parent spot-check verify_freeze real relationships/coverage PASS; no evaluation_started record or final outcome access. Public model_freeze.json contains hashes/decision/configuration only. Freeze commit before B follows staged scan.
+
+- L7: A committed as `7f21d9bb615ca5834e92fdc3fdf8f0928a62b7e8` BEFORE any final-label access. Staged12 text files privacy PASS; new real aggregates/private model files excluded. No push, because final/publication gates still pending.
+- L8: B evaluator/tests RED5 missing module, then focused GREEN5. Added zero-positive curve probe and cached manifest version guard before final verification. Final labels remain unopened; mandatory independent leakage/one-shot review next. B uses separate source/CLI; A source bytes/anchor remain immutable.
+
+- L9: PRE-OUTCOME independent review PASS, fresh68suite, realistic semantic/concurrent/one-shot/manual probes PASS. Parent focused6PASS and A source/anchor equality checked before sole actual final pass. A commit17:44:26UTC precedes durable start17:53:34.786995UTC; completed17:53:37.195UTC. New empirical results/curve private. No post-test retuning.
+- L10: Parent verified private completion/output/evaluator hashes, exact cached PNG reproduction and cached CLI readback using nonexistent raw label path. These operations do not reopen final labels. Added duplicate/missing-source and concurrent-start synthetic probe regressions. Final suite pending. Publication unresolved: preserve local A commit and B edits, no second completion commit/push, no Phase5DONE/Phase6.
+
+- L11: Final fresh data-free suite71 PASS (60.096s), including all independent probe regressions. Independent postcheck: A anchor/code and B source/CLI identical, real private output/start/evaluator hashes PASS, owner-only ignored outputs PASS. No raw reopening. Publication block remains the only unresolved delivery condition; no conditional B commit/push, no Phase6.
+
+- L12: Remote branch confirmed unchanged471525b; main unchanged7efdd4f. A freeze7f21d9b local, B nine files pending by conditional-delivery rule. No second commit/push/PR/merge. Pending-file privacy/whitespace PASS; canonical private outputs preserved and worker/scratch copies removed by parent. Final handoff reports private results to owner, publication blocker and exact remaining proof, not a DONE Phase5.
+
+- L13: Developer explicitly requested "comitea y pushea el estado actual en esta rama al remoto". Supersedes delivery hold for code/tests/docs only; no new empirical results/plots/models/data are included. Phase5 empirical-publication blocker remains. Prior71PASS proof and evaluator hashes preserved; no final-label reopening. Commit and fast-forward push authorized on current branch, no PR/merge.

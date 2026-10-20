@@ -3,7 +3,8 @@
 A retrospective subscription-churn study: how many future churners can be
 identified when outreach capacity is limited? **Phase 4 is complete:** reproducible random,
 business-rule and Logistic Regression rankings on frozen cutoff-safe features.
-No final-label evaluation, capacity-comparison curves or deployed application yet.
+The subsequently authorized Phase5 evaluation and curve exist privately, but
+publication is blocked pending KKBOX clearance. No deployed application.
 Identifying churn is not evidence that an intervention saves customers.
 
 ## Start here
@@ -74,10 +75,11 @@ No imputer/scaler/encoder or model is fitted by this command.
 The [training guide](docs/models.md) explains train-only preprocessing, deterministic
 policies, private outputs, checksums and limitations. The [public development
 diagnostics](artifacts/model_validation.json) contain training/validation
-aggregates only. The chosen Logistic Regression converged in 21 iterations;
+aggregates only. The original Logistic Regression converged in 21 iterations;
 validation AP is 0.335492 and ROC-AUC 0.812455. These are **not final evaluation
-results** or proof of improvement at a particular outreach capacity. Frozen final
-scores contain no labels; the main Recall@K comparison is reserved for Phase 5.
+results** or proof of improvement at a particular outreach capacity. That original iteration froze final
+scores without labels; the subsequently authorized Phase5 comparison is now
+computed privately, with publication blocked.
 
 ## Authorized model comparison and capacity protocol
 
@@ -87,3 +89,8 @@ and [capacity definitions/publication hold](docs/results.md). HGB is selected
 by the fixed validation-only rule; new empirical aggregates remain private until
 KKBOX publication rights are established. A committed freeze and verified artifact
 relationships are mandatory before the single final evaluation. No Phase6/frontend.
+
+The single final evaluation has now completed on the pre-test committed HGB.
+Its table/curve remain local and ignored; **Phase5 is not marked DONE** because
+publication clearance is unresolved. The developer separately authorized publishing the evaluator code/tests/docs;
+this does not authorize publication of the private empirical outputs. Do not repeat final-label evaluation; use verified cached outputs only.

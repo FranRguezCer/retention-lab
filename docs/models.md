@@ -214,3 +214,10 @@ are preserved; its scores are verified against the original run. Cross-process
 serialization is not a general guarantee for arbitrary equivalent pickle object
 graphs. Known NumPy/joblib deserialization deprecation warnings are nonfatal; no
 new package versions were introduced to silence them.
+
+The pre-test freeze was committed as
+`7f21d9bb615ca5834e92fdc3fdf8f0928a62b7e8` before the separately authorized
+single final evaluation. The final pass is now consumed: no retraining, model
+reselection or new final experiment is permitted. See [private execution and
+publication status](results.md). Reproduction across identical configurations
+is not evidence of statistical uncertainty bounds or cross-cohort stability.
