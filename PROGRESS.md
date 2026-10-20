@@ -1,18 +1,20 @@
 # Retention Lab — Progress Log
 
 > Last updated: 2026-10-20
-> **State: Phase 4 DONE; Phase 5 four-strategy post-hoc extension VERIFIED; Phase 6 NOT STARTED.**
+> **State: Phases 1–5 DONE (Phase 1 RESTRICTED GO); Phases 6–8 NOT STARTED.**
 > This file records *actual progress*, not intentions. `PROJECT.md` is the scope reference and `ROADMAP.md` contains acceptance gates.
 
 ## Current focus
 
-**Phase 5 — Four frozen strategies, post-hoc descriptive extension**
-Original HGB/Random/Business evaluation remains consumed and unchanged. Original
-LR ranking verified before reuse; no training/scoring/selection/raw CSV access.
-Owner conditionally authorizes global aggregates under the documented rules review.
-Full suite and independent privacy/integrity verification passed. Commit/push and
-remote confirmation are reported separately after the completion commit.
-No PR, merge or Phase 6.
+**Next: Phase 6 — Reliability, audit and limitations.** Status: **NOT STARTED**;
+this documentation-only maintenance does not authorize or implement it.
+
+The public four-strategy comparison is already on `main` at
+`6ca1f4a33dbba05ce03c8bfe4b653215d7b04e59`, verified against `origin/main` before
+this edit. The prior fast-forward/push is complete. HGB remains selected on
+validation; the original final evaluation is consumed and preserved, with LR
+added post-hoc from its historical ranking. Results, graph and technical evidence
+are linked from the README. Existing phase tests are not a Phase 6 robustness audit.
 
 ## Phase tracker
 
@@ -21,9 +23,9 @@ No PR, merge or Phase 6.
 | 1. Dataset feasibility | DONE — RESTRICTED GO | Four-source audit and restricted contract: `docs/problem_definition.md` §§2–7; explicit developer acceptance below |
 | 2. EDA | DONE | Frozen verified partitions, five interpreted training-only charts and independent isolation/dependency verification |
 | 3. Feature engineering | DONE | Seven predictors; exact real frozen population, cache repeatability and byte-identical EDA reconstruction |
-| 4. Baselines + models | DONE (extended) | LR preserved; HGB selected on validation, private rankings/models anchored in pre-test commit; docs/models.md |
-| 5. Capacity evaluation | DONE — verified four-strategy extension | Original evaluation preserved; post-hoc LR, sampled aggregates, four-curve PNG, conditions review and independent checks passed |
-| 6. Validation + tests | NOT STARTED | Phase-specific tests and development diagnostics exist; final robustness audit remains future scope |
+| 4. Baselines and ML models | DONE | LR preserved; HGB selected on validation, private rankings/models anchored in pre-test commit; docs/models.md |
+| 5. Capacity evaluation | DONE | Original evaluation preserved; post-hoc LR, sampled aggregates, four-curve PNG, conditions review and independent checks passed |
+| 6. Reliability and robustness | NOT STARTED | Phase-specific tests and development diagnostics exist; final robustness audit remains future scope |
 | 7. React demo | NOT STARTED | No frontend created or deployed |
 | 8. Portfolio + storytelling | NOT STARTED | Final portfolio narrative pending; training-only EDA aggregates available |
 
@@ -33,7 +35,8 @@ No PR, merge or Phase 6.
 - Audience: subscription-retention / customer-success manager.
 - Core question: how many future churners can be identified when outreach capacity is limited to X%?
 - Campaign concept: periodic/monthly prioritization of eligible digital subscribers.
-- Three policies: random selection, simple business rule, supervised ML score.
+- Three strategy families: Random, Business Rule and ML; four public curves:
+  Random expected, Business Rule, Logistic Regression and selected HGB.
 - Main chart: **Churn Captured vs. Outreach Capacity**.
 - Main metrics: Recall@K, Precision@K, Lift@K.
 - Data source: WSDM KKBOX; original February cohort approved only for the restricted retrospective benchmark.
@@ -49,12 +52,16 @@ No PR, merge or Phase 6.
 - [x] All four local CSVs structurally inspected, hashed and checked for row/ID overlap and cutoff coverage; official download authenticity not independently verified.
 - [x] Restricted original-February retrospective contract specified with audited source/cutoff population.
 - [x] Developer explicitly accepted the restricted protocol on 2026-10-19; operational temporal reconstruction remains unapproved.
-- [x] Legacy auditor preserved; four-file/population auditor and 14 synthetic tests verified. No model, graph or deployment.
+- [x] Initial audit increment: legacy auditor preserved; four-file/population
+  auditor and 14 synthetic tests verified. No model/graph existed at that stage.
+- [x] Subsequent Phases 2–5: EDA, seven-feature tables, both ML candidates,
+  validation-selected HGB and public four-strategy post-hoc comparison completed.
+  No deployed application; Phases 6–8 remain future scope.
 
 ## Pending validations and open questions
 
-1. Full-suite and independent verification passed. Completion commit/push and
-   exact remote confirmation are recorded in the delivery report.
+1. Phase 6 reliability/robustness work remains NOT STARTED. Prior phase
+   completion is supported by the dated records and existing public artifacts.
 2. Final test access remains consumed; no retraining, reselection or raw-label
    reopening. New LR results are post-hoc descriptive only.
 3. Historical arrival times, label adjudication and temporal generalization
@@ -77,11 +84,20 @@ No PR, merge or Phase 6.
   review permit only the described aggregate release; no raw/individual data or
   express derivative license. Stop affected publication if incompatible terms emerge.
 
-## Immediate next task for Codex
+## Next suggested task
 
-Human review of the verified four-strategy branch before any separately
-authorized merge; completion commit/push identity belongs in the delivery report.
-Do not begin Phase 6, create a PR or change main.
+**Next: Phase 6 — Reliability, audit and limitations.** Await its separate
+scope/authorization; do not start it as part of this documentation maintenance.
+No PR, new branch, merge or ML experiment is part of the current task.
+
+## How to read the historical record
+
+The dated entries below preserve the decisions and restrictions in force at
+each stage. References to old branches, pending publication, unstarted phases,
+"no merge" or "do not change main" are historical work boundaries, superseded
+only by later explicit authorizations recorded here. The current status above
+and the latest dated entry are the live handoff. Historical test counts are
+not new executions; new checks are recorded separately when actually run.
 
 ## Verification record
 
@@ -929,3 +945,58 @@ ID for ties. It has not been implemented or tuned on any held-out outcome.
   consent/transaction started. Engram persistence unavailable, local log retained.
 - Next suggested action: human review before merge, especially post-hoc framing,
   frozen evidence lineage and aggregate-only publication. Do not begin Phase6.
+
+
+## 2026-10-20 — Documentation consistency and results polish
+
+- User authorized documentation-only maintenance and commit/push directly to
+  `main`, with no new branch, PR, merge or Phase 6. Initial tree clean; fetched
+  `origin`; local/remote main both `6ca1f4a33dbba05ce03c8bfe4b653215d7b04e59`,
+  no divergence. This also records the earlier completed fast-forward/push of
+  the four-strategy comparison; historical no-merge instructions remain scoped.
+- Read AGENTS, project/roadmap/progress/README and all docs. Corrected current
+  three-curve/Phase 5-pending/branch-before-merge statements; distinguish three
+  families from four displayed strategies. Phase 1 restricted gate unchanged;
+  Phases 1–5 complete, Phases 6–8 NOT STARTED. Phase 6 remains next, not implemented.
+- Moved the original evaluation protocol verbatim into
+  `docs/evaluation_history.md`, explicitly archived. Preserved its then-valid
+  publication hold, one-shot command and outcome-access chronology. Current
+  results lead with the question, four strategies, metrics, tables, complexity
+  comparison and graph; both frozen JSON snapshots retain historical metadata.
+- README retains its structure/graph with a shorter entry, clear 10% result,
+  four-strategy names, phase table and technical links. No fresh legal review,
+  license claim or publication-policy expansion; attribution retained.
+- Public-only verification: JSON syntax, all 101 sampled metric/floor/effective
+  capacity rows, five pp differences and 12 table rows agree. Initial wrapper
+  mistakenly included the comparison-table header in its row filter; corrected
+  wrapper passed. No experimental-result discrepancy or artifact edit occurred.
+- PNG inspected visually: four specified curves/colors, expected-random dashed,
+  5/10/20 markers, axes/endpoints and LR post-hoc label. Existing public artifact
+  SHA-256 identities are unchanged; no original/processed data was opened.
+- Fresh execution of the existing suite in an isolated temporary copy containing
+  tracked files and the new historical document, but no private KKBOX data:
+  `.venv/bin/python -m unittest discover -s tests -v`: **77/77 PASS**, 63.404s,
+  exit 0. Synthetic model fitting in existing tests is not real KKBOX training or
+  a repeated experiment. No production preparation/training/selection/evaluation
+  command, private dataset, ranking reconstruction or Phase 6 probe was run.
+- Structural checks: **75 relative Markdown file/heading links across 19 files
+  PASS**; all public JSON parses; README/public tables and original LR diagnostic
+  figures agree with versioned artifacts. All 101 budgets satisfy existing metric
+  formulas, floor rounding, effective capacities and all five pp differences.
+  Every tracked non-Markdown byte is unchanged, including all models/results
+  publication artifacts, implementation and tests; no private file was read.
+- The complete archived protocol is byte-identical to the moved historical body;
+  the entire pre-existing chronological progress record is preserved. Only 11
+  authorized Markdown files changed. Credential/private-path scan and tracked
+  private-file exclusion checks passed. `git diff --check` passed.
+- All 11 external destinations resolved through the browser. Kaggle pages exposed
+  their titles/URLs but no readable body: destination reachability was checked,
+  not fresh legal/host-content validation. Attribution and publication policy
+  remain unchanged; no express derivative-license claim is added.
+- Documentation-only change: runnable RED is not applicable; structural readback,
+  aggregate formula checks and the existing data-free suite provide proportional
+  verification. RDD remains globally off, unchanged. Final staged review and
+  authorized push follow; exact completion SHA belongs in the delivery report.
+- Next: Phase 6 remains NOT STARTED and requires separate authorization. Existing
+  tests do not close that future robustness phase. No unresolved result defect
+  or new methodological claim was found; known cohort/causal/temporal limits stay.

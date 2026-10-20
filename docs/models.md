@@ -1,19 +1,31 @@
-> **Current comparison (2026-10-20):** HGB remains selected from pre-test
-> validation. The original Logistic Regression ranking is added only as a
-> post-hoc descriptive comparison of the same already-observed final cohort.
-> No training, scoring or selection is rerun. See [results](results.md) and
-> [attribution/publication update](data_attribution.md). Publication holds and
-> pre-evaluation statements below describe their historical stage.
-
 # Reproduce Phase 4 rankings
 
-Phase 4 freezes **random, business-rule and Logistic Regression rankings**. It
-prepares the later comparison; **Recall@K curves belong to Phase 5**, and no final
-outcomes or final predictive metrics are used here. This remains the approved
-RESTRICTED GO retrospective original-February-2017 benchmark, not a deployment
-simulation or a claim of customers saved.
+**Phase 4 DONE:** Logistic Regression (LR) and HistGradientBoostingClassifier
+(HGB) both used the same seven approved features, with fitting restricted to
+training data. HGB was selected exclusively on validation by the predeclared
+Recall@10% rule and frozen before final-label access. It remains the selected
+model. The original final evaluation compared Random, Business Rule and HGB;
+LR was added later from its original ranking as a descriptive post-hoc
+comparison, with no retraining or final-based reselection.
 
-## Run
+See [current results](results.md) and [publication boundary](data_attribution.md).
+The original [LR diagnostic JSON](../artifacts/model_validation.json) and
+[HGB freeze JSON](../artifacts/model_freeze.json) are immutable historical
+snapshots, not current status reports. Their earlier selection/publication and
+unopened-test statements must be read at their respective points in time.
+
+## Original LR iteration — historical implementation record
+
+The following documents the first Phase 4 increment, before the HGB extension
+and Phase 5. Its train-only fitting and label isolation guarantees remain
+relevant; its then-current authorization boundaries are historical. The
+approved benchmark remains retrospective, not deployment or causal retention.
+
+## Run — archived reproduction commands
+
+These commands retrain and were used during the original implementation. They
+are not steps to rerun on the current consumed experiment. Use published
+results for reading and synthetic tests for code checks.
 
 Install the single pinned `requirements.txt` in `.venv` as described in the
 [environment guide](methodology.md#reproduce), then use the already verified
@@ -35,7 +47,7 @@ existing evidence is create-or-compare, never silently replaced. An identical
 rerun retrains; it does not just trust a cached serialized model. No external
 model loading is supported: never deserialize an untrusted joblib/pickle file.
 
-## Three fixed policies
+## Three fixed policy families
 
 | Policy | Priority | Ties |
 |---|---|---|
@@ -58,7 +70,7 @@ status **refuses scoring** rather than inventing priority: eligibility requires
 The rule's binary priority is not a calibrated churn probability; its AP/ROC-AUC
 are descriptive score diagnostics and it has no reported log loss.
 
-## One train-only pipeline
+## Original LR train-only pipeline
 
 Seven source columns only, in frozen order. A schema guard rejects extra ID,
 label, digest or partition fields, changed order, invalid renewal categories,
@@ -123,7 +135,7 @@ Kaggle source authenticity. Pickle bytes and last-bit predictions are guaranteed
 only by the observed same-platform reproducibility checks, not across platforms,
 Python/BLAS versions or numerical-library upgrades.
 
-## Observed execution and review
+## Original LR execution and review — historical
 
 Real training ran on all frozen rows, converged in **21 iterations** without a
 warning, and reproduced all 13 private files byte-for-byte across three runs,
@@ -141,8 +153,8 @@ threadpoolctl 3.6.0. All 52 installed distributions match the pins.
 | Logistic log loss | 0.159503 | 0.160784 |
 
 Full permitted diagnostics and configuration are in the public aggregate
-[`model_validation.json`](../artifacts/model_validation.json). Logistic Regression
-is retained: convergence, finite oriented probabilities and useful validation
+[`model_validation.json`](../artifacts/model_validation.json). In that first increment, Logistic Regression
+was retained: convergence, finite oriented probabilities and useful validation
 discrimination justify the simple first candidate. No validation search or second
 model was needed. Better validation AP/ROC-AUC does **not** establish final
 performance, superiority at every contact budget, calibration or causal impact.
@@ -158,6 +170,10 @@ remain unchanged. No final-label access, Phase 5 work, PR or merge is authorized
 by this implementation.
 
 ## Authorized second and final candidate (2026-10-20)
+
+This section records the subsequently completed HGB comparison and pre-test
+freeze. Its command is historical: do not rerun selection on this consumed
+experiment. HGB remains selected; the four-curve result is in [results](results.md).
 
 The extension keeps `train.py`, the original CLI and `kkbox-models-v1` immutable.
 It adds `selection.py` and a separate private `kkbox-selection-v1` identity:
@@ -198,7 +214,12 @@ matching `artifacts/model_freeze.json` and exact implementation bytes before the
 separate final evaluator can open outcomes. A manifest's mere existence is not
 sufficient. The freeze closes permanently when final evaluation starts.
 
-### Publication hold
+### Historical publication hold — pre-release snapshot
+
+This was the local publication boundary at freezing time. The later limited
+aggregate authorization is documented in [attribution](data_attribution.md);
+the original private files and frozen metadata remain unchanged.
+
 
 The [official KKBOX rules, sections 7–8](https://www.kaggle.com/c/kkbox-churn-prediction-challenge/rules)
 were checked again on 2026-10-20 using indexed official text. They describe
@@ -225,6 +246,5 @@ new package versions were introduced to silence them.
 The pre-test freeze was committed as
 `7f21d9bb615ca5834e92fdc3fdf8f0928a62b7e8` before the separately authorized
 single final evaluation. The final pass is now consumed: no retraining, model
-reselection or new final experiment is permitted. See [private execution and
-publication status](results.md). Reproduction across identical configurations
+reselection or new final experiment is permitted. See [current results](results.md) and [original evaluation history](evaluation_history.md). Reproduction across identical configurations
 is not evidence of statistical uncertainty bounds or cross-cohort stability.

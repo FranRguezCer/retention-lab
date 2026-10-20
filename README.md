@@ -1,30 +1,48 @@
 # Retention Lab
 
-A retrospective subscription-churn study: how many observed future churners can
-be identified when outreach capacity is limited? **Four frozen strategies are
-now compared:** Random expected, Business Rule, Logistic Regression and
-HistGradientBoosting. HGB was selected on validation before the original final
-evaluation; LR is a **post-hoc descriptive addition**, not a new model selection
-or an independent confirmatory test. No deployed application or Phase 6 work.
+How much more observed churn can a model identify when a subscription team can
+contact only 10% of subscribers? Retention Lab compares **Random expected,
+Business Rule, Logistic Regression and HistGradientBoostingClassifier (HGB)**
+on the WSDM 2018 — KKBOX Churn Prediction Challenge cohort.
 
 ![Churn Captured vs. Outreach Capacity](artifacts/capacity_comparison_v2.png)
 
-On the shared 174,931-subscriber final cohort (9,527 observed churners), at 10%
-capacity HGB identifies 5,968 churners (62.64% recall), versus 5,845 (61.35%) for
-LR and 5,327 (55.91%) for the rule. HGB's descriptive gain over LR is **1.29
-percentage points**; at 5% and 20% it is 1.23 and 6.48 points. These results do
-not show that contacts prevented churn, nor demonstrate temporal generalization.
-See [full tables and limitations](docs/results.md) and
-[versioned aggregate JSON](artifacts/capacity_comparison_v2.json).
+At 10% capacity (17,493 of 174,931 subscribers), HGB identifies **5,968 of 9,527
+observed churners: 62.64% recall**. LR identifies 5,845 (61.35%), the rule 5,327
+(55.91%), and random selection expects about 952.69 (10.00%). HGB adds **1.29
+recall percentage points** over the simpler LR at this budget.
 
-Data: **WSDM 2018 — KKBOX Churn Prediction Challenge**
-([source](https://www.kaggle.com/c/kkbox-churn-prediction-challenge),
-[rules](https://www.kaggle.com/c/kkbox-churn-prediction-challenge/rules),
+HGB was selected on validation before the original final evaluation; LR was
+added later from its original frozen ranking as a **descriptive post-hoc
+comparison**, not independent confirmation or model reselection. This is one
+retrospective cohort: no temporal generalization, causal retention effect or
+churn prevented is demonstrated. [Results and limitations](docs/results.md) ·
+[Aggregate JSON](artifacts/capacity_comparison_v2.json).
+
+Data: [WSDM 2018 — KKBOX Churn Prediction Challenge](https://www.kaggle.com/c/kkbox-churn-prediction-challenge)
+([rules](https://www.kaggle.com/c/kkbox-churn-prediction-challenge/rules),
 [data](https://www.kaggle.com/c/kkbox-churn-prediction-challenge/data)).
-Independent educational project; not affiliated with or endorsed by KKBOX or
-Kaggle. Acquire originals from the authorized source; never redistribute them.
-See [attribution and limited aggregate-publication review](docs/data_attribution.md).
-No express permission for derivative-data publication is asserted.
+Independent educational project, not affiliated with or endorsed by KKBOX or
+Kaggle. Obtain original CSVs from the authorized source; they are never
+redistributed here. Published metrics/visualizations are derived aggregates;
+no express license to redistribute data or all derivatives is asserted.
+[Attribution and publication boundary](docs/data_attribution.md).
+
+## Project status
+
+| Phase | Status |
+|---|---|
+| 1 — Dataset feasibility | DONE — RESTRICTED GO |
+| 2 — EDA | DONE |
+| 3 — Feature engineering | DONE |
+| 4 — Baselines and ML models | DONE |
+| 5 — Capacity evaluation | DONE |
+| 6 — Reliability and robustness | NOT STARTED |
+| 7 — Interactive web demo | NOT STARTED |
+| 8 — Portfolio and storytelling | NOT STARTED |
+
+**Next: Phase 6 — Reliability, audit and limitations.** No web demo is deployed;
+Phase 6 requires separate authorization.
 
 ## Reproduce the descriptive extension (no raw CSV access)
 
@@ -76,7 +94,13 @@ The manifest includes scikit-learn and its pinned numerical dependencies. No
 interactive JupyterLab/Notebook server is needed; notebook execution uses nbclient
 and an ipykernel in a fresh local process.
 
-## Reproduce the private-data analysis
+## Historical reproduction: data preparation and models
+
+The following commands document the original staged workflow. Do not rerun data
+preparation, training or selection to refresh this already-consumed experiment.
+For current results, use the published artifacts and technical documentation.
+
+### Reproduce the private-data analysis
 
 Obtain the original KKBOX `transactions.csv` and `train.csv` yourself under the
 competition's access rules; place them under ignored `data/raw/`. Do not substitute
@@ -88,7 +112,7 @@ The pinned environment was tested on the stated platform, not all operating
 systems. Package version pins are not package-byte hashes; offline installation,
 other-platform wheels and cross-machine PNG identity are not guaranteed.
 
-## Reproduce Phase 3 features
+### Reproduce Phase 3 features
 
 With the verified private Phase 2 artifacts available, run:
 
@@ -100,7 +124,7 @@ The [feature contract](docs/features.md) documents the seven predictors, private
 outputs, separate validation labels, unlabeled final features and cache checks.
 No imputer/scaler/encoder or model is fitted by this command.
 
-## Reproduce Phase 4 models and rankings
+### Reproduce Phase 4 models and rankings
 
 ```sh
 .venv/bin/python scripts/train_kkbox.py --verify-real-population
@@ -111,14 +135,13 @@ policies, private outputs, checksums and limitations. The [public development
 diagnostics](artifacts/model_validation.json) contain training/validation
 aggregates only. The original Logistic Regression converged in 21 iterations;
 validation AP is 0.335492 and ROC-AUC 0.812455. These are **not final evaluation
-results** or proof of improvement at a particular outreach capacity. That original iteration froze final
-scores without labels; the subsequently authorized Phase5 comparison is now
-preserved privately; the separate post-hoc aggregate comparison is linked above.
+results** or proof of improvement at a particular outreach capacity. The JSON is the original LR development snapshot, not the later HGB selection
+or the final four-strategy result. Its historical metadata remains unchanged.
 
 ## Model selection and original evaluation
 
 The [model guide](docs/models.md#authorized-second-and-final-candidate-2026-10-20)
-and [original protocol](docs/results.md#historical-original-evaluation-protocol)
+and [archived original protocol](docs/evaluation_history.md)
 document the validation-only HGB selection and committed pre-test freeze. One
 original final evaluation compared Random, Business Rule and HGB. Its consumed
 marker, outputs and plot are retained unchanged. The separately versioned LR

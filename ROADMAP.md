@@ -1,7 +1,21 @@
 # Retention Lab — Incremental Roadmap
 
-> Status: Phase 4 extension DONE; Phase 5 four-strategy post-hoc extension DONE; Phase 6 not started · Updated: 2026-10-20
-> Follow `PROJECT.md` for scope and methodology, `AGENTS.md` for operating conventions, and `PROGRESS.md` for actual progress.
+> Status: Phases 1–5 DONE; Phases 6–8 NOT STARTED · Updated: 2026-10-20
+> Follow `PROJECT.md` for scope, `AGENTS.md` for conventions and `PROGRESS.md` for dated evidence.
+
+**Next: Phase 6 — Reliability, audit and limitations.** Not started or implemented
+by this documentation maintenance. Existing tests do not constitute Phase 6 completion.
+
+| Phase | Status |
+|---|---|
+| 1 — Dataset feasibility | DONE — RESTRICTED GO |
+| 2 — EDA | DONE |
+| 3 — Feature engineering | DONE |
+| 4 — Baselines and ML models | DONE |
+| 5 — Capacity evaluation | DONE |
+| 6 — Reliability and robustness | NOT STARTED |
+| 7 — Interactive web demo | NOT STARTED |
+| 8 — Portfolio and storytelling | NOT STARTED |
 
 ## Working method
 
@@ -15,7 +29,7 @@ Build **one small, testable increment at a time**. For each stage: clarify the s
 | 2 | Exploratory data analysis | 3–5 | Interpreted EDA notebook |
 | 3 | Cutoff-safe feature engineering | 5–8 | Reproducible modeling table |
 | 4 | Random/rule/ML baseline rankings | 4–6 | Comparable held-out scores |
-| 5 | Capacity-constrained evaluation | 4–6 | Real three-curve chart and metrics |
+| 5 | Capacity-constrained evaluation | 4–6 | Public four-curve chart and metrics |
 | 6 | Robustness and verification | 3–5 | Tested and defensible results |
 | 7 | React/Netlify demonstration | 5–7 | Interactive public-facing demo |
 | 8 | Documentation and storytelling | 3–4 | GitHub/portfolio/interview package |
@@ -31,6 +45,10 @@ original February 2017 single-cohort retrospective benchmark in
 `docs/problem_definition.md`, not an operational campaign simulation.
 Feasibility investigations below are bounded by its documented limitations;
 closure does not assert complete labeler reconstruction or verified arrival times.
+
+**Original investigation checklist (historical):** the restricted gate closed with
+explicit limits, not full certification of every item below. See the Phase 1
+[decision and remaining uncertainty](docs/problem_definition.md).
 
 **Tasks**
 - [ ] Verify official dataset access, actual filenames, rules and local sizes.
@@ -95,13 +113,14 @@ unchanged two-kernel notebook reproduction. See `docs/features.md` and
 
 ## Phase 4 — Baselines and first ML models
 
-**Goal:** produce three comparable rankings on the same evaluation population.
+**Goal:** produce comparable rankings from three strategy families, including
+both Logistic Regression and HistGradientBoostingClassifier on the same population.
 
 **Tasks**
 - [x] Define deterministic expected random baseline or reproducible random draws.
 - [x] Implement and freeze the commercial rule, including ties.
 - [x] Train logistic regression with train-only preprocessing.
-- [x] Subsequently authorized second/final candidate: HGB compared using validation Recall@10%; selected under the predeclared rule. Original LR remains reproducible; new metrics private pending publication clearance.
+- [x] Subsequently authorized second/final candidate: HGB compared using validation Recall@10%; selected under the predeclared rule. Original LR is preserved; final four-strategy aggregates are published under the limited owner authorization and documented conditions review.
 - [x] Generate out-of-sample risk scores / rankings without inspecting final labels to tune choices.
 - [x] Record training configuration, seed, metrics and limitations.
 
@@ -109,13 +128,18 @@ unchanged two-kernel notebook reproduction. See `docs/features.md` and
 
 **Acceptance gate:** all strategies evaluate the same eligible customers; predictions are reproducible and truly out of sample. ML is **not required** to win.
 
-**DONE — verified 2026-10-20:** real Logistic Regression converged in 21 iterations;
+**Original LR iteration — verified 2026-10-20:** real Logistic Regression converged in 21 iterations;
 all three complete rankings cover 523,998 train / 175,651 validation / 174,931 final
 users. Three real runs (one independent output) reproduced all 13 private files
 byte-for-byte; train-only preprocessing and final-outcome isolation verified.
 Independent scratch checks and prior EDA reproduction passed. See
 [`docs/models.md`](docs/models.md), aggregate development diagnostics and
-`PROGRESS.md`. Those checks preceded the separately authorized Phase5 private evaluation below.
+`PROGRESS.md`. Those checks preceded the HGB extension and original Phase 5 evaluation.
+
+**Phase 4 DONE:** both candidates use the seven approved features. HGB satisfied
+the predeclared validation Recall@10% improvement criterion and was committed
+before final outcomes. Its original selection remains unchanged; LR is retained
+for the later descriptive comparison, not reselected on test results.
 
 ## Phase 5 — Capacity curves: the core research result
 
@@ -125,12 +149,17 @@ Independent scratch checks and prior EDA reproduction passed. See
 - [x] Implement tested `Recall@K`, `Precision@K` and `Lift@K` definitions.
 - [x] Define the K rounding rule and tie handling; test K=0, K=N, no positives, and invalid inputs.
 - [x] Compute metrics for capacities from 0% to 100% with focus on 5%, 10%, 20%.
-- [x] Build the same-population curves: Random, Business Rule and ML.
+- [x] Build four same-population curves: Random expected, Business Rule, Logistic Regression (post-hoc) and selected HGB.
 - [x] Compute ML-vs-rule and ML-vs-random differences at selected capacities.
 - [x] Export separate v2 sampled four-strategy aggregates, retaining the original three-strategy evaluation and post-hoc LR distinction.
 - [x] Document exactly what was measured and what is *not* inferred (no prevented churn).
 
-**Deliverables:** `evaluate.py`, `export.py`, reproducible chart, metrics table and candidate JSON artifacts.
+**Implemented deliverables:** `src/retention_lab/evaluate.py`,
+`src/retention_lab/final_evaluation.py`, `src/retention_lab/posthoc.py`, the
+corresponding evaluation/extension scripts, and public
+[`capacity_comparison_v2.json`](artifacts/capacity_comparison_v2.json),
+[table](artifacts/capacity_comparison_v2.md) and
+[four-curve PNG](artifacts/capacity_comparison_v2.png). No `export.py` was needed.
 
 **Acceptance gate:** empirical metrics match hand-checkable samples; graph uses real evaluation results and answers the central research question.
 
@@ -139,11 +168,14 @@ one-shot evaluation preserved; original frozen LR added only descriptively from
 private cached outcomes. No training, scoring, reselection or raw CSV access.
 HGB remains selected. Separate sampled JSON, tables and four-curve PNG follow the
 owner's limited publication authorization and documented conditions review, not
-an asserted express derivative license. Full suite77/77 and independent
+an asserted express derivative license. Full suite 77/77 and independent
 privacy/integrity/formula/compatibility verification passed. See `docs/results.md`
-and `PROGRESS.md`. No Phase6; human review precedes any separately authorized merge.
+and `PROGRESS.md`. The completed comparison is published on `main`. Phase 6 remains NOT STARTED.
 
 ## Phase 6 — Reliability, audit and limitations
+
+**Status: NOT STARTED.** The tasks below remain pending; previous phase tests
+are evidence for those phases, not a completed robustness audit.
 
 **Goal:** make results defensible in a Data Scientist / ML Engineer interview.
 
@@ -168,7 +200,7 @@ and `PROGRESS.md`. No Phase6; human review precedes any separately authorized me
 **Tasks**
 - [ ] Set up React + TypeScript + Vite under `web/`.
 - [ ] Load **only validated aggregated** evaluation JSON.
-- [ ] Implement an outreach-capacity slider, three-curve plot and selected-K metric cards.
+- [ ] Implement an outreach-capacity slider, four-curve plot (Random expected, Business Rule, LR and HGB) and selected-K metric cards.
 - [ ] Explain in plain language the observed detection difference.
 - [ ] Add a compact Technical Evidence panel with methodology, cohort and limits.
 - [ ] Handle loading/error states, responsive layout and accessibility.

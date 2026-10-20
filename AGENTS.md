@@ -83,7 +83,7 @@ Do not generate an entire phase if the requested task is smaller.
 - React + TypeScript + Vite.
 - Deploy the static application to Netlify.
 - Prefer precomputed evaluation artifacts over a backend API.
-- Focus on the three strategy curves and capacity selector.
+- Focus on the four strategy curves (Random expected, Business Rule, Logistic Regression and HGB) and capacity selector.
 - Keep the interface accessible, responsive and understandable.
 - Do not introduce authentication, databases or server functions
   without explicit authorization.

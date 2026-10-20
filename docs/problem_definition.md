@@ -1,5 +1,13 @@
 # KKBOX feasibility: restricted retrospective protocol
 
+> **Historical Phase 1 audit and restricted decision (2026-10-19).** Branch names,
+> pending checks, commands and authorization/publication boundaries below record
+> that stage, not the current handoff. Phases 1–5 are now complete within the
+> restricted scope; see [current results](results.md),
+> [progress](../PROGRESS.md) and [publication boundary](data_attribution.md).
+> Phase 6 is NOT STARTED. Do not rerun these original-source audits as part of
+> documentation maintenance or reopen the consumed final test.
+
 **Decision: RESTRICTED GO for a single-cohort, offline comparison.**
 **Not approved:** an operational historical campaign or a February-to-March
 forward-transfer claim. The developer explicitly accepted this restricted

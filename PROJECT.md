@@ -1,8 +1,12 @@
 # Retention Lab — Project Specification
 
-> Status: **Phase 4 DONE — reproducible baselines and frozen model scores; restricted retrospective benchmark**
+> Status: **Phases 1–5 DONE — restricted retrospective benchmark; Phase 6 NOT STARTED**
 > Last updated: 2026-10-20
 > This document is the source of truth for the **what and why** of the project. See `ROADMAP.md` for phase deliverables and `PROGRESS.md` for actual work status. Working conventions belong in `AGENTS.md`.
+
+**Next: Phase 6 — Reliability, audit and limitations.** Phases 7–8 are NOT STARTED.
+The four-strategy [published comparison](docs/results.md) is complete; the web demo
+and robustness work remain future scope.
 
 ## 1. Project in one sentence
 
@@ -14,7 +18,7 @@
 
 - **Primary user:** retention / customer-success manager at a digital subscription service.
 - **Decision:** given a fixed outreach capacity, which subscribers should be reviewed first?
-- **User experience:** interactive retrospective comparison of historical *churn identified* under three selection policies.
+- **User experience:** planned interactive retrospective comparison of historical *churn identified* across four curves from three strategy families: Random, Business Rule and ML.
 - **Business framing:** limited outreach capacity motivates the comparison; the approved experiment is not a historical operational campaign simulation.
 - **Professional goal:** demonstrate supervised ML, feature engineering, temporally honest evaluation, ranking metrics, clear communication and proportionate product engineering.
 
@@ -30,13 +34,21 @@ For each eligible subscriber at a specified historical prediction cutoff:
 4. Select the top K users where K corresponds to X% of that population (document rounding and tie-breaking).
 5. Count how many selected users actually churned; repeat for capacities from 0% to 100%.
 
-### Strategies
+### Strategy families and implemented comparison
 
 | Strategy | Definition | Constraints |
 |---|---|---|
-| Random selection | Expected random selection or reproducible random draws | Clearly distinguish theoretical expectation from realized draws |
-| Simple business rule | Risk ranking based on a justified, cutoff-available signal (e.g., auto-renew status or recent decline in usage) | Choose and freeze rule without inspecting final evaluation labels; specify tie-breaking |
-| Machine learning | Supervised classification score, initially logistic regression and optionally a tree-based estimator | Preprocessing and model selection use training/validation data only |
+| Random selection | Uniform-selection expectation in the published chart; reproducible random ordering retained privately | Clearly distinguish theoretical expectation from realized draws |
+| Simple business rule | Frozen renewal-off-first rule based on cutoff-available auto-renew status | Choose and freeze rule without inspecting final evaluation labels; specify tie-breaking |
+| Machine learning | Two implemented candidates: Logistic Regression and HistGradientBoostingClassifier (HGB), using the same seven approved features | Preprocessing and model selection use training/validation data only |
+
+The four displayed strategies are **Random expected, Business Rule, Logistic
+Regression and HistGradientBoostingClassifier**. HGB was selected exclusively on
+validation under the predeclared Recall@10% criterion, then frozen before final
+label access. The original final evaluation compared Random, Business Rule and
+HGB; LR was added later from its original frozen ranking as a descriptive
+post-hoc extension, not an independent confirmatory test or a new selection.
+See [selection and chronology](docs/results.md#selection-freeze-and-post-hoc-chronology).
 
 The system must be able to report a **negative or negligible ML advantage** honestly. Do not select the model or baseline by repeatedly optimizing against the final evaluation set.
 
@@ -57,7 +69,7 @@ Additional evaluation, as justified: average precision / PR-AUC, ROC-AUC, calibr
 
 - X-axis: percentage of eligible subscribers selected for outreach.
 - Y-axis: percentage of observed future churners included in that selection (**Recall@K**).
-- Curves: `Random Selection`, `Rule-Based Selection`, `ML-Based Selection`.
+- Four curves: `Random expected`, `Business Rule`, `Logistic Regression` (post-hoc) and `HistGradientBoosting` (selected HGB).
 - At a selected X%, show the corresponding K, observed churners identified, Recall@K, Precision@K, Lift@K and ML-vs-rule difference.
 - Under an expected-random policy, expected Recall@K follows X%; actual random simulations may fluctuate.
 - Use empirical stepwise values or properly calculated interpolation, not hand-drawn/smoothed results. Include (0,0) and (100,100) only when the evaluation population has positive cases and these points have defined interpretation.
@@ -67,7 +79,7 @@ Additional evaluation, as justified: average precision / PR-AUC, ROC-AUC, calibr
 
 ## 3. Data source: KKBOX (approved restricted benchmark)
 
-**WSDM — KKBOX Churn Prediction Challenge**
+**WSDM 2018 — KKBOX Churn Prediction Challenge**
 https://www.kaggle.com/competitions/kkbox-churn-prediction-challenge/data
 
 File families considered during feasibility review (only the original transaction/label pair is approved for benchmark inputs):
@@ -102,6 +114,9 @@ Investigate and document:
 
 ### Approved gate outcome — 2026-10-19
 
+This section records the historical Phase 1 contract. Later phase completion is
+summarized below; its original development boundaries are not current work orders.
+
 The developer explicitly accepted **RESTRICTED GO**: an offline retrospective
 benchmark of the original February 2017 cohort, not an operational historical
 simulation or temporal validation between cohorts.
@@ -123,9 +138,10 @@ simulation or temporal validation between cohorts.
   Phase 2 subsequently materialized and verified these partitions twice: 523,998
   train, 175,651 validation, 174,931 final. See `PROGRESS.md` and
   `docs/methodology.md`; validation outcomes were reserved for the subsequently
-  authorized Phase 4, and final outcomes remain isolated.
+  authorized Phase 4; final outcomes stayed isolated from model selection until
+  the separately authorized original Phase 5 evaluation.
 - Preprocessing fits on train only; baseline/model selection uses development
-  only; all three policies share the same final labeled population and capacities.
+  only; all four displayed strategies share the same final labeled population and capacities.
 - Coverage is record-based and conditioned on supplied competition labels, not
   the complete active subscriber population. Exclude ambiguous selected-state
   days; other latest-field features need separate tie checks. Arrival times,
@@ -137,15 +153,16 @@ and publication restrictions remain as documented in `docs/problem_definition.md
 This approval closed Phase 1 only. Phase 2 was subsequently authorized and verified;
 Phase 3 was subsequently authorized and verified; its seven-feature schema and
 reproduction contract are in `docs/features.md`. Phase 4 was separately authorized
-and completed; its train-only logistic pipeline and private ranking contract are in
-`docs/models.md`. Phase 5 remains unstarted and requires separate authorization.
-See `PROGRESS.md`.
+and completed with train-only LR and HGB; their private ranking contract is in
+`docs/models.md`. Phase 5 is DONE with the original evaluation preserved and the
+separate public four-strategy post-hoc comparison. Phase 6 is NOT STARTED.
+See `PROGRESS.md` for the dated evidence.
 
-## 4. Planned technical approach
+## 4. Implemented core and planned product approach
 
 - **Python core:** pandas, NumPy, scikit-learn; focus on simple readable functions and scripts.
 - **Exploration:** notebooks for EDA and interpretation, not as the only source of reproducible logic.
-- **Models:** logistic regression as a first interpretable model; optionally HistGradientBoosting or a similar tree-based model when justified.
+- **Models:** Logistic Regression and HistGradientBoostingClassifier are implemented; HGB remains the validation-selected model.
 - **Evaluation:** reproducible functions and tests for top-K metrics, temporal integrity and baseline rankings.
 - **Frontend:** React + TypeScript + Vite, with a small charting library (e.g., Recharts).
 - **Deployment:** static frontend on Netlify using **precomputed, validated, aggregated JSON artifacts**.
@@ -175,14 +192,18 @@ retention-lab/
 │   ├── baselines.py
 │   ├── train.py
 │   ├── evaluate.py
-│   └── export.py
+│   ├── final_evaluation.py
+│   └── posthoc.py
 ├── tests/
 ├── data/              # local, gitignored
 ├── artifacts/         # derived, review before publication
 └── web/               # React/Vite application for Netlify
 ```
 
-This is a target, **not** a mandate to scaffold everything immediately. Add only what a current phase needs.
+This is an indicative target, **not** a claim that every path exists or a mandate
+to scaffold it. The implemented evaluation uses `final_evaluation.py` and
+`posthoc.py`, not `export.py`; packaging, additional notebooks, limitations docs
+and `web/` remain subject to their roadmap phases.
 
 ## 5. Data privacy and reproducibility
 
@@ -212,7 +233,7 @@ The MVP does **not** include real-time inference, production CRM, outreach autom
 
 ### Demo structure
 
-**Business View:** a plain-language question, capacity slider, three curves, a few numerical cards and a clearly stated interpretation of **historical identified churn**.
+**Business View:** a plain-language question, capacity slider, four curves, a few numerical cards and a clearly stated interpretation of **historical identified churn**.
 
 **Technical Evidence:** cohort and cutoff, label definition, feature provenance, baselines, evaluation design, metrics, reproducibility and limitations.
 
@@ -233,9 +254,9 @@ Explain business constraint, target and time cutoff, baseline design, ML choice,
 The MVP succeeds when:
 
 - Churn, eligibility, prediction cutoff and label maturity are documented and defensible.
-- A shared held-out evaluation cohort has cutoff-safe scores from all three strategies.
+- A shared held-out evaluation cohort has cutoff-safe scores from all four displayed strategies in the three strategy families.
 - Recall@K, Precision@K and Lift@K are tested and computed from actual labels.
-- The central three-curve plot is reproducible.
+- The central four-curve plot is reproducible.
 - A static Netlify demo presents real results and a transparent technical explanation.
 - README, reproduction instructions and limitations are complete.
 

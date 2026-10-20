@@ -6,6 +6,11 @@ pipeline or a model. The approved experiment remains a single-cohort,
 cross-month temporal generalization. Event dates are proxies for availability;
 arrival times and label adjudication remain unverified.
 
+> **Phase 3 DONE.** This is the historical feature-production contract. Phases
+> 4–5 are also complete; see [current results](results.md). Commands below are
+> reproduction documentation, not steps to rerun during maintenance of the
+> consumed experiment. Phase 6 is NOT STARTED.
+
 ## Run
 
 Use the existing [locked Phase 2 environment](methodology.md#reproduce) and legally
@@ -117,12 +122,11 @@ method and quality diagnostics remain outside the predictor whitelist.
 - Exact duplicate copies do not increase counts or transitions. Indistinguishable
   genuine events may be collapsed: there is no reliable event ID to resolve this.
 
-**Phase 4 preprocessing contract (now implemented in [the model pipeline](models.md)):** fit statistical imputation, scaling and
-categorical encoding on training only within the eventual pipeline. Choose any
-missing indicators/encoding behavior using development data only. Apply frozen
-training parameters to validation and, after selection, final features. Never
-fit on concatenated train/validation or final features. No imputer, quantile,
-scaler or vocabulary is learned in Phase 3.
+**Implemented Phase 4 preprocessing ([model guide](models.md)):** LR fits its
+imputer, missingness indicators and scaler on training only; HGB uses native
+missing-value routing and categorical `auto_renew` without an imputer/scaler.
+Both consume the same seven approved predictors. Neither fits preprocessing
+on validation/final features, and Phase 3 itself learns no preprocessing.
 
 ## Leakage, integrity and reproducibility
 
@@ -158,7 +162,7 @@ cannot be undone and those auditors are not rerun. Private data/IDs, intermediat
 SQLite and per-user outputs are never publication artifacts. This document is
 schema/configuration only; no new individual data or outcome analysis is public.
 
-## Review before merge
+## Historical Phase 3 review checklist
 
 Review shared-state extraction first, then outcome gating, key/row alignment and
 manifest/cache validation. Reproduce tests and private counts, verify EDA parity,
@@ -167,4 +171,6 @@ and confirm no data files are staged. Defend these distinctions in interviews:
 missing vs zero**, **deterministic features vs learned preprocessing**, and
 **retrospective held-out detection vs deployable or causal retention claims**.
 Phase 4 was subsequently authorized and completed; see [model reproduction](models.md).
-Phase 5 and final-outcome evaluation still require separate authorization.
+Phase 5 subsequently completed the original evaluation and separate public
+four-strategy post-hoc extension. Final access is consumed; do not reopen it.
+Phase 6 remains NOT STARTED.

@@ -4,6 +4,12 @@ Phase 2 uses original-source records available by January 31, 2017 and supplied
 February outcomes in an explicitly retrospective, single-cohort benchmark.
 No operational campaign simulation, causal retention claim or model is implied.
 
+> **Historical Phase 2 procedure.** Phases 1–5 are now DONE; the current
+> [four-strategy results](results.md) preserve the original final evaluation and
+> identify LR as a post-hoc addition. Phase 6 is NOT STARTED. Data preparation
+> and notebook commands below describe earlier reproduction, not maintenance
+> steps to rerun on the consumed experiment.
+
 ## Reproduce
 
 Run every command from the repository root. The verified target is **CPython
@@ -23,11 +29,15 @@ python3.12 -m venv .venv
 ```
 
 All tests use synthetic fixtures or committed aggregate notebook content; no raw
-KKBOX data is required. The seven direct dependencies are pandas 2.2.3,
+KKBOX data is required. The original Phase 2 subset used pandas 2.2.3,
 matplotlib 3.9.4, matplotlib-inline 0.2.2, nbformat 5.10.4, nbclient 0.10.2,
 ipykernel 6.29.5 and jupyter-client 8.10.0. The last two launch and manage local
 kernels; matplotlib-inline supplies the explicitly selected figure backend.
-No modeling packages or interactive JupyterLab/Notebook server are needed.
+Phase 2 itself does not fit a model or require an interactive Jupyter server.
+The current manifest also includes NumPy, scikit-learn, joblib and threadpoolctl
+as direct dependencies, plus explicitly pinned SciPy; it serves the completed
+ML phases as well. The manifest, not the historical Phase 2 subset, is the
+authoritative environment definition.
 
 `requirements.txt` is the only dependency manifest. It pins the complete
 environment, including direct and transitive packages, and lists the direct
@@ -197,11 +207,14 @@ back on. Other histories remain a separate group. This compares selected histori
 not the effect of changing renewal configuration. No significance or generalization
 claim is made from these descriptive training comparisons.
 
-**Candidate rule, documented only:** prioritize auto-renew off, then ascending split
+**Historical Phase 2 candidate rule, documented only at that stage:** prioritize auto-renew off, then ascending split
 SHA-256 digest, then identifier. No ranking implementation, capacity metric, threshold
 tuning or validation/final outcome inspection occurs in this phase.
 
-## Publication and next step
+The implemented Phase 4 rankings subsequently used purpose-specific hash ties,
+not the split digest; see the [frozen policy families](models.md#three-fixed-policy-families).
+
+## Phase 2 publication and next-step boundary — historical
 
 Only aggregate `artifacts/eda_summary.json`, notebook text and five figures may be
 published. Raw files, private assignments and subscriber-level training records stay
@@ -225,3 +238,15 @@ and train-only preprocessing contract. Phase 3 itself fits no model. The
 subsequently authorized [Phase 4 model pipeline](models.md) implements that
 contract with training/validation diagnostics and label-free final rankings.
 No cross-cohort/operational claim or final-outcome evaluation is introduced.
+
+## Current completed comparison
+
+Phases 3–5 were separately authorized and completed after the Phase 2 record.
+Both LR and HGB use the seven approved features; HGB was selected on validation
+and frozen before the original final evaluation. LR's original ranking was
+subsequently added through descriptive post-hoc reuse, not a new confirmation
+or model selection. See [current results](results.md),
+[archived original evaluation](evaluation_history.md) and
+[publication boundary](data_attribution.md). Final-label access is consumed;
+no current reproduction instruction authorizes retraining, reselection or a
+new final-label read. Next is Phase 6, which remains NOT STARTED.
