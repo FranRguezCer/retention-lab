@@ -1,7 +1,7 @@
 # Retention Lab — Project Specification
 
-> Status: **Phase 3 DONE — reproducible cutoff-safe features; restricted retrospective benchmark**
-> Last updated: 2026-10-19
+> Status: **Phase 4 DONE — reproducible baselines and frozen model scores; restricted retrospective benchmark**
+> Last updated: 2026-10-20
 > This document is the source of truth for the **what and why** of the project. See `ROADMAP.md` for phase deliverables and `PROGRESS.md` for actual work status. Working conventions belong in `AGENTS.md`.
 
 ## 1. Project in one sentence
@@ -122,7 +122,8 @@ simulation or temporal validation between cohorts.
   counts without using outcome values. Keep final labels isolated from development.
   Phase 2 subsequently materialized and verified these partitions twice: 523,998
   train, 175,651 validation, 174,931 final. See `PROGRESS.md` and
-  `docs/methodology.md`; validation/final outcome values remain isolated.
+  `docs/methodology.md`; validation outcomes were reserved for the subsequently
+  authorized Phase 4, and final outcomes remain isolated.
 - Preprocessing fits on train only; baseline/model selection uses development
   only; all three policies share the same final labeled population and capacities.
 - Coverage is record-based and conditioned on supplied competition labels, not
@@ -135,8 +136,10 @@ Full-field duplicate handling, source isolation, remaining label/coverage limits
 and publication restrictions remain as documented in `docs/problem_definition.md`.
 This approval closed Phase 1 only. Phase 2 was subsequently authorized and verified;
 Phase 3 was subsequently authorized and verified; its seven-feature schema and
-reproduction contract are in `docs/features.md`. Phase 4 still requires separate
-authorization. See `PROGRESS.md`.
+reproduction contract are in `docs/features.md`. Phase 4 was separately authorized
+and completed; its train-only logistic pipeline and private ranking contract are in
+`docs/models.md`. Phase 5 remains unstarted and requires separate authorization.
+See `PROGRESS.md`.
 
 ## 4. Planned technical approach
 

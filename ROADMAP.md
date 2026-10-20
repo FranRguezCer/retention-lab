@@ -1,6 +1,6 @@
 # Retention Lab — Incremental Roadmap
 
-> Status: Phase 3 DONE — reproducible cutoff-safe features; Phase 4 not started · Updated: 2026-10-19
+> Status: Phase 4 DONE — reproducible baselines and frozen model scores; Phase 5 not started · Updated: 2026-10-20
 > Follow `PROJECT.md` for scope and methodology, `AGENTS.md` for operating conventions, and `PROGRESS.md` for actual progress.
 
 ## Working method
@@ -91,23 +91,31 @@ for observations and `docs/methodology.md` for limitations. No Phase 3 work.
 and outcome-isolation probes, real frozen population and seven-column tables,
 byte-identical cached outputs, four byte-identical rebuilt EDA artifacts and
 unchanged two-kernel notebook reproduction. See `docs/features.md` and
-`PROGRESS.md`. No Phase 4 work performed.
+`PROGRESS.md`. These checks preceded the separately authorized Phase 4 below.
 
 ## Phase 4 — Baselines and first ML models
 
 **Goal:** produce three comparable rankings on the same evaluation population.
 
 **Tasks**
-- [ ] Define deterministic expected random baseline or reproducible random draws.
-- [ ] Implement and freeze the commercial rule, including ties.
-- [ ] Train logistic regression with train-only preprocessing.
-- [ ] Optionally compare one tree-based classifier using validation data.
-- [ ] Generate out-of-sample risk scores / rankings without inspecting final labels to tune choices.
-- [ ] Record training configuration, seed, metrics and limitations.
+- [x] Define deterministic expected random baseline or reproducible random draws.
+- [x] Implement and freeze the commercial rule, including ties.
+- [x] Train logistic regression with train-only preprocessing.
+- [x] Optional alternative considered and not needed: retain the technically valid Logistic Regression; no tree model trained.
+- [x] Generate out-of-sample risk scores / rankings without inspecting final labels to tune choices.
+- [x] Record training configuration, seed, metrics and limitations.
 
 **Deliverables:** `baselines.py`, `train.py`, documented candidate selection and held-out scores.
 
 **Acceptance gate:** all strategies evaluate the same eligible customers; predictions are reproducible and truly out of sample. ML is **not required** to win.
+
+**DONE — verified 2026-10-20:** real Logistic Regression converged in 21 iterations;
+all three complete rankings cover 523,998 train / 175,651 validation / 174,931 final
+users. Three real runs (one independent output) reproduced all 13 private files
+byte-for-byte; train-only preprocessing and final-outcome isolation verified.
+Independent scratch checks and prior EDA reproduction passed. See
+[`docs/models.md`](docs/models.md), aggregate development diagnostics and
+`PROGRESS.md`. No final evaluation metrics or Recall@K curves; Phase 5 is not started.
 
 ## Phase 5 — Capacity curves: the core research result
 

@@ -1,0 +1,115 @@
+{
+  "configuration": {
+    "binary": "validated 0/1 passthrough",
+    "classifier": {
+      "C": 1.0,
+      "class_weight": null,
+      "dual": false,
+      "fit_intercept": true,
+      "intercept_scaling": 1,
+      "l1_ratio": null,
+      "max_iter": 1000,
+      "multi_class": "deprecated",
+      "n_jobs": null,
+      "penalty": "l2",
+      "random_state": 42,
+      "solver": "lbfgs",
+      "tol": 0.0001,
+      "verbose": 0,
+      "warm_start": false
+    },
+    "feature_columns": [
+      "auto_renew",
+      "observed_history_days",
+      "january_transactions",
+      "distinct_transactions",
+      "latest_plan_days",
+      "latest_amount",
+      "auto_on_to_off"
+    ],
+    "model_selection": "single logistic candidate; development diagnostics only",
+    "numeric": {
+      "add_indicator": true,
+      "imputation": "train median",
+      "keep_empty_features": true,
+      "scaling": "train StandardScaler"
+    },
+    "packages": {
+      "joblib": "1.5.2",
+      "numpy": "2.5.4",
+      "pandas": "2.2.3",
+      "scikit-learn": "1.7.2",
+      "scipy": "1.17.0",
+      "threadpoolctl": "3.6.0"
+    },
+    "platform": "Linux-6.18.54.1-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "python": "3.12.3",
+    "ranking": "score descending; SHA256(retention-lab-ranking-v1|policy|seed|ID); ID",
+    "seed": 42,
+    "threads": 1,
+    "version": 1
+  },
+  "convergence": {
+    "max_iter": 1000,
+    "n_iter": [
+      21
+    ],
+    "warning": false
+  },
+  "diagnostics": {
+    "train": {
+      "business": {
+        "average_precision": 0.22112302971533257,
+        "roc_auc": 0.7879958119101895,
+        "score_max": 1.0,
+        "score_mean": 0.1208687819419158,
+        "score_min": 0.0
+      },
+      "ml": {
+        "average_precision": 0.3474906137709435,
+        "log_loss": 0.1595029931443997,
+        "roc_auc": 0.8201252328121267,
+        "score_max": 0.7596328108951618,
+        "score_mean": 0.05533217513119252,
+        "score_min": 0.0016078678756286022
+      },
+      "random_reference": {
+        "average_precision": 0.055372348749422706,
+        "roc_auc": 0.5
+      }
+    },
+    "validation": {
+      "business": {
+        "average_precision": 0.21276690996085273,
+        "roc_auc": 0.7805688708048033,
+        "score_max": 1.0,
+        "score_mean": 0.11995946507563293,
+        "score_min": 0.0
+      },
+      "ml": {
+        "average_precision": 0.3354922363048995,
+        "log_loss": 0.1607842930788884,
+        "roc_auc": 0.8124546598517457,
+        "score_max": 0.7738274447250175,
+        "score_mean": 0.055079233133814444,
+        "score_min": 0.00353692693106683
+      },
+      "random_reference": {
+        "average_precision": 0.0549100204382554,
+        "roc_auc": 0.5
+      }
+    }
+  },
+  "experiment": "restricted retrospective original February 2017 cohort",
+  "final_outcomes": "not accessed; no final metrics or capacity curves",
+  "phase": 4,
+  "population": {
+    "final": 174931,
+    "train": 523998,
+    "validation": 175651
+  },
+  "private_final_rankings_sha256": "e2ed3d83b4c30535aa139e6a98daa8c8993877819a0ff9a3d1e771b23d827773",
+  "private_model_sha256": "93dba88b049c39c650872f49a08fe588ba27978ae5f6f0deb66cc1e012df431d",
+  "selected_model": "LogisticRegression",
+  "selection": "Single technically valid candidate; no alternative or search"
+}

@@ -221,5 +221,7 @@ The Phase 2 next-step boundary above is historical. Phase 3 was separately
 authorized and reuses the same deterministic preparation and frozen population.
 See [feature schema and reproduction](features.md) for the seven predictors,
 separate keys/labels, conservative missingness, cached source-bound regeneration
-and train-only preprocessing contract for a future Phase 4. No modeling or
-cross-cohort/operational claim is introduced.
+and train-only preprocessing contract. Phase 3 itself fits no model. The
+subsequently authorized [Phase 4 model pipeline](models.md) implements that
+contract with training/validation diagnostics and label-free final rankings.
+No cross-cohort/operational claim or final-outcome evaluation is introduced.

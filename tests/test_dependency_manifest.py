@@ -41,7 +41,10 @@ class DependencyManifestTests(unittest.TestCase):
         external = imported - sys.stdlib_module_names - local
         # Kernel launcher and matplotlib backend are selected by string at runtime.
         external |= {'ipykernel', 'matplotlib_inline'}
-        expected = {re.sub(r'[-_.]+', '-', name).lower() for name in external}
+        # Distribution and import names differ for scikit-learn.
+        distributions = {'sklearn': 'scikit-learn'}
+        expected = {re.sub(r'[-_.]+', '-', distributions.get(name, name)).lower()
+                    for name in external}
         self.assertTrue(expected <= direct.keys(),
                         f'Unpinned imports: {expected - direct.keys()}')
 

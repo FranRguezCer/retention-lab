@@ -1,15 +1,15 @@
 # Retention Lab — Progress Log
 
 > Last updated: 2026-10-20
-> **State: Phase 3 DONE — verified reproducible cutoff-safe features; restricted retrospective benchmark.**
+> **State: Phase 4 DONE — reproducible baselines and converged Logistic Regression; final scores frozen without final outcomes.**
 > This file records *actual progress*, not intentions. `PROJECT.md` is the scope reference and `ROADMAP.md` contains acceptance gates.
 
 ## Current focus
 
-**Phase 3 — Reproducible cutoff-safe feature engineering**
-Status: `DONE — synthetic, independent, real-data and EDA compatibility checks passed`
-Phase 3 pre-merge review passed. The developer authorized integration into main
-and subsequent Phase 4 work on a separate branch; no model has been trained.
+**Phase 4 — Baselines and first ML models**
+Status: `DONE — synthetic, independent, real-training, reproducibility and EDA checks passed`
+Three frozen rankings share the original partitions. Logistic Regression is selected
+using development diagnostics only. Phase 5 is not started; review before merge.
 
 ## Phase tracker
 
@@ -18,9 +18,9 @@ and subsequent Phase 4 work on a separate branch; no model has been trained.
 | 1. Dataset feasibility | DONE — RESTRICTED GO | Four-source audit and restricted contract: `docs/problem_definition.md` §§2–7; explicit developer acceptance below |
 | 2. EDA | DONE | Frozen verified partitions, five interpreted training-only charts and independent isolation/dependency verification |
 | 3. Feature engineering | DONE | Seven predictors; exact real frozen population, cache repeatability and byte-identical EDA reconstruction |
-| 4. Baselines + models | NOT STARTED | No scores or models trained |
+| 4. Baselines + models | DONE | Three reproducible rankings, converged Logistic Regression, train-only preprocessing, isolated final scores; docs/models.md |
 | 5. Capacity evaluation | NOT STARTED | No empirical ranking curves calculated |
-| 6. Validation + tests | NOT STARTED | 42 synthetic/structural tests pass; no model validation |
+| 6. Validation + tests | NOT STARTED | Phase-specific tests and development diagnostics exist; final robustness audit remains future scope |
 | 7. React demo | NOT STARTED | No frontend created or deployed |
 | 8. Portfolio + storytelling | NOT STARTED | Final portfolio narrative pending; training-only EDA aggregates available |
 
@@ -50,8 +50,8 @@ and subsequent Phase 4 work on a separate branch; no model has been trained.
 
 ## Pending validations and open questions
 
-1. Phase 4 is authorized after Phase 3 integration into main. No preprocessing
-   fitting, baseline ranking, model selection or final-label evaluation has occurred.
+1. Phase 4 is complete. Review the branch before merge; Phase 5 final-label
+   evaluation and capacity curves require separate authorization.
 2. Confirm permitted future publication of derived evaluation artifacts
    separately; no raw or individual feature/label data is published in Phase 3.
 3. Historical arrival times, logging completeness, labeler boundaries and
@@ -649,3 +649,93 @@ ID for ties. It has not been implemented or tuned on any held-out outcome.
   provide the relevant compatibility evidence.
 - Next task remains the separately authorized Phase 4 implementation. No merge
   to main, PR, model training or Phase 5 work is part of this environment cleanup.
+
+
+## 2026-10-20 — Authorized Phase 4 implementation (in progress)
+
+- Clean fetch/ancestry verified Phase 3 reference in origin/main; main, origin/main
+  and existing model branch matched `7efdd4f`. Developer explicitly authorized
+  reuse of the existing branch without rewriting history. No main changes.
+- Implemented purpose-separated hash rankings: equal-priority random, renewal-off
+  first business rule, and a single train-only logistic pipeline with seven inputs.
+  No final-label input or generic serialized-model loading is supported.
+- Synthetic RED observed before modules/CLI; interim full suite: **53 passed**.
+  Real training, reproducibility, EDA reproduction, independent verification and
+  final privacy checks are still pending; Phase 4 is **not DONE** at this point.
+- Added four pinned ML packages; original environment pins retained. Initial pip
+  attempt failed sandbox DNS; authorized PyPI installation succeeded and
+  dependency health passed. RDD globally off, unchanged. Engram unavailable;
+  local task document retained and memory mirror/summary pending.
+
+### Phase 4 real checks (final acceptance still pending)
+
+- Real CLI training/scoring passed three times, including independent output
+  reconstruction: 10.01s, 12.22s and 11.98s. Every one of 13 private output files
+  matched byte-for-byte. All strategies cover **523,998 train / 175,651 validation
+  / 174,931 final** with separate exact Phase 3 keys and complete permutations.
+- Logistic Regression converged in **21/1000 iterations**, no warning. One
+  candidate, no search/second model, no final-label inspection. Train AP
+  **0.347491**, ROC-AUC **0.820125**, log loss **0.159503**; validation AP
+  **0.335492**, ROC-AUC **0.812455**, log loss **0.160784**. Business validation
+  AP **0.212767**, ROC-AUC **0.780569**. Retain logistic for valid convergence
+  and useful validation discrimination; no claim of final or top-K superiority.
+- Private model SHA-256:
+  `93dba88b049c39c650872f49a08fe588ba27978ae5f6f0deb66cc1e012df431d`.
+  Private manifest SHA-256:
+  `ec29560960b8513261790d9ef2504f85967afebe943f07ae3f3db42963d25d1c`.
+  Final rankings SHA-256 (all three policies, no labels):
+  `e2ed3d83b4c30535aa139e6a98daa8c8993877819a0ff9a3d1e771b23d827773`.
+- Real EDA `--check` passed in **24.33s** after authorized socket escalation:
+  two kernels reproduced all aggregate text/figures; aggregate SHA-256 remains
+  `bdef546b4e271083a53d15e690d44b688c097231cafc4d65de98c5ada1a482bf`.
+  This is notebook reproduction, not a new cold raw-data reconstruction.
+- Environment: **52 installed distributions / 52 exact pins**, no extras or
+  broken requirements. The original 48 pins are unchanged. No generic serialized
+  model ingestion or remote experiment tracking. Engram unavailable.
+- Still pending: independent scratch verification, final privacy/diff checks and
+  requested completion commit/push. Phase 5 and final outcomes remain untouched.
+
+### Phase 4 final acceptance
+
+- Independent fresh scratch verification **PASS**: candidate 53 tests, baseline
+  42 tests; five prior CLI help comparisons identical; EDA/feature preparation
+  stdout/stderr/status and every synthetic artifact byte identical to baseline.
+  Additional semantic/provenance, train-only fitting, positive-class scoring,
+  unknown/required values, alignment and rejected-output immutability probes
+  passed. Validation feature/outcome changes did not change model/train/final
+  predictions. Guarded access and absent synthetic raw files confirm no raw/final
+  outcome dependency. These are synthetic proofs, not real final-label analysis.
+- Integrated independent semantic probes into reusable regression tests, without
+  hard-coded Git history or scratch paths. Model tests: **9 passed**. Parent
+  independently reran real training successfully with the same manifest/model
+  identity and reran the full 53-test candidate before adding those probes.
+  Final full-suite and staged publication evidence follows below.
+- **Phase 4 DONE** on analytical/engineering acceptance. No final outcome values,
+  final prevalence, final predictive metrics or capacity curves were read or
+  calculated; partitions and Phase 3 files are unchanged. All individual outputs
+  and model remain private/ignored. Only aggregate train/validation diagnostics
+  are published in `artifacts/model_validation.json`.
+- Retain Logistic Regression; validation AP/ROC-AUC exceed the rule's diagnostic
+  scores, but no final/top-K superiority, calibration, operational deployment or
+  retention causality is claimed. Existing source authenticity/arrival/labeler,
+  left-truncated history, single-cohort and platform limitations remain.
+- Risk: item 5 (ML dependency/environment additions); item 3 (explicit import to
+  distribution audit mapping). Independent verification passed. RDD remains
+  globally disabled/unmanaged; no review transaction, PR, merge or Phase 5.
+- Next: human branch review before any merge; only subsequently authorize Phase 5.
+  Requested completion commit/push follows final tests and staged privacy checks.
+  Engram is unavailable; persistent memory mirror/session summary not claimed.
+
+- **Final suite PASS: 54 tests** in 28.395s, including committed independent
+  semantic-rejection probes. `git diff --check` passed. Parent publication scan
+  passed over 16 UTF-8 text files: no frozen subscriber IDs, credential markers,
+  absolute home paths, raw/processed files or binaries. All 13 private outputs
+  are ignored; every private output hash and frozen implementation/CLI/dependency
+  hash still matches the real training manifest.
+- An initial privacy wrapper completed its assertions then failed at an unused
+  package import without `src` on the Python path. Corrected invocation reran
+  all checks successfully; no privacy assertion or artifact check failed.
+- Parent removed only the two worker-reported external scratch directories after
+  retaining their verification evidence here. Canonical private model/features
+  and local notes remain untouched. No completion SHA is embedded in its own
+  commit; local/remote confirmation belongs in the delivery report.

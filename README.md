@@ -1,9 +1,9 @@
 # Retention Lab
 
 A retrospective subscription-churn study: how many future churners can be
-identified when outreach capacity is limited? **Phase 3 is complete:** seven
-reproducible cutoff-safe predictors, frozen user partitions, isolated outcomes
-and five interpreted training-only EDA charts. No model, capacity-comparison curves or deployed application yet.
+identified when outreach capacity is limited? **Phase 4 is complete:** reproducible random,
+business-rule and Logistic Regression rankings on frozen cutoff-safe features.
+No final-label evaluation, capacity-comparison curves or deployed application yet.
 Identifying churn is not evidence that an intervention saves customers.
 
 ## Start here
@@ -37,8 +37,9 @@ if your Python installation cannot bootstrap pip.
 [`requirements.txt`](requirements.txt) is the only dependency manifest and pins
 the complete verified environment, including direct and transitive dependencies.
 Use the single ignored `.venv` environment for analysis and feature preparation.
-No modeling library or interactive JupyterLab/Notebook server is needed; execution
-uses nbclient and an ipykernel in a fresh local process.
+The manifest includes scikit-learn and its pinned numerical dependencies. No
+interactive JupyterLab/Notebook server is needed; notebook execution uses nbclient
+and an ipykernel in a fresh local process.
 
 ## Reproduce the private-data analysis
 
@@ -63,3 +64,17 @@ With the verified private Phase 2 artifacts available, run:
 The [feature contract](docs/features.md) documents the seven predictors, private
 outputs, separate validation labels, unlabeled final features and cache checks.
 No imputer/scaler/encoder or model is fitted by this command.
+
+## Reproduce Phase 4 models and rankings
+
+```sh
+.venv/bin/python scripts/train_kkbox.py --verify-real-population
+```
+
+The [training guide](docs/models.md) explains train-only preprocessing, deterministic
+policies, private outputs, checksums and limitations. The [public development
+diagnostics](artifacts/model_validation.json) contain training/validation
+aggregates only. The chosen Logistic Regression converged in 21 iterations;
+validation AP is 0.335492 and ROC-AUC 0.812455. These are **not final evaluation
+results** or proof of improvement at a particular outreach capacity. Frozen final
+scores contain no labels; the main Recall@K comparison is reserved for Phase 5.

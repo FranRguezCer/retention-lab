@@ -117,7 +117,7 @@ method and quality diagnostics remain outside the predictor whitelist.
 - Exact duplicate copies do not increase counts or transitions. Indistinguishable
   genuine events may be collapsed: there is no reliable event ID to resolve this.
 
-**Phase 4 contract (not executed):** fit statistical imputation, scaling and
+**Phase 4 preprocessing contract (now implemented in [the model pipeline](models.md)):** fit statistical imputation, scaling and
 categorical encoding on training only within the eventual pipeline. Choose any
 missing indicators/encoding behavior using development data only. Apply frozen
 training parameters to validation and, after selection, final features. Never
@@ -166,4 +166,5 @@ and confirm no data files are staged. Defend these distinctions in interviews:
 **event time vs arrival time**, **observed history vs tenure**, **ambiguous vs
 missing vs zero**, **deterministic features vs learned preprocessing**, and
 **retrospective held-out detection vs deployable or causal retention claims**.
-Do not begin Phase 4 without separate authorization.
+Phase 4 was subsequently authorized and completed; see [model reproduction](models.md).
+Phase 5 and final-outcome evaluation still require separate authorization.
