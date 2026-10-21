@@ -113,3 +113,9 @@ data/audit/
 
 # Private local project notes
 /aclaraciones.md
+
+# Local development and task records
+/PROGRESS.md
+/odd/
+/AGENTS.md
+/.agents/
