@@ -13,9 +13,9 @@ Delivery: exception-ok (one authorized branch, coherent work-unit commits; no PR
 - S8: "Fase 7: IMPLEMENTED — pendiente de despliegue y comprobación real en Netlify." / "Fase 8: NOT STARTED." Update factual docs, commit/push existing branch, verify remote SHA and clean worktree. No Netlify, merge, PR or force-push.
 
 ## Tasks
-- T1 · S1,S3,S4 · inline dashboard + delegated chart (independent component surface) · verified; commit pending
-- T2 · S2,S5 · delegated evidence (independent component and focused tests) · verified; commit pending
-- T3 · S6,S7,S8 · inline links, integration verification, documentation and delivery · checks verified; commit/push pending
+- T1 · S1,S3,S4 · inline dashboard + delegated chart (independent component surface) · DONE · 091430a084caae03d07974dc35463d2477a10e9e
+- T2 · S2,S5 · delegated evidence (independent component and focused tests) · DONE · 091430a084caae03d07974dc35463d2477a10e9e
+- T3 · S6,S7,S8 · inline links, integration verification, documentation and delivery · DONE · 091430a084caae03d07974dc35463d2477a10e9e (implementation published; final documentation follows)
 
 ## Log
 - L1 · 2026-10-21 · Authorized request: "Implementa, prueba, documenta, haz commit y publica la iteración en la rama existente. No avances a la Fase 8 ni despliegues en Netlify." Full detailed scope is the user’s Phase 7 UI/UX Refinement, Accessibility and Scientific Copy Review request; Specs retain the operative requirements, not a new experiment.
@@ -26,3 +26,5 @@ Delivery: exception-ok (one authorized branch, coherent work-unit commits; no PR
 - L5 · Fresh tracked-only Python suite 84/84 PASS (67.204s), public-only audit PASS, parent audit rerun PASS. All 43 historical artifact/Python files identical. Focused candidate secret scan and diff whitespace checks PASS. RDD remains OFF; assessment unassessable while new files untracked, not treated as a low-risk verdict. No review started.
 - L6 · No full assistive-technology or cross-browser certification; Netlify/live verification pending. No model fitting beyond existing synthetic tests; no private-source access. Approximate scope exceeds the advisory 400-line heuristic because responsive styling, scientific-copy tests and evidence graphics belong to one cohesive UI outcome; no artificial split or PR created.
 - L7 · Explicit intended staging resolved inventory uncertainty. Native assessment: medium, review_due=false/under_budget. Switch remains globally OFF; no native lifecycle. Reviewed all 16 staged paths, 594 additions/89 deletions before this final evidence append; historical/private paths absent.
+
+- L8 · Implementation committed as 091430a084caae03d07974dc35463d2477a10e9e (feat(web): refine dashboard UX and technical evidence), pushed via configured SSH and verified exact remote match. Worktree clean after implementation. Remote main still 787534281c9d53914bb72b17b1935f385db844cc. This final documentation-only record is committed/published separately; final HEAD equality is reported in the user handoff. No open implementation blocker; live Netlify checks explicitly remain out of scope.

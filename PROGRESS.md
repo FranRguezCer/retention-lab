@@ -1283,3 +1283,14 @@ widths and separate deployment authorization. No claim that the website is onlin
   **medium**, `review_due=false`, `under_budget`; no named high-risk item applies.
   RDD is still globally OFF, so no review lifecycle or consent was invoked.
   Staged paths/stat and whitespace were reviewed; only UI, tests and docs included.
+
+### Authorized refinement publication
+
+- Implementation commit: `091430a084caae03d07974dc35463d2477a10e9e`
+  (`feat(web): refine dashboard UX and technical evidence`). Authorized normal
+  branch push succeeded; `git ls-remote` returned that exact SHA. Worktree clean
+  after implementation delivery. Remote main remains
+  `787534281c9d53914bb72b17b1935f385db844cc`.
+- This documentation-only follow-up records completed tasks and observed push;
+  its own final remote SHA/worktree readback belongs in the final handoff.
+  No PR, merge, force-push, Netlify deployment, Phase 8 or historical JSON change.
