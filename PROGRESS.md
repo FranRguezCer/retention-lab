@@ -1077,3 +1077,8 @@ ID for ties. It has not been implemented or tuned on any held-out outcome.
   Phases 1–6 DONE, Phases 7–8 NOT STARTED. No unresolved invalidating blocker.
   Human review of statistical assumptions, source/temporal limits and aggregate
   publication remains appropriate before any separately authorized merge.
+
+- Verified Phase 6 implementation committed as `7e501d1b129664c0ec46ba365de96b2735eda7f9`
+  (`feat(validation): audit churn ranking robustness and limitations`). Final
+  task-record update is documentation-only; authorized branch push, exact local/remote
+  SHA comparison and clean-tree result are reported in the final handoff.
