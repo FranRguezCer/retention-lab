@@ -71,3 +71,14 @@ it('explains equal list sizes without implying identical subscribers', () => {
   expect(screen.getByText('5,968 / 9,527')).toBeTruthy();
   expect(screen.getByText('5,968 / 17,493')).toBeTruthy();
 });
+
+it('explains undefined precision without a zero-over-zero formula', () => {
+  render(<App data={data} />);
+  fireEvent.change(screen.getByRole('slider'), { target: { value: '0' } });
+  const card = screen.getByRole('heading', { name: /Precision@K/ }).closest('article')!;
+  expect(within(card).getByText('N/A')).toBeTruthy();
+  expect(within(card).queryByText('0 / 0')).toBeNull();
+  expect(within(card).getByText('Precision is undefined because no subscribers are selected.')).toBeTruthy();
+  fireEvent.change(screen.getByRole('slider'), { target: { value: '10' } });
+  expect(within(card).getByText('5,968 / 17,493')).toBeTruthy();
+});

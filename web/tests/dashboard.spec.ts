@@ -100,15 +100,14 @@ for (const width of [1440, 768, 390]) test(`hover explores an exact sample witho
   await page.screenshot({ path: `/tmp/retention-ux-after/hover-${width}.png` });
 });
 
-test('documentation links use verified main targets with a branch fallback', async ({ page }) => {
+test('documentation links use stable integrated main targets', async ({ page }) => {
   await page.goto('/');
   await expect(page.getByRole('slider')).toHaveValue('10');
   const links = page.locator('a[href*="/blob/"]');
   const urls = await links.evaluateAll(nodes => nodes.map(node => (node as HTMLAnchorElement).href));
   expect(urls.length).toBeGreaterThan(4);
   for (const url of urls) {
-    const path = url.split('/').pop();
-    expect(url).toContain(path === 'methodology.md' ? '/blob/feat/retention-interactive-demo/docs/' : '/blob/main/docs/');
+    expect(url).toContain('/blob/main/docs/');
   }
 });
 
