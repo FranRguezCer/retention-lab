@@ -32,7 +32,7 @@ as input. Undefined ratios at K=0 or P=0 remain null in JSON.
 
 ## Capacity tables
 
-| Strategy | Capacity | Subscribers contacted | Churners identified | Recall@K | Precision@K | Lift@K |
+| Strategy | Capacity | Subscribers selected | Churners identified | Recall@K | Precision@K | Lift@K |
 |---|---:|---:|---:|---:|---:|---:|
 | Random expected | 5% | 8,746 | 476.32 expected | 5.00% | 5.45% | 1.000 |
 | Business Rule | 5% | 8,746 | 2664 | 27.96% | 30.46% | 5.593 |

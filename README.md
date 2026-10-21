@@ -7,8 +7,12 @@ churners when outreach capacity is limited.
 
 ## Key result
 
-At **10% outreach capacity**, every strategy selects **17,493** of **174,931**
-evaluated subscribers, including **9,527 observed churners** in total:
+The complete evaluation cohort contains **174,931 subscribers**, of whom
+**9,527 were observed to churn**.
+
+At **10% outreach capacity**, each strategy selects **17,493 subscribers**
+from this cohort—not necessarily the same people. Recall@K measures the share
+of all 9,527 observed churners included in each selection:
 
 | Strategy | Recall@K |
 |---|---:|

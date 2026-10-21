@@ -101,6 +101,16 @@ class RobustnessTests(unittest.TestCase):
                 shutil.copyfile(root / 'artifacts' / name, copy / 'artifacts' / name)
             shutil.copyfile(root / 'docs/results.md', copy / 'docs/results.md')
             audit.audit_public(copy)
+            documentation = copy / 'docs/results.md'
+            original = documentation.read_text()
+            self.assertIn('Subscribers selected', original)
+            for before, after in (('Subscribers selected', 'Subscribers contacted'),
+                                  ('| 5327 |', '| 5328 |')):
+                self.assertIn(before, original)
+                documentation.write_text(original.replace(before, after, 1))
+                with self.assertRaisesRegex(ValueError, 'Results document table differs'):
+                    audit.audit_public(copy)
+            documentation.write_text(original)
             path = copy / 'artifacts/capacity_comparison_v2.json'
             value = json.loads(path.read_text())
             value['curve'][10]['hgb']['recall'] = .99
