@@ -1,9 +1,10 @@
 # Retention Lab — Incremental Roadmap
 
-> Status: Phases 1–6 DONE; Phases 7–8 NOT STARTED · Updated: 2026-10-21
+> Status: Phases 1–6 DONE; Phase 7 implemented / deployment pending; Phase 8 NOT STARTED · Updated: 2026-10-21
 > Follow `PROJECT.md` for scope, `AGENTS.md` for conventions and `PROGRESS.md` for dated evidence.
 
-**Next: Phase 7 — Interactive static demo.** Not started or authorized here.
+**Next: approve and verify Phase 7 Netlify deployment separately.** Implementation
+is locally verified; no deployment, PR, merge or Phase 8 work performed.
 Phase 6 evidence: [robustness audit](docs/robustness.md) and [limitations](docs/limitations.md).
 
 | Phase | Status |
@@ -14,7 +15,7 @@ Phase 6 evidence: [robustness audit](docs/robustness.md) and [limitations](docs/
 | 4 — Baselines and ML models | DONE |
 | 5 — Capacity evaluation | DONE |
 | 6 — Reliability and robustness | DONE |
-| 7 — Interactive web demo | NOT STARTED |
+| 7 — Interactive web demo | IMPLEMENTED — Netlify deployment pending |
 | 8 — Portfolio and storytelling | NOT STARTED |
 
 ## Working method
@@ -196,21 +197,27 @@ and `PROGRESS.md`. The completed comparison is published on `main`. The subseque
 
 ## Phase 7 — Interactive static demo
 
+**Status: IMPLEMENTED — verified locally; Netlify deployment pending. Not fully DONE.**
+
 **Goal:** help a business audience understand the trade-off in under a minute while preserving technical transparency.
 
 **Tasks**
-- [ ] Set up React + TypeScript + Vite under `web/`.
-- [ ] Load **only validated aggregated** evaluation JSON.
-- [ ] Implement an outreach-capacity slider, four-curve plot (Random expected, Business Rule, LR and HGB) and selected-K metric cards.
-- [ ] Explain in plain language the observed detection difference.
-- [ ] Add a compact Technical Evidence panel with methodology, cohort and limits.
-- [ ] Handle loading/error states, responsive layout and accessibility.
-- [ ] Run frontend build and check displayed values against Python artifacts.
-- [ ] Prepare/deploy the static site to Netlify with the developer's approval.
+- [x] Set up React + TypeScript + Vite under `web/`.
+- [x] Load **only validated aggregated** evaluation JSON.
+- [x] Implement an outreach-capacity slider, four-curve plot (Random expected, Business Rule, LR and HGB) and selected-K metric cards.
+- [x] Explain in plain language the observed detection difference.
+- [x] Add a compact Technical Evidence panel with methodology, cohort and limits.
+- [x] Handle loading/error states, responsive layout and accessibility.
+- [x] Run frontend build and check displayed values against Python artifacts.
+- [x] Prepare the static Netlify configuration and deployment instructions.
+- [ ] Deploy the static site to Netlify with separate developer approval.
 
 **Deliverable:** working interactive demo (no Python server and no per-customer data).
 
 **Acceptance gate:** the capacity control changes correctly calculated historical results; business/technical meanings are unambiguous; build succeeds; no fabricated published outcomes.
+
+Verification and remaining limitations: [frontend guide](web/README.md) and dated
+Phase 7 evidence in `PROGRESS.md`. Original Phase 1–6 artifacts remain unchanged.
 
 ## Phase 8 — GitHub and storytelling
 

@@ -38,11 +38,34 @@ no express license to redistribute data or all derivatives is asserted.
 | 4 — Baselines and ML models | DONE |
 | 5 — Capacity evaluation | DONE |
 | 6 — Reliability and robustness | DONE |
-| 7 — Interactive web demo | NOT STARTED |
+| 7 — Interactive web demo | IMPLEMENTED — Netlify deployment pending |
 | 8 — Portfolio and storytelling | NOT STARTED |
 
-**Next: Phase 7 — Interactive static demo (not authorized or started).** No web demo is deployed;
-Phase 6 audit is documented below; Phase 7 requires separate authorization.
+**Next: separately approve and verify the Phase 7 Netlify deployment.** The static
+demo is implemented and locally verified, not deployed. Phase 8 remains NOT STARTED.
+
+## Interactive React demo
+
+The [static capacity explorer](web/README.md) compares all four strategies using
+only the original public aggregate JSON. A 0–100% slider updates the curves,
+selected-K metrics and paired differences; conditional bootstrap intervals appear
+only at 5/10/20%. LR's post-hoc status and detection-versus-prevention limits are
+explicit. No subscriber data, model execution or backend is included.
+
+```sh
+cd web
+npm ci
+npm run dev
+# Production verification
+npm run typecheck
+npm test
+npm run build
+npm run check:build
+```
+
+Node 24 is the deployment target. The root `netlify.toml` publishes `web/dist`,
+not the repository. **Netlify is prepared but has not been deployed.** See
+[frontend instructions](web/README.md) for browser checks and deployment approval.
 
 ## Reproduce the descriptive extension (no raw CSV access)
 

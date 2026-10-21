@@ -1,12 +1,13 @@
 # Retention Lab — Project Specification
 
-> Status: **Phases 1–6 DONE — restricted retrospective benchmark; Phases 7–8 NOT STARTED**
+> Status: **Phases 1–6 DONE — restricted retrospective benchmark; Phase 7 implemented / deployment pending; Phase 8 NOT STARTED**
 > Last updated: 2026-10-21
 > This document is the source of truth for the **what and why** of the project. See `ROADMAP.md` for phase deliverables and `PROGRESS.md` for actual work status. Working conventions belong in `AGENTS.md`.
 
-**Next: Phase 7 — Interactive static demo (not authorized here).** Phases 7–8 are NOT STARTED.
-The four-strategy [published comparison](docs/results.md) is complete; the web demo
-remains future scope; the [Phase 6 audit](docs/robustness.md) is complete.
+**Next: separately approve and verify Phase 7 Netlify deployment.** The
+[interactive static explorer](web/README.md) presents the validated four-strategy
+comparison and conditional Phase 6 intervals. It is locally verified, not yet
+deployed. Phase 8 remains NOT STARTED.
 
 ## 1. Project in one sentence
 
@@ -18,7 +19,7 @@ remains future scope; the [Phase 6 audit](docs/robustness.md) is complete.
 
 - **Primary user:** retention / customer-success manager at a digital subscription service.
 - **Decision:** given a fixed outreach capacity, which subscribers should be reviewed first?
-- **User experience:** planned interactive retrospective comparison of historical *churn identified* across four curves from three strategy families: Random, Business Rule and ML.
+- **User experience:** interactive retrospective comparison of historical *churn identified* across four curves from three strategy families: Random, Business Rule and ML.
 - **Business framing:** limited outreach capacity motivates the comparison; the approved experiment is not a historical operational campaign simulation.
 - **Professional goal:** demonstrate supervised ML, feature engineering, temporally honest evaluation, ranking metrics, clear communication and proportionate product engineering.
 
@@ -202,8 +203,9 @@ retention-lab/
 
 This is an indicative target, **not** a claim that every path exists or a mandate
 to scaffold it. The implemented evaluation uses `final_evaluation.py` and
-`posthoc.py`, not `export.py`; packaging, additional notebooks, limitations docs
-and `web/` remain subject to their roadmap phases.
+`posthoc.py`, not `export.py`. The static `web/` implementation and limitations
+docs now exist; Netlify deployment remains pending. Other indicative files are
+not a mandate to scaffold additional work.
 
 ## 5. Data privacy and reproducibility
 

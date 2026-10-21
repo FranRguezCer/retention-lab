@@ -250,4 +250,5 @@ or model selection. See [current results](results.md),
 [publication boundary](data_attribution.md). Final-label access is consumed;
 no current reproduction instruction authorizes retraining, reselection or a
 new final-label read. The subsequent Phase 6 audit is documented in [robustness](robustness.md);
-Phase 7 remains NOT STARTED.
+Phase 7 now has a locally verified [static explorer](../web/README.md); Netlify
+deployment remains pending separate approval. Phase 8 is NOT STARTED.

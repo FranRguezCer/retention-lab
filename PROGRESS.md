@@ -1,19 +1,16 @@
 # Retention Lab — Progress Log
 
 > Last updated: 2026-10-21
-> **State: Phases 1–5 DONE (Phase 1 RESTRICTED GO); Phase 6 DONE; Phases 7–8 NOT STARTED.**
+> **State: Phases 1–5 DONE (Phase 1 RESTRICTED GO); Phase 6 DONE; Phase 7 implemented / deployment pending; Phase 8 NOT STARTED.**
 > This file records *actual progress*, not intentions. `PROJECT.md` is the scope reference and `ROADMAP.md` contains acceptance gates.
 
 ## Current focus
 
-Phase 6 implementation, real fixed-cache audit and independent verification are
-complete. Authorized commit/push and remote SHA readback close delivery. Branch
-`feat/kkbox-robustness-audit`, base `da86448eb03b7950b8d6a08ea71dde9a23cd3c10`
-(matches fetched `origin/main`). No main merge, PR or Phase 7 work authorized.
-
-HGB stays validation-selected. Original models/rankings, final evaluation,
-consumed marker and post-hoc comparison remain unchanged. The new audit is
-conditional descriptive reuse, not an independent final evaluation.
+Phase 7 static dashboard implementation is locally verified on
+`feat/retention-interactive-demo`, based on fetched `origin/main`
+`787534281c9d53914bb72b17b1935f385db844cc`. See the dated entry below for
+checks and delivery. No main merge, PR, Netlify deployment or Phase 8 work.
+Historical models/rankings, evaluation and robustness artifacts remain unchanged.
 
 ## Phase tracker
 
@@ -25,7 +22,7 @@ conditional descriptive reuse, not an independent final evaluation.
 | 4. Baselines and ML models | DONE | LR preserved; HGB selected on validation, private rankings/models anchored in pre-test commit; docs/models.md |
 | 5. Capacity evaluation | DONE | Original evaluation preserved; post-hoc LR, sampled aggregates, four-curve PNG, conditions review and independent checks passed |
 | 6. Reliability and robustness | DONE | `docs/robustness.md`, `docs/limitations.md`, fixed reproducible bootstrap, independent probes and 84/84 full-suite PASS |
-| 7. React demo | NOT STARTED | No frontend created or deployed |
+| 7. React demo | IMPLEMENTED — deployment pending | `web/`, validated aggregates, frontend checks; no Netlify deployment |
 | 8. Portfolio + storytelling | NOT STARTED | Final portfolio narrative pending; training-only EDA aggregates available |
 
 ## Decisions already made (project design, not implementation)
@@ -1082,3 +1079,93 @@ ID for ties. It has not been implemented or tuned on any held-out outcome.
   (`feat(validation): audit churn ranking robustness and limitations`). Final
   task-record update is documentation-only; authorized branch push, exact local/remote
   SHA comparison and clean-tree result are reported in the final handoff.
+
+
+## 2026-10-21 — Phase 7 interactive static demo
+
+### Scope and implementation
+
+- Explicitly authorized Phase 7 implementation, configured GitHub SSH use,
+  commits and branch publication. No PR, main merge, Netlify deployment or Phase 8.
+- Clean starting worktree; SSH fetch confirmed HEAD and origin/main both
+  `787534281c9d53914bb72b17b1935f385db844cc`. Created
+  `feat/retention-interactive-demo` directly from that reference.
+- React 19.3.1, TypeScript, Vite 8.3.5 and Recharts 3.10.1 under `web/`.
+  Vitest/Testing Library for focused tests; Playwright/axe for browser checks.
+  Exact installed versions are in `web/package-lock.json`. No Python dependencies changed.
+- Components: App, CapacityControl, CapacityChart, StrategyComparison and
+  TechnicalEvidence. Reusable metric validation/lookup/formatting functions are
+  separate from JSX. Local React state only; no backend, scoring or external assets.
+- Neutral off-white/forest visual system, orange selected HGB, consistent
+  gray/blue/green/orange curves with distinct dash styles. Responsive stacked
+  table at mobile widths, visible focus, native slider/shortcuts/details,
+  chart keyboard navigation and selected numeric table alternative.
+- Two original public JSON imports only; no manual metric copies or public-data
+  synchronization step. All 101 records validated, exact floor K, effective
+  capacity distinguished, null precision/lift at zero preserved, random counts
+  explicitly fractional expectations. Full precision differences precede display rounding.
+- Bootstrap interval validation and display only at 5/10/20%, both Recall and
+  paired differences. Fixed-cohort/frozen-ranking and post-hoc caveats preserved;
+  no test-driven model reselection, causal retention or future-performance claim.
+
+### Verification evidence
+
+- Initial RED: both test modules failed before implementation because App/data
+  modules did not exist. Then 26/26 Vitest tests passed, including 18 malformed
+  aggregate cases and exact public records at 0/5/10/20/100%. A stray nonexistent
+  Vitest project filter also failed during development; it was not used as proof.
+- `npm ci --ignore-scripts` (initial reproducibility check): PASS; 149 packages,
+  zero vulnerabilities reported by npm at that time. Final normal ci recorded below.
+- `npm run typecheck`, `npm test`, `npm run build`: PASS; production `web/dist/`
+  generated. Build creates static HTML/CSS/JS and separate original aggregate chunks.
+- `npm run check:build`: PASS; both decoded shipped aggregates deep-equal source;
+  comparison SHA-256 matches robustness provenance; dist filename allowlist and
+  focused private-data/secret-marker scan passed. Historical artifacts unchanged.
+- Chromium initially could not start (`libnspr4.so` missing). Resolved without
+  system installation: downloaded/extracted libnspr4, libnss3 and libasound2t64
+  into temporary storage and set LD_LIBRARY_PATH for the browser process only.
+- Playwright: 4/4 PASS at 1440×1100, 768×1024 and 390×844. Four actual SVG curves
+  and four markers, slider keyboard Home/End/arrows, published boundary metrics,
+  conditional intervals, fail-closed missing aggregate, no console/page errors,
+  local asset requests only, and no horizontal overflow verified.
+- axe WCAG 2 A/AA + 2.1 AA scan: zero violations on all three layouts with
+  evidence disclosures open. Parent visually inspected desktop and mobile
+  screenshots. Not a full assistive-technology or cross-browser certification.
+- Independent isolated Python suite: **84/84 PASS**, 79.494 seconds; public-only
+  robustness audit PASS. No real KKBOX training/evaluation or private audit run.
+- Independent Node **24.22.0** Vite production build and check:build: PASS.
+  All 43 historical artifact/source/script/test files independently byte-compared
+  unchanged. No Python/CLI changes; existing CLI differential test is N/A.
+- Independent review found one blocker: formula-consistent but impossible
+  captured counts at full population were accepted. Reproduced with a RED test
+  (23 passed / 1 failed), enforced lower bound max(0,K+P−N), then parent full
+  suite **27/27 PASS**. Independent narrow recheck: **24/24 data tests PASS**;
+  original impossible-count probe rejected. No unresolved review blocker.
+- Parent reran the public-only audit as handoff spot check: PASS.
+
+### Delivery and remaining boundaries
+
+- Root `netlify.toml`: base web; npm ci && npm run build; publish dist; Node 24.
+  No SPA rewrite needed (single page/hash anchors), secrets or serverless functions.
+- Host Node 26.11.1; deployment Node 24.22.0 build independently verified.
+- README, PROJECT, ROADMAP and frontend guide describe actual state; this entry
+  appends to historical progress rather than rewriting dated phase events.
+- RDD remains globally OFF; no native review started. Risk: item 5 (frontend
+  dependencies and Netlify configuration); independent verifier required.
+- Implementation ready for separately approved Netlify deployment. Phase 7 is not fully DONE because
+  deployment remains pending; Phase 8 NOT STARTED.
+- Feature units/commit identities and remote readback are recorded below after
+  actual creation. No remote success is inferred from an intended command.
+
+### Final pre-commit checks
+
+- Normal `npm ci` (without ignore-scripts): PASS; 149 installed packages,
+  150 audited, zero reported vulnerabilities at verification time.
+- Final typecheck, 27/27 unit/integration tests, production build and check:build:
+  PASS. Final Chromium rerun: 4/4 PASS, including all three layouts/axe checks.
+- 46 relative documentation destinations exist. `git diff --cached --check`
+  passed; all 27 staged paths reviewed. No raw/processed/model/node_modules/dist
+  paths or private-key/token markers staged. Package and lockfile agree.
+- The cohesive implementation contains approximately 1,200 authored additions/deletions plus
+  the generated lockfile (2,531 lines); no artificial code/test/doc split or PR
+  was introduced to meet a line heuristic. `main` remains at the original base.
