@@ -1169,3 +1169,19 @@ ID for ties. It has not been implemented or tuned on any held-out outcome.
 - The cohesive implementation contains approximately 1,200 authored additions/deletions plus
   the generated lockfile (2,531 lines); no artificial code/test/doc split or PR
   was introduced to meet a line heuristic. `main` remains at the original base.
+
+
+### Authorized GitHub delivery
+
+- Implementation committed as `b486e01def31557d9d39b0ae3955967ec782dd69`
+  (`feat(web): add interactive retention capacity dashboard`).
+- `git push -u origin feat/retention-interactive-demo`: PASS over the authorized
+  existing SSH connection. `git ls-remote --heads origin` returned the exact same
+  SHA for the new branch, confirming its existence on GitHub.
+- Both remote main and local main remain
+  `787534281c9d53914bb72b17b1935f385db844cc`. Worktree was clean after implementation
+  commit/push. This follow-up documentation commit records observed delivery;
+  its final HEAD/remote equality and clean-tree readback are in the final handoff.
+- No force-push, merge, PR, SSH reconfiguration, Netlify deployment or Phase 8.
+  Required next action is separately authorized Netlify deployment and live-site
+  acceptance checks. Existing single-cohort/methodological limits remain intact.

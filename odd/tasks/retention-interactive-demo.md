@@ -13,9 +13,9 @@ Branch: feat/retention-interactive-demo; base: 787534281c9d53914bb72b17b1935f385
 - S8: "No hagas merge a `main`."; "No abras una Pull Request."; "No comiences la Fase 8." Prepare Netlify but do not deploy; update public docs, commit/push authorized branch, verify remote SHA and clean tree. Phase7 not DONE without required deploy.
 
 ## Tasks
-- T1 [S1,S2,S7] inline — verified; validated aggregate data layer with regression tests. Risk: item 5 (new frontend dependencies).
-- T2 [S3,S4,S5,S6,S7] inline — verified; dashboard and interaction/accessibility tests. No independent writer units: UI depends on data contract.
-- T3 [S7,S8] inline + independent verification — checks verified; commit/push pending; static deployment configuration, documentation, privacy/browser/Python checks and SSH publication. Risk: item 5 (Netlify build configuration).
+- T1 [S1,S2,S7] inline — complete, b486e01; validated aggregate data layer with regression tests. Risk: item 5 (new frontend dependencies).
+- T2 [S3,S4,S5,S6,S7] inline — complete, b486e01; dashboard and interaction/accessibility tests. No independent writer units: UI depends on data contract.
+- T3 [S7,S8] inline + independent verification — complete, b486e01 + documentation delivery record; static deployment configuration, documentation, privacy/browser/Python checks and SSH publication. Risk: item 5 (Netlify build configuration).
 
 ## Log
 - L1 (2026-10-21): Authorized request: "Implementa, verifica, documenta, comitea y publica la rama autorizada." Full numbered Phase 7 requirements are in the originating conversation; quoted acceptance strings above preserve the operational specification. No Phase8, PR, merge or deployment authorized.
@@ -43,3 +43,11 @@ Branch: feat/retention-interactive-demo; base: 787534281c9d53914bb72b17b1935f385
   Next: final normal npm ci/checks, staged privacy readback, authorized commit/push
   and exact SSH remote SHA comparison. Rollback boundary is new web/, netlify.toml
   and associated documentation only; historical evaluation is untouched.
+
+- L8: Final normal npm ci, typecheck, 27 tests, build, shipped JSON integrity and
+  4 Chromium checks PASS. Parent public audit spot check PASS. Staged privacy and
+  package-lock consistency PASS. Committed b486e01def31557d9d39b0ae3955967ec782dd69,
+  pushed authorized feature branch, and verified exact remote equality. Local
+  and remote main remain original base; worktree clean before this factual
+  documentation closeout. No PR/merge/deploy/Phase8. All S1–S8 in authorized
+  implementation scope satisfied; separate Netlify deployment remains pending.
