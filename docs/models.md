@@ -160,8 +160,8 @@ model was needed. Better validation AP/ROC-AUC does **not** establish final
 performance, superiority at every contact budget, calibration or causal impact.
 No final prevalence, final diagnostic or Recall@K curve was calculated.
 
-Real execution, independent checks and limitations are recorded in
-[progress](../PROGRESS.md). Only aggregate training/validation
+The published validation artifact records the original execution diagnostics;
+[limitations](limitations.md) qualify their interpretation. Only aggregate training/validation
 results may be copied to Git; no individual keys, scores, model or raw records.
 Review schema/provenance first, then train-only fitting, positive-class scoring,
 label-free rankings and publication privacy. Existing source-arrival/labeler,

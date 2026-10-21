@@ -140,12 +140,13 @@ Phase 6 conditional uncertainty audit is reported separately below.
   describe the freeze date, not the current release status.
 - [Original LR development diagnostics](../artifacts/model_validation.json):
   train/validation only, not current model selection or final results.
-- [README reproduction guidance](../README.md#reproduce-the-descriptive-extension-no-raw-csv-access)
+- [Post-hoc reproduction guidance](methodology.md#descriptive-post-hoc-extension)
   and [environment](methodology.md#reproduce): procedures only; no pipeline was
   rerun for this documentation maintenance.
 - [Archived original evaluation protocol](evaluation_history.md): complete
   original one-shot procedure and then-applicable publication restrictions.
-- [Progress log](../PROGRESS.md): dated execution and verification evidence.
+- Historical commit anchors above remain available in Git; removing local
+  task records from the current tree does not erase the original evidence.
 
 ## Phase 6 — Subsequent statistical audit
 

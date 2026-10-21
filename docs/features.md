@@ -156,8 +156,9 @@ on validation/final features, and Phase 3 itself learns no preprocessing.
    directory to investigate it. Do not confuse value invariance with provenance.
 
 Synthetic tests exercise these invariants through the CLI, including malformed
-inputs, immutable rejection and EDA equivalence. Real checks and timings are
-recorded in [progress](../PROGRESS.md); historical Phase 1 global-label exposure
+inputs, immutable rejection and EDA equivalence. The frozen population has
+523,998 training, 175,651 validation and 174,931 final users.
+Historical Phase 1 global-label exposure
 cannot be undone and those auditors are not rerun. Private data/IDs, intermediate
 SQLite and per-user outputs are never publication artifacts. This document is
 schema/configuration only; no new individual data or outcome analysis is public.

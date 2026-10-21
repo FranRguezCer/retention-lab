@@ -1,7 +1,7 @@
 # Evaluation history — archived original three-strategy protocol
 
 > **Historical archive, not current project status or execution instructions.**
-> The record below is preserved verbatim from the original evaluation protocol.
+> The original protocol below is retained with references updated to public evidence.
 > It predates the public four-strategy extension. Its publication hold and
 > Phase 5 NOT DONE statements applied at that time, not to the current release.
 > See [current results](results.md) and [current publication boundary](data_attribution.md).
@@ -50,7 +50,7 @@ publication rights are established. The [official rules](https://www.kaggle.com/
 permit educational/research use subject to acceptance but restrict data sharing;
 no explicit clearance for this project's derived aggregates was established.
 A private result must not be mistaken for a public release or a DONE publication
-gate. Exact execution status and remaining work are in [progress](../PROGRESS.md).
+gate. Current release status is in the [roadmap](../ROADMAP.md).
 
 ## Interpretation and limits
 
@@ -113,8 +113,9 @@ figures remain private. The PNG was reproduced byte-for-byte from cached counts;
 a verified cache readback succeeded without any available raw-label file.
 Neither operation constitutes a second final evaluation.
 
-Private manifest/model/output hashes, run chronology, actually executed tests
-and publication blocker are recorded in `PROGRESS.md`. The developer separately authorized committing/pushing the current evaluator
+Historical private fingerprints remain anchored in the commits described in
+[current results](results.md#historical-identity-and-outcome-reuse); the original
+publication blocker is preserved here. The developer separately authorized committing/pushing the current evaluator
 code, tests and documentation, without the private empirical outputs. If clearance is obtained, export only
 approved sampled aggregates and the PNG from this frozen cache; never export
 subscriber records, scores, model pickle, every-K counts or the raw outcomes.

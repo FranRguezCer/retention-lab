@@ -4,7 +4,7 @@
 > pending checks, commands and authorization/publication boundaries below record
 > that stage, not the current handoff. Phases 1–5 are now complete within the
 > restricted scope; see [current results](results.md),
-> [progress](../PROGRESS.md) and [publication boundary](data_attribution.md).
+> [publication boundary](data_attribution.md).
 > Phase 6 is documented in [the robustness audit](robustness.md). Do not rerun these original-source audits as part of
 > documentation maintenance or reopen the consumed final test.
 
@@ -14,7 +14,7 @@ forward-transfer claim. The developer explicitly accepted this restricted
 contract on 2026-10-19: **Phase 1 DONE — RESTRICTED GO**. This is not
 authorization to begin Phase 2.
 
-Updated: 2026-10-19. Branch: `feat/kkbox-minimal-audit`.
+Historical protocol updated: 2026-10-19.
 This supersedes the two-file NO-GO: the original history resolves most input
 coverage, but does not make training labels historically available sooner.
 
@@ -271,8 +271,7 @@ for the chosen supplied-label benchmark.
   scales with unique row hashes and users (several GB expected, peak not measured).
 - New synthetic tests observed RED before implementation; source-isolation
   assertion also observed RED before the original-only summary was added.
-- Focused history audit tests: **7 passed**; full suite: **14 passed**, also
-  recorded in `PROGRESS.md`. Coverage includes source isolation, row overlap /
+- Focused history audit tests: **7 passed**; full suite: **14 passed** at that stage. Coverage includes source isolation, row overlap /
   duplicates,
   label overlap, cutoff exclusion, ambiguous states, invalid fields, repeatability,
   source changes, missing/schema failures, raw/report collision protection and
@@ -283,12 +282,9 @@ for the chosen supplied-label benchmark.
 - Report rerun identity was also verified on synthetic files. The real full
   version-2 audit ran once, not twice; its source hashes were checked before/after.
 - `git diff --check`: passed. Raw sources and local reports are ignored; no raw
-  files are tracked. RDD was checked and remains globally off; no review started.
+  files are tracked.
 - No labels were regenerated, no partitions or model table materialized, no
   EDA/features/models/frontend/dependency installation/Scala/commit/push.
-- Existing uncommitted skill/registry work and prior documentation history in
-  `PROGRESS.md` were preserved. Engram tools remain unavailable; no memory save
-  or project resolution is claimed.
 
 Reproduce the full four-file audit (several minutes and several GB RAM):
 
@@ -307,7 +303,7 @@ original pair and avoids the large row-hash sets. No identifiers or individual
 event rows are written to reports, stdout or normal validation errors. Existing two-file
 `audit_kkbox.py` remains available unchanged.
 
-**Phase 1 closure:** developer acceptance is recorded in `PROGRESS.md`.
+**Phase 1 closure:** the restricted decision above was accepted on October 19, 2026.
 After separate Phase 2 authorization, the first small task is to materialize
 and verify the specified deterministic user partitions before EDA or access to
 final evaluation labels: record counts, repeatability, disjointness and complete
@@ -321,7 +317,6 @@ uses development users only. No Phase 2 work is performed by this closure.
 The Phase 1 closure and next-step statements above are historical. Phase 2 was
 subsequently authorized: partitions were frozen and reproduced, training-only EDA
 was verified, and no validation/final outcome prevalence was inspected by that
-flow. See [methodology](methodology.md) and the final Phase 2 entry in
-[progress](../PROGRESS.md). Phase 3 was subsequently authorized and completed;
+flow. See [methodology](methodology.md). Phase 3 was subsequently authorized and completed;
 see the seven-predictor [feature contract](features.md). The original authorization
 boundaries above are historical, not the current project status.

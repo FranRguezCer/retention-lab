@@ -71,7 +71,7 @@ class DependencyManifestTests(unittest.TestCase):
     def test_readme_points_to_reproduction_and_current_results(self):
         readme = (ROOT / 'README.md').read_text()
         for target in ('docs/methodology.md', 'requirements.txt',
-                       'notebooks/01_eda.ipynb', 'PROGRESS.md'):
+                       'notebooks/01_eda.ipynb', 'docs/results.md'):
             self.assertIn(target, readme)
             self.assertTrue((ROOT / target).is_file())
 

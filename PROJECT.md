@@ -1,13 +1,13 @@
 # Retention Lab — Project Specification
 
-> Status: **Phases 1–6 DONE — restricted retrospective benchmark; Phase 7 implemented / deployment pending; Phase 8 NOT STARTED**
+> Status: **Phases 1–6 DONE — restricted retrospective benchmark; Phase 7 implemented / deployment pending; Phase 8 IN PROGRESS**
 > Last updated: 2026-10-21
-> This document is the source of truth for the **what and why** of the project. See `ROADMAP.md` for phase deliverables and `PROGRESS.md` for actual work status. Working conventions belong in `AGENTS.md`.
+> This document is the source of truth for the **what and why** of the project. See [ROADMAP.md](ROADMAP.md) for stage deliverables and current release status.
 
 **Next: separately approve and verify Phase 7 Netlify deployment.** The
 [interactive static explorer](web/README.md) presents the validated four-strategy
 comparison and conditional Phase 6 intervals. It is locally verified, not yet
-deployed. Phase 8 remains NOT STARTED.
+deployed. Phase 8 public presentation is in progress.
 
 ## 1. Project in one sentence
 
@@ -137,8 +137,8 @@ simulation or temporal validation between cohorts.
   Verify repeatability, disjointness, full population coverage and record actual
   counts without using outcome values. Keep final labels isolated from development.
   Phase 2 subsequently materialized and verified these partitions twice: 523,998
-  train, 175,651 validation, 174,931 final. See `PROGRESS.md` and
-  `docs/methodology.md`; validation outcomes were reserved for the subsequently
+  train, 175,651 validation, 174,931 final. See `docs/methodology.md`;
+  validation outcomes were reserved for the subsequently
   authorized Phase 4; final outcomes stayed isolated from model selection until
   the separately authorized original Phase 5 evaluation.
 - Preprocessing fits on train only; baseline/model selection uses development
@@ -157,7 +157,7 @@ reproduction contract are in `docs/features.md`. Phase 4 was separately authoriz
 and completed with train-only LR and HGB; their private ranking contract is in
 `docs/models.md`. Phase 5 is DONE with the original evaluation preserved and the
 separate public four-strategy post-hoc comparison. Phase 6 is complete; see `docs/robustness.md` and `docs/limitations.md`.
-See `PROGRESS.md` for the dated evidence.
+See [results and experimental chronology](docs/results.md).
 
 ## 4. Implemented core and planned product approach
 
@@ -173,20 +173,17 @@ See `PROGRESS.md` for the dated evidence.
 
 ```text
 retention-lab/
-├── AGENTS.md
 ├── PROJECT.md
 ├── ROADMAP.md
-├── PROGRESS.md
 ├── README.md
-├── pyproject.toml
+├── requirements.txt
 ├── docs/
 │   ├── problem_definition.md
 │   ├── methodology.md
 │   ├── results.md
 │   └── limitations.md
 ├── notebooks/
-│   ├── 01_eda.ipynb
-│   └── 02_model_analysis.ipynb
+│   └── 01_eda.ipynb
 ├── src/retention_lab/
 │   ├── data.py
 │   ├── features.py
@@ -264,4 +261,4 @@ The MVP succeeds when:
 
 **Success does not require ML to beat the simple rule.** An honest demonstration that a rule is equally effective can be a strong result.
 
-See `ROADMAP.md` for phase-by-phase acceptance gates and `PROGRESS.md` for live status.
+See [ROADMAP.md](ROADMAP.md) for implemented stages and remaining release work.

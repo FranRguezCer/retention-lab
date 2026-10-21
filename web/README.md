@@ -5,9 +5,9 @@ expected, Business Rule, post-hoc Logistic Regression and validation-selected
 HistGradientBoosting at exactly the same outreach capacity. No model executes
 in the browser; no Python service or private data is needed.
 
-**Status:** implementation verified locally; Netlify deployment requires separate
-owner approval and has not been performed. Phase 7 is not fully DONE; Phase 8
-is not started.
+**Status:** Ready for Netlify deployment — live verification pending.
+No deployment has been performed. Phase 7 deployment remains pending; Phase 8
+public presentation is in progress.
 
 ## Run locally
 
@@ -36,7 +36,7 @@ verification servers, not required at deployment time.
 ## Data and metric contract
 
 `src/main.tsx` dynamically imports only the original
-`../artifacts/capacity_comparison_v2.json` and `../artifacts/robustness_v1.json`.
+`../../artifacts/capacity_comparison_v2.json` and `../../artifacts/robustness_v1.json`.
 Vite bundles them into local static chunks. There are no maintained copies in
 `public/`, no fetches to scoring APIs, and no external fonts/assets. Runtime
 validation fails closed on missing/malformed records, duplicate capacities,
@@ -98,7 +98,15 @@ Automated accessibility does not replace screen-reader/user testing.
 
 The root `netlify.toml` sets base `web`, command `npm ci && npm run build`,
 publish directory `dist` relative to that base, and Node 24. The lockfile makes
-installation reproducible. No secrets, environment credentials, backend,
+installation reproducible. The full repository is checked out, so Vite can bundle
+the two allowlisted JSON files outside `web/`. Only `web/dist` is published;
+Python source, private data and local records are not served. Netlify installs
+dependencies from the base directory; `requirements.txt` at repository root is
+not a frontend dependency and no Python install/server is required.
+
+These paths follow Netlify's [base and publish directory definitions](https://docs.netlify.com/build/configure-builds/monorepos/)
+and [file-based configuration](https://docs.netlify.com/build/configure-builds/file-based-configuration/).
+Keep base `web` and publish `dist` (not `web/dist` relative to base). No secrets, environment credentials, backend,
 serverless functions or database are needed. No client-side router is used.
 
 After separate deployment approval:
@@ -129,19 +137,11 @@ slider/buttons/disclosure headers provide a 44px interaction area.
   Marginal Recall and all three paired comparisons remain in expandable detail.
   The conditional, fixed-ranking intervals do not establish temporal performance.
 
-Repository URLs live in `src/lib/links.ts`. Results, robustness, limitations and
-attribution were byte-compared with the verified remote main reference and use
-`main`. Methodology still differs and uses `developmentRef` on the existing branch.
-After merge, change the one fallback reference to `main`; do not assume the merge
-has happened. Link tests pin this policy. No PR or merge is part of this delivery.
-
-### Visual review artifacts
-
-Browser tests write default, expanded-evidence, chart, table and hover screenshots
-under `/tmp/retention-ux-after/`. Baseline screenshots captured before rebuilding
-the refined app are retained under `/tmp/retention-ux-before/` for this local review.
-These are local verification outputs, not hosted portfolio assets or a Netlify
-publication. Screenshots with keyboard focus intentionally preserve its outline.
+Repository URLs are constructed centrally in `src/lib/links.ts` and point to
+integrated documentation on `main`, including methodology. Unit and browser
+tests verify stable destinations and preserve footer/Technical Evidence links.
+At K = 0 the Precision card displays N/A and explains why precision is undefined,
+rather than displaying a zero-over-zero fraction.
 
 Before a separately authorized deployment, review the default page at 1440, 768
 and 390px, then compare the 5/10/20% checkpoints, inspect a different hovered

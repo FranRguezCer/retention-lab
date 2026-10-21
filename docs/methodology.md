@@ -1,4 +1,4 @@
-# Training-only KKBOX exploratory analysis
+# KKBOX methodology and reproducibility
 
 Phase 2 uses original-source records available by January 31, 2017 and supplied
 February outcomes in an explicitly retrospective, single-cohort benchmark.
@@ -39,7 +39,7 @@ as direct dependencies, plus explicitly pinned SciPy; it serves the completed
 ML phases as well. The manifest, not the historical Phase 2 subset, is the
 authoritative environment definition.
 
-`requirements.txt` is the only dependency manifest. It pins the complete
+`requirements.txt` is the only Python dependency manifest. It pins the complete
 environment, including direct and transitive packages, and lists the direct
 dependencies in its header. It uses version pins, not distribution-file hashes:
 it is not a hermetic/offline bundle or a cross-platform guarantee. Installing
@@ -223,7 +223,7 @@ outputs and strips volatile cell metadata. Two clean kernels must produce identi
 aggregate outputs and figures. The independent check covers holdout isolation and
 dependency configuration; source-level tests are synthetic, not global real audits.
 
-Results and exact verification evidence are recorded in `PROGRESS.md`. No Phase 3
+The committed notebook and `artifacts/eda_summary.json` preserve the aggregate results. No Phase 3
 feature-engineering, model, three-strategy curves, frontend, PR or deployment is
 authorized by this phase. Review the aggregate findings and limitations before any
 separate authorization to advance.
@@ -251,4 +251,44 @@ or model selection. See [current results](results.md),
 no current reproduction instruction authorizes retraining, reselection or a
 new final-label read. The subsequent Phase 6 audit is documented in [robustness](robustness.md);
 Phase 7 now has a locally verified [static explorer](../web/README.md); Netlify
-deployment remains pending separate approval. Phase 8 is NOT STARTED.
+deployment remains pending separate approval. Phase 8 public presentation is in progress.
+
+## Descriptive post-hoc extension
+
+With the intact private original LR, HGB freeze and consumed evaluation cache,
+`scripts/extend_kkbox_comparison.py` verifies historical hashes and reuses cached
+outcomes in memory to export the separate v2 comparison. Existing outputs are
+compared, not overwritten. Do not rerun training, selection or the original
+final evaluator for this extension. See [results](results.md#historical-identity-and-outcome-reuse)
+for the original commit anchors and the controlled outcome-reuse contract.
+
+The historical verifier intentionally reads the original fingerprint records
+from fixed Git commits using `git show`, not from a current working-tree task
+log. Those committed records remain accessible after editorial cleanup. A
+history-free source archive cannot supply that historical verification; the
+public tests and static demo do not require those records or private inputs.
+
+## Dependency roles and environment audit
+
+The 52 exact pins in `requirements.txt` preserve the verified Python environment:
+
+| Role | Direct dependencies / purpose |
+|---|---|
+| Data preparation and metrics | pandas and NumPy |
+| Training/evaluation | scikit-learn, joblib and threadpoolctl; SciPy explicitly pinned as a scientific dependency |
+| Figures and notebook backend | matplotlib and matplotlib-inline |
+| Notebook format/execution | nbformat, nbclient, ipykernel and jupyter-client |
+| Tests | Standard-library unittest plus the scientific/notebook packages exercised by fixtures |
+
+Remaining pins supply transitive requirements such as IPython, Jupyter kernel
+transport, JSON validation, plotting support and date/time handling. Absence of a
+direct import does not make them redundant. No interactive Jupyter server or
+pytest installation is required. No pins were changed for public presentation.
+The existing CPython 3.12.3 environment matches all 52 pins and `pip check`
+reports no broken requirements. This verifies installed dependency constraints,
+not universal platform support or a comprehensive vulnerability assessment.
+
+The frontend instead installs `web/package-lock.json` with npm under Node 24.
+Its static Netlify build does not install the repository-root Python manifest,
+read private data, train models or serve a Python process. See the
+[web deployment contract](../web/README.md#netlify-preparation--not-deployed).
