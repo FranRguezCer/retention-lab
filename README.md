@@ -50,7 +50,9 @@ The [static capacity explorer](web/README.md) compares all four strategies using
 only the original public aggregate JSON. A 0–100% slider updates the curves,
 selected-K metrics and paired differences; conditional bootstrap intervals appear
 only at 5/10/20%. LR's post-hoc status and detection-versus-prevention limits are
-explicit. No subscriber data, model execution or backend is included.
+explicit. Refined typography, source-derived metric examples and visual paired
+intervals make the evidence easier to read. No subscriber data, model execution
+or backend is included.
 
 ```sh
 cd web

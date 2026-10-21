@@ -45,7 +45,9 @@ incorrect formulas, invalid nulls or mismatched bootstrap estimates/intervals.
 
 - The 101 records are requested integer capacities 0–100%, **not every K**.
 - K = floor(N × requested percentage / 100). The chart uses effective K/N on X;
-  the slider chooses exact requested records. Both values are shown.
+  the slider chooses exact requested records. The UI shows requested capacity
+  and exact K of N, with a floor-rounding note instead of unnecessary effective
+  capacity decimals. Metrics still use the original full-precision values.
 - Lines connect published points with straight segments, not smoothed curves.
   Tooltips and metrics use exact records; no metric interpolation occurs.
 - At zero, Recall is 0; Precision and Lift are N/A. At full capacity Recall is
@@ -105,6 +107,43 @@ After separate deployment approval:
 3. Build and inspect the preview for asset paths, metrics, keyboard/mobile
    behavior and technical documentation links before publishing.
 
-Documentation links intentionally point to this published feature branch on
-GitHub, because it is not merged into main. A future branch rename/deletion must
-update that locator. No GitHub PR or main merge is part of this delivery.
+## UX refinement and scientific copy
+
+The existing warm off-white/forest identity and four strategy colors are retained.
+Body copy uses 15–16px, secondary/table text 13–15px, chart labels 13px, and small
+labels normally at least 12px. Native controls have visible keyboard focus;
+slider/buttons/disclosure headers provide a 44px interaction area.
+
+- The control describes hypothetical selection, not an executed campaign. Equal K
+  does not imply identical selected people. Requested capacity and K/N replace
+  six-decimal effective percentages without changing calculations.
+- Tooltip exploration is explicitly labeled **Hovered capacity** alongside
+  **Selected capacity**. Moving over a different sample never changes the slider,
+  selected markers, KPI cards or table. Straight segments join the 101 published
+  samples; they are not every-K results.
+- Metric cards show source-derived HGB examples and their denominators. Precision
+  and Recall describe different populations; they are not complementary shares.
+- Technical Evidence leads with paired-resampling facts, then three common-scale
+  HGB−LR point/interval graphics. Exact 5/10/20 matches are highlighted. Other
+  capacities show the published overview without inventing a selected interval.
+  Marginal Recall and all three paired comparisons remain in expandable detail.
+  The conditional, fixed-ranking intervals do not establish temporal performance.
+
+Repository URLs live in `src/lib/links.ts`. Results, robustness, limitations and
+attribution were byte-compared with the verified remote main reference and use
+`main`. Methodology still differs and uses `developmentRef` on the existing branch.
+After merge, change the one fallback reference to `main`; do not assume the merge
+has happened. Link tests pin this policy. No PR or merge is part of this delivery.
+
+### Visual review artifacts
+
+Browser tests write default, expanded-evidence, chart, table and hover screenshots
+under `/tmp/retention-ux-after/`. Baseline screenshots captured before rebuilding
+the refined app are retained under `/tmp/retention-ux-before/` for this local review.
+These are local verification outputs, not hosted portfolio assets or a Netlify
+publication. Screenshots with keyboard focus intentionally preserve its outline.
+
+Before a separately authorized deployment, review the default page at 1440, 768
+and 390px, then compare the 5/10/20% checkpoints, inspect a different hovered
+capacity and navigate the slider/disclosures by keyboard. Automated axe and
+Chromium checks do not certify all assistive technology or other browsers.

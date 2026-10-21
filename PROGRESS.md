@@ -52,7 +52,8 @@ Historical models/rankings, evaluation and robustness artifacts remain unchanged
   auditor and 14 synthetic tests verified. No model/graph existed at that stage.
 - [x] Subsequent Phases 2–5: EDA, seven-feature tables, both ML candidates,
   validation-selected HGB and public four-strategy post-hoc comparison completed.
-  No deployed application; Phases 6–8 remain future scope.
+  Phase 6 robustness audit and Phase 7 static demo are also implemented; Netlify
+  deployment remains pending. Phase 8 has not started.
 
 ## Pending validations and open questions
 
@@ -81,8 +82,8 @@ Historical models/rankings, evaluation and robustness artifacts remain unchanged
 
 ## Next suggested task
 
-Phase 7 — Interactive static demo — requires separate authorization. No Phase 7
-implementation, merge, PR or deployment is part of this audit.
+Review the refined Phase 7 dashboard visually, then separately authorize Netlify
+deployment and live-site checks. Do not begin Phase 8 or merge automatically.
 
 ## How to read the historical record
 
@@ -1185,3 +1186,100 @@ ID for ties. It has not been implemented or tuned on any held-out outcome.
 - No force-push, merge, PR, SSH reconfiguration, Netlify deployment or Phase 8.
   Required next action is separately authorized Netlify deployment and live-site
   acceptance checks. Existing single-cohort/methodological limits remain intact.
+
+
+## 2026-10-21 — Phase 7 UI/UX and scientific-copy refinement
+
+### Scope and implementation
+
+- Authorized evolution, not a redesign; existing branch only, commit/push via
+  configured GitHub SSH. Initial clean local/remote branch both
+  `8bc545e4353bf45195b89da08e3b203af103d6ab`; remote main confirmed
+  `787534281c9d53914bb72b17b1935f385db844cc`. No PR, merge, force-push or deployment.
+- Preserved off-white/forest palette, strategy colors/dashes, original Recharts
+  plot, linear connections, 101 original points and exact capacity selection.
+- Raised secondary typography from 9–12px to a coherent 12–15px scale; body
+  15–16px, readable legends/axes, KPI subtitles, tables, differences and footer.
+  Increased slider interaction height to 44px; preserved focus/reduced motion.
+- Three metric cards explain distinct denominators using dynamic HGB examples.
+  Selector explains exact K/N, floor rounding and hypothetical selection; equal
+  numbers do not imply identical subscribers. No real-contact/retention/ROI claim.
+- Technical Evidence now starts with four robustness facts and three data-derived
+  HGB−LR interval cards on one zero-based scale. Exact matching checkpoint is
+  highlighted; no intervals invented/interpolated elsewhere. All marginal Recall
+  and three pairwise differences remain in expandable detail. HGB remains selected
+  on validation, LR post-hoc; fixed-cohort intervals are not future guarantees.
+- Tooltip distinguishes hovered and selected capacity while preserving dashboard
+  selection. Main numeric table remains the accessible four-strategy alternative.
+- Central `web/src/lib/links.ts`: four identical documents use main; methodology
+  differs and retains a single configurable branch fallback. Existing remote main
+  matched the local main reference; all five linked targets exist there or on the
+  branch as appropriate. Kaggle/KKBOX attribution and publication limits retained.
+- Local tracking: `odd/tasks/phase7-ux-refinement.md`. No memory service available;
+  documentation is the recovery record. No dependency/configuration changes.
+
+### Verification evidence
+
+- New copy/selection tests observed RED before implementation; chart/evidence
+  workers also observed RED then GREEN. Final command results appended below.
+- `npm ci --cache /tmp/retention-npm-cache`: PASS, 149 packages installed,
+  150 audited, zero reported vulnerabilities. Sandbox network initially blocked
+  installation and GitHub DNS; authorized escalated commands succeeded.
+- Baseline production build/browser suite: 4/4 PASS after provisioning Chromium
+  and three shared-library packages in temporary storage only. Initial attempts
+  failed due to missing browser/libraries and restricted local-server startup;
+  these were environment failures, not successful browser proof.
+- Fresh tracked-only Python scratch: 84/84 tests PASS in 67.204s; public-only
+  `scripts/audit_kkbox_robustness.py` PASS. No private data, real training, final
+  label reopening or fresh KKBOX evaluation. A post-test shell wrapper used a
+  reserved zsh variable; its error did not alter the successful unittest result,
+  and the public audit was executed separately with exit 0.
+- All 43 historical artifact/Python files byte-compared unchanged against initial
+  commit. Production aggregate chunks deep-equal original JSON; comparison
+  provenance SHA-256 and dist allowlist/privacy scan PASS.
+- Intermediate browser checks exposed two test-timing/modality mistakes: links
+  read before lazy-loaded app mounted; programmatic focus after mouse clicks was
+  not keyboard `:focus-visible`. Tests now await loaded UI and press an arrow
+  before asserting keyboard outline. No focus style was suppressed.
+- Baseline screenshots: `/tmp/retention-ux-before/`; refined default/expanded,
+  evidence/chart/table and hover captures: `/tmp/retention-ux-after/`. Desktop and
+  mobile captures visually inspected; final review evidence follows below.
+- Native review switch remains globally OFF, unchanged. Required writer-diff
+  assessment returned unassessable due to explicit untracked-file scope; no
+  inference of low risk or native review/consent was made. This presentation-only
+  diff changes no data contract, shared calculation, dependencies or delivery
+  configuration. Risk: none.
+
+### Remaining boundary
+
+Phase 7 stays **IMPLEMENTED — Netlify deployment and live checks pending**.
+Phases 1–6 DONE; Phase 8 NOT STARTED. Next: human visual review at the three target
+widths and separate deployment authorization. No claim that the website is online.
+
+### Final local acceptance for this refinement
+
+- `npm run typecheck`: PASS; `npm test`: **44/44 PASS** across five modules.
+- `npm run build` and `npm run check:build`: PASS. Both original aggregate chunks
+  match source exactly; no new dependencies, metric points or private exports.
+- Final `npm run test:browser`: **10/10 PASS** in Chromium (14.1s). All three
+  1440/768/390 layouts pass axe WCAG 2/2.1 A/AA with disclosures open, no document
+  overflow or clipped table width, four curves/markers, exact metrics/differences,
+  zero/full capacities, quick controls, arrows/Home/End and visible keyboard focus.
+  Separate hover tests at all three widths confirm exact sampled values, tooltip
+  horizontal containment and unchanged selected KPIs. Reduced motion, keyboard
+  disclosure and skip-navigation behavior pass. No console/page errors or
+  non-local app requests in layout tests.
+- Visually inspected before/after desktop and mobile full-page captures, the
+  default evidence panel, the 390px chart and 768px complete table. This is not
+  a screen-reader usability study or Safari/Firefox certification. A dedicated
+  browser test confirms skip navigation is hidden when unfocused and visible/
+  functional on Tab; screenshot focus was not cosmetically removed.
+- Parent reran public-only Python audit: PASS. Focused secret-marker scan over
+  candidate text files and complete historical artifact/Python byte comparison:
+  PASS. `git diff --check`: PASS. No changed historical JSON or raw/private files.
+- Authorized commit/push and final remote/clean-tree readback follow these checks;
+  their identities are recorded in the task log/final handoff, not inferred here.
+- After explicitly staging the 16 intended files, native assessment completed:
+  **medium**, `review_due=false`, `under_budget`; no named high-risk item applies.
+  RDD is still globally OFF, so no review lifecycle or consent was invoked.
+  Staged paths/stat and whitespace were reviewed; only UI, tests and docs included.

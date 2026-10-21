@@ -4,7 +4,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import comparison from '../../artifacts/capacity_comparison_v2.json';
 import robustness from '../../artifacts/robustness_v1.json';
 import App from './App';
-import { validateData, count, percent, lift } from './lib/data';
+import { validateData, count, percent, lift, pairs, difference, signed } from './lib/data';
 
 vi.mock('recharts', () => ({
   ResponsiveContainer: ({ children }: any) => <div>{children}</div>,
@@ -16,8 +16,12 @@ afterEach(cleanup);
 const data = validateData(comparison, robustness);
 function verify(p: number) {
   const row = comparison.curve[p];
-  expect(screen.getByTestId('chart-selection').textContent).toContain(`${p}% requested`);
+  expect(screen.getByTestId('chart-selection').textContent).toContain(`Selected capacity: ${p}% outreach capacity`);
   expect(screen.getByTestId('selected-count').textContent).toBe(count(row.hgb.k));
+  for (const [a, b] of pairs) {
+    const diff = difference(data.curve[p], a, b);
+    expect(screen.getAllByText(`${signed(diff.captures, 0)} observed churners`).length).toBeGreaterThan(0);
+  }
   for (const key of ['random_expected', 'business', 'logistic', 'hgb'] as const) {
     const cells = within(screen.getByTestId(`strategy-${key}`)).getAllByRole('cell');
     expect(cells.map(c => c.textContent)).toEqual([
@@ -56,4 +60,14 @@ describe('capacity explorer', () => {
     expect(document.activeElement).toBe(slider);
     expect(slider.getAttribute('step')).toBe('1');
   });
+});
+
+// Business wording and formulas are part of the public interpretation contract.
+it('explains equal list sizes without implying identical subscribers', () => {
+  render(<App data={data} />);
+  expect(screen.getByText(/same number of subscribers/).textContent).toContain('not necessarily the same people');
+  expect(screen.getByText(/K is rounded down/)).toBeTruthy();
+  expect(screen.queryByText(/Effective:/)).toBeNull();
+  expect(screen.getByText('5,968 / 9,527')).toBeTruthy();
+  expect(screen.getByText('5,968 / 17,493')).toBeTruthy();
 });
