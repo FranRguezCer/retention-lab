@@ -1,20 +1,19 @@
 # Retention Lab — Progress Log
 
-> Last updated: 2026-10-20
-> **State: Phases 1–5 DONE (Phase 1 RESTRICTED GO); Phases 6–8 NOT STARTED.**
+> Last updated: 2026-10-21
+> **State: Phases 1–5 DONE (Phase 1 RESTRICTED GO); Phase 6 DONE; Phases 7–8 NOT STARTED.**
 > This file records *actual progress*, not intentions. `PROJECT.md` is the scope reference and `ROADMAP.md` contains acceptance gates.
 
 ## Current focus
 
-**Next: Phase 6 — Reliability, audit and limitations.** Status: **NOT STARTED**;
-this documentation-only maintenance does not authorize or implement it.
+Phase 6 implementation, real fixed-cache audit and independent verification are
+complete. Authorized commit/push and remote SHA readback close delivery. Branch
+`feat/kkbox-robustness-audit`, base `da86448eb03b7950b8d6a08ea71dde9a23cd3c10`
+(matches fetched `origin/main`). No main merge, PR or Phase 7 work authorized.
 
-The public four-strategy comparison is already on `main` at
-`6ca1f4a33dbba05ce03c8bfe4b653215d7b04e59`, verified against `origin/main` before
-this edit. The prior fast-forward/push is complete. HGB remains selected on
-validation; the original final evaluation is consumed and preserved, with LR
-added post-hoc from its historical ranking. Results, graph and technical evidence
-are linked from the README. Existing phase tests are not a Phase 6 robustness audit.
+HGB stays validation-selected. Original models/rankings, final evaluation,
+consumed marker and post-hoc comparison remain unchanged. The new audit is
+conditional descriptive reuse, not an independent final evaluation.
 
 ## Phase tracker
 
@@ -25,7 +24,7 @@ are linked from the README. Existing phase tests are not a Phase 6 robustness au
 | 3. Feature engineering | DONE | Seven predictors; exact real frozen population, cache repeatability and byte-identical EDA reconstruction |
 | 4. Baselines and ML models | DONE | LR preserved; HGB selected on validation, private rankings/models anchored in pre-test commit; docs/models.md |
 | 5. Capacity evaluation | DONE | Original evaluation preserved; post-hoc LR, sampled aggregates, four-curve PNG, conditions review and independent checks passed |
-| 6. Reliability and robustness | NOT STARTED | Phase-specific tests and development diagnostics exist; final robustness audit remains future scope |
+| 6. Reliability and robustness | DONE | `docs/robustness.md`, `docs/limitations.md`, fixed reproducible bootstrap, independent probes and 84/84 full-suite PASS |
 | 7. React demo | NOT STARTED | No frontend created or deployed |
 | 8. Portfolio + storytelling | NOT STARTED | Final portfolio narrative pending; training-only EDA aggregates available |
 
@@ -60,14 +59,13 @@ are linked from the README. Existing phase tests are not a Phase 6 robustness au
 
 ## Pending validations and open questions
 
-1. Phase 6 reliability/robustness work remains NOT STARTED. Prior phase
-   completion is supported by the dated records and existing public artifacts.
-2. Final test access remains consumed; no retraining, reselection or raw-label
-   reopening. New LR results are post-hoc descriptive only.
-3. Historical arrival times, label adjudication and temporal generalization
-   remain unverified. No Phase 6 or causal/retention-impact claim.
-4. Publication is limited to owner-authorized global aggregates under the
-   reviewed conditions, not an express derivative license; see attribution.
+1. Phase 6 full suite and independent verification passed; publication evidence is
+   finalized in the delivery report (remote SHA and clean worktree).
+2. Final access is consumed: no raw-label reopening, retraining or reselection.
+3. Arrival times, source authenticity and exact label adjudication remain unverified;
+   no temporal generalization or causal retention claim is supported.
+4. Aggregate-only publication follows the existing owner authorization/attribution
+   boundary, not an express derivative-data license.
 
 ## Risks / blockers
 
@@ -86,9 +84,8 @@ are linked from the README. Existing phase tests are not a Phase 6 robustness au
 
 ## Next suggested task
 
-**Next: Phase 6 — Reliability, audit and limitations.** Await its separate
-scope/authorization; do not start it as part of this documentation maintenance.
-No PR, new branch, merge or ML experiment is part of the current task.
+Phase 7 — Interactive static demo — requires separate authorization. No Phase 7
+implementation, merge, PR or deployment is part of this audit.
 
 ## How to read the historical record
 
@@ -1000,3 +997,83 @@ ID for ties. It has not been implemented or tuned on any held-out outcome.
 - Next: Phase 6 remains NOT STARTED and requires separate authorization. Existing
   tests do not close that future robustness phase. No unresolved result defect
   or new methodological claim was found; known cohort/causal/temporal limits stay.
+
+## 2026-10-21 — Phase 6 frozen-cohort audit
+
+- Authorized full Phase 6 only, new branch from latest fetched `origin/main`,
+  commit/push (no merge, PR or Phase 7). Base remains
+  `da86448eb03b7950b8d6a08ea71dde9a23cd3c10`. Clean initial worktree.
+- Read repository instructions, project/roadmap/progress/README and relevant docs;
+  read-only mapping independently inspected code, tests and private evidence.
+  CodeGraph sync/explore used before structural exploration. No new dependency.
+- New `robustness.py`, fixed `audit_kkbox_robustness.py`, synthetic tests,
+  robustness report, classified limitations and aggregate `robustness_v1.json`.
+  Existing `audit_kkbox.py` and all frozen source files remain unchanged.
+- Independent mapper ran existing post-hoc identity gate: full v2 JSON and Markdown
+  table reproduced exactly from private cache (no raw CSV or model access).
+- Fixed before results: N-user paired unstratified bootstrap, seed 20261021,
+  2,000 replicates, 1,000 prefix sensitivity, 5/10/20% capacity. Frozen total orders,
+  exact floor K, integer multiplicities and partial boundary copies; replicate
+  positives are denominator. 95% pointwise percentile/linear quantiles. Zero
+  positive replicates excluded/counted: 0/2,000 in real run.
+- Real fixed private audit executed twice; both exit 0, second create-or-compare
+  reproduces all 9,155 aggregate output bytes. SHA-256
+  `f1a9d643daf74774916dc28895bf41ff1f054a8138580d7911565f9fd182ddb2`.
+  Runtime CPython 3.12.3, NumPy 2.5.4, scikit-learn 1.7.2 (existing pins).
+- Each real audit validates three outcome inversions and original sorted-key digest,
+  historical commit ancestry/manifest anchors, model/ranking hashes, same keys,
+  score-to-order mapping, all split hashes/coverage and permitted label alignment.
+  43 historical private/public files unchanged before/after each run.
+- All 101 public budgets independently checked: population, prevalence, decimal
+  floor at integer capacities, Recall/Precision/Lift, expected random and pp
+  differences. All public table rows match JSON/results document. Public-only
+  command exit 0. PNG visually inspected; original four curves/markers remain.
+- HGB−LR paired differences at 5/10/20%: 1.23 [0.73,1.63],
+  1.29 [0.89,1.72], 6.48 [5.94,7.09] pp. HGB−rule:
+  13.95 [12.98,14.85], 6.73 [5.91,7.50], 8.38 [7.78,9.08] pp.
+  Full LR−rule/marginal intervals in report/JSON. Maximum prefix endpoint shift:
+  0.0715 pp paired, 0.0605 pp marginal. No sign change; not temporal validation.
+- New descriptive final-score AP/AUC: HGB .396124/.872788,
+  LR .341869/.818756, rule .219303/.788627. Brier is descriptive, not proof
+  of calibration; no recalibration or probability-bin optimization. Renewal-off
+  N=21,006, prevalence 30.2009% vs renewal-on 2.0679%; explains rule slope near
+  12% capacity, not a causal renewal effect. 10–20% band accounts for 494 of
+  HGB's 617 extra detections over LR at 20%; no interaction attribution.
+- RED: new focused suite failed with missing robustness module before implementation.
+  GREEN: `.venv/bin/python -m unittest discover -s tests -p test_robustness.py -v`
+  7/7 PASS. Covers expanded-copy oracle, identical/perfect/imperfect ranks, ties,
+  multiplicity, K=0/N, zero outcomes/replicates, seed reproducibility, alignment,
+  invalid input, hand AP/AUC and public tamper refusal. Existing metric tests reused.
+- Parent byte comparison against base: all 41 original non-Markdown tracked files
+  identical, including Phase 4/5 JSON/PNG/code/tests. `git diff --check` PASS.
+- Publication review: only global intervals/three capacity bands/global score
+  diagnostics/two large renewal groups (minimum N=21,006), no small slices,
+  individual labels/scores, IDs, model bytes, ranks, draws or every-K arrays.
+  Not differential privacy, not express derivative licensing. No fresh legal
+  clearance asserted; existing documented aggregate-only conditions apply.
+- Known limits: source authenticity, arrival/release timestamps and independent
+  label adjudication not verified; historical Phase 1 global diagnostics cannot
+  be undone; one retrospective cohort; iid/fixed-model/fixed-tie/pointwise bootstrap.
+  No observed invalidating leakage. These limitations do not support broader claims.
+- Native review mode checked: OFF (global), unchanged; no native review started.
+  Risk: item 6 (statistical/alignment errors may escape ordinary regression tests);
+  independent verifier/full isolated suite passed (details below). Engram unavailable; local task
+  log used, mirror unavailable. No source/model normalization changes required.
+
+- Independent verification PASS for S1–S7, with S8 delivery reserved for final
+  commit/push readback: 5,373 expanded-copy oracle cases, independent common-draw
+  quantile reconstruction, tied AP/AUC, interval/document agreement, tamper
+  refusal with unchanged files, and baseline-compatible outputs/help for four
+  existing CLIs. No change-caused blockers; no correction batch needed.
+- Full suite in fresh isolated temporary baseline-plus-change copy:
+  `/home/fjrc94/projects/retention-lab/.venv/bin/python -m unittest discover -s tests -v`
+  **84/84 PASS**, 63.915 seconds, exit 0. This includes synthetic model fitting,
+  not real KKBOX retraining. No real evaluator, preparation or selection executed.
+- Parent spot-check reran focused 7/7 suite and public-only audit, exit 0.
+  95 relative Markdown file destinations verified. No frontend build (Phase 7
+  not started), no new temporal experiment, no raw-source cold rebuild or fresh
+  authenticity/legal verification. All such limits remain explicit.
+- Phase 6 acceptance gate satisfied for the restricted descriptive scope;
+  Phases 1–6 DONE, Phases 7–8 NOT STARTED. No unresolved invalidating blocker.
+  Human review of statistical assumptions, source/temporal limits and aggregate
+  publication remains appropriate before any separately authorized merge.

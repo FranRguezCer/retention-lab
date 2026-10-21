@@ -9,7 +9,7 @@ arrival times and label adjudication remain unverified.
 > **Phase 3 DONE.** This is the historical feature-production contract. Phases
 > 4–5 are also complete; see [current results](results.md). Commands below are
 > reproduction documentation, not steps to rerun during maintenance of the
-> consumed experiment. Phase 6 is NOT STARTED.
+> consumed experiment. Phase 6 is documented in [the robustness audit](robustness.md).
 
 ## Run
 
@@ -173,4 +173,4 @@ missing vs zero**, **deterministic features vs learned preprocessing**, and
 Phase 4 was subsequently authorized and completed; see [model reproduction](models.md).
 Phase 5 subsequently completed the original evaluation and separate public
 four-strategy post-hoc extension. Final access is consumed; do not reopen it.
-Phase 6 remains NOT STARTED.
+Phase 6 is complete; see [the robustness audit](robustness.md).

@@ -1,0 +1,325 @@
+{
+  "analysis": "Phase 6 descriptive post-hoc frozen-cohort audit",
+  "bootstrap": {
+    "capacities": [
+      {
+        "differences_pp": {
+          "hgb_minus_business": {
+            "estimate": 13.949826808019317,
+            "interval_95": [
+              12.9806630800222,
+              14.848326697568096
+            ],
+            "max_endpoint_shift": 0.03626214832206642,
+            "prefix_interval_95": [
+              12.954638495987952,
+              14.884588845890162
+            ]
+          },
+          "hgb_minus_logistic": {
+            "estimate": 1.228088590322246,
+            "interval_95": [
+              0.7269758511740102,
+              1.6322364487998344
+            ],
+            "max_endpoint_shift": 0.01080274362680178,
+            "prefix_interval_95": [
+              0.7161731075472084,
+              1.6271387210388846
+            ]
+          },
+          "logistic_minus_business": {
+            "estimate": 12.721738217697071,
+            "interval_95": [
+              11.763478600909197,
+              13.651992789177536
+            ],
+            "max_endpoint_shift": 0.07145455105847454,
+            "prefix_interval_95": [
+              11.741352685232526,
+              13.72344734023601
+            ]
+          }
+        },
+        "k": 8746,
+        "recall": {
+          "business": {
+            "estimate": 0.27962632518106434,
+            "interval_95": [
+              0.27134366879311295,
+              0.2874551013743759
+            ],
+            "max_endpoint_shift": 0.0005324828853223718,
+            "prefix_interval_95": [
+              0.2708111859077906,
+              0.28729179582505526
+            ]
+          },
+          "hgb": {
+            "estimate": 0.4191245932612575,
+            "interval_95": [
+              0.41066715242156493,
+              0.42715158967870936
+            ],
+            "max_endpoint_shift": 3.159233330579658e-05,
+            "prefix_interval_95": [
+              0.4106655528320005,
+              0.42718318201201516
+            ]
+          },
+          "logistic": {
+            "estimate": 0.40684370735803504,
+            "interval_95": [
+              0.39850520594732386,
+              0.4154041237963488
+            ],
+            "max_endpoint_shift": 0.00016280607402174851,
+            "prefix_interval_95": [
+              0.3984035038111325,
+              0.4155669298703705
+            ]
+          }
+        },
+        "requested_percent": 5
+      },
+      {
+        "differences_pp": {
+          "hgb_minus_business": {
+            "estimate": 6.728246037577412,
+            "interval_95": [
+              5.910288387035878,
+              7.4967295406618275
+            ],
+            "max_endpoint_shift": 0.01941158825780409,
+            "prefix_interval_95": [
+              5.910288387035878,
+              7.477317952404023
+            ]
+          },
+          "hgb_minus_logistic": {
+            "estimate": 1.2910674923900523,
+            "interval_95": [
+              0.8859678213593064,
+              1.7178169287461391
+            ],
+            "max_endpoint_shift": 0.009079320635217547,
+            "prefix_interval_95": [
+              0.8862783029618626,
+              1.7268962493813567
+            ]
+          },
+          "logistic_minus_business": {
+            "estimate": 5.4371785451873595,
+            "interval_95": [
+              4.646085268822001,
+              6.170715585924697
+            ],
+            "max_endpoint_shift": 0.01964760505883678,
+            "prefix_interval_95": [
+              4.650326478993724,
+              6.15106798086586
+            ]
+          }
+        },
+        "k": 17493,
+        "recall": {
+          "business": {
+            "estimate": 0.559147685525349,
+            "interval_95": [
+              0.5496942466468585,
+              0.5698704469800006
+            ],
+            "max_endpoint_shift": 0.000604905110562215,
+            "prefix_interval_95": [
+              0.5496970801224356,
+              0.5692655418694383
+            ]
+          },
+          "hgb": {
+            "estimate": 0.6264301459011231,
+            "interval_95": [
+              0.6176958553566863,
+              0.6356397436199697
+            ],
+            "max_endpoint_shift": 4.127301372403025e-05,
+            "prefix_interval_95": [
+              0.6177371283704103,
+              0.6356314884822498
+            ]
+          },
+          "logistic": {
+            "estimate": 0.6135194709772226,
+            "interval_95": [
+              0.6047463920503393,
+              0.6229293764268103
+            ],
+            "max_endpoint_shift": 8.044661311246148e-05,
+            "prefix_interval_95": [
+              0.6048268386634518,
+              0.6229264259382511
+            ]
+          }
+        },
+        "requested_percent": 10
+      },
+      {
+        "differences_pp": {
+          "hgb_minus_business": {
+            "estimate": 8.376193975018364,
+            "interval_95": [
+              7.781500284366592,
+              9.07860176764698
+            ],
+            "max_endpoint_shift": 0.013801573157396163,
+            "prefix_interval_95": [
+              7.767698711209196,
+              9.068987645025494
+            ]
+          },
+          "hgb_minus_logistic": {
+            "estimate": 6.476330429306176,
+            "interval_95": [
+              5.939527957025069,
+              7.090221984924481
+            ],
+            "max_endpoint_shift": 0.019892474030245744,
+            "prefix_interval_95": [
+              5.93224781302943,
+              7.0703295108942354
+            ]
+          },
+          "logistic_minus_business": {
+            "estimate": 1.8998635457121882,
+            "interval_95": [
+              1.4012312029978153,
+              2.4237469695188314
+            ],
+            "max_endpoint_shift": 0.014659033594182524,
+            "prefix_interval_95": [
+              1.3865721694036328,
+              2.4243170575484605
+            ]
+          }
+        },
+        "k": 34986,
+        "recall": {
+          "business": {
+            "estimate": 0.6940275007872363,
+            "interval_95": [
+              0.6846374837551358,
+              0.7029335337309678
+            ],
+            "max_endpoint_shift": 9.696042535412008e-05,
+            "prefix_interval_95": [
+              0.6846222473009828,
+              0.7030304941563219
+            ]
+          },
+          "hgb": {
+            "estimate": 0.7777894405374199,
+            "interval_95": [
+              0.7695527202658278,
+              0.786472982580682
+            ],
+            "max_endpoint_shift": 0.00023861676536385268,
+            "prefix_interval_95": [
+              0.7693351151049171,
+              0.7867115993460458
+            ]
+          },
+          "logistic": {
+            "estimate": 0.7130261362443582,
+            "interval_95": [
+              0.7037562350589242,
+              0.7220131680193494
+            ],
+            "max_endpoint_shift": 0.000198809956274415,
+            "prefix_interval_95": [
+              0.7039550450151986,
+              0.7220486707461627
+            ]
+          }
+        },
+        "requested_percent": 20
+      }
+    ],
+    "estimand": "iid subscriber resampling conditional on this cohort and frozen total orders",
+    "interval": "95% pointwise percentile; numpy linear quantile",
+    "replicates": 2000,
+    "seed": 20261021,
+    "sensitivity_prefix": 1000,
+    "undefined_prefix_replicates": 0,
+    "undefined_replicates": 0
+  },
+  "capacity_bands": [
+    {
+      "captures": {
+        "business": 2664,
+        "hgb": 3993,
+        "logistic": 3876
+      },
+      "from_percent": 0,
+      "to_percent": 5
+    },
+    {
+      "captures": {
+        "business": 2663,
+        "hgb": 1975,
+        "logistic": 1969
+      },
+      "from_percent": 5,
+      "to_percent": 10
+    },
+    {
+      "captures": {
+        "business": 1285,
+        "hgb": 1442,
+        "logistic": 948
+      },
+      "from_percent": 10,
+      "to_percent": 20
+    }
+  ],
+  "cutoff": "20170131",
+  "frozen_score_diagnostics": {
+    "business": {
+      "average_precision": 0.21930257661951053,
+      "brier_score": null,
+      "roc_auc": 0.78862668044608,
+      "unique_scores": 2
+    },
+    "hgb": {
+      "average_precision": 0.3961240425398585,
+      "brier_score": 0.03979995131653286,
+      "roc_auc": 0.8727882809642074,
+      "unique_scores": 10659
+    },
+    "logistic": {
+      "average_precision": 0.34186887692485496,
+      "brier_score": 0.04140441940010864,
+      "roc_auc": 0.8187563918644628,
+      "unique_scores": 27000
+    }
+  },
+  "historical_files_verified_unchanged": 43,
+  "interpretation": "Conditional sampling uncertainty, not temporal or causal evidence; no reselection",
+  "n": 174931,
+  "positives": 9527,
+  "public_comparison": {
+    "sha256": "1c803665c7c75a27eec4c75d9f2ce705a2ec13725b28620e25867ebd3704700d",
+    "size_bytes": 153728
+  },
+  "renewal_groups": {
+    "renewal_off": {
+      "n": 21006,
+      "positives": 6344,
+      "prevalence": 0.30200894982385984
+    },
+    "renewal_on": {
+      "n": 153925,
+      "positives": 3183,
+      "prevalence": 0.02067890206269287
+    }
+  },
+  "version": 1
+}

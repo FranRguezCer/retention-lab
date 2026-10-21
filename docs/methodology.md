@@ -6,7 +6,7 @@ No operational campaign simulation, causal retention claim or model is implied.
 
 > **Historical Phase 2 procedure.** Phases 1–5 are now DONE; the current
 > [four-strategy results](results.md) preserve the original final evaluation and
-> identify LR as a post-hoc addition. Phase 6 is NOT STARTED. Data preparation
+> identify LR as a post-hoc addition. Phase 6 is documented in [the robustness audit](robustness.md). Data preparation
 > and notebook commands below describe earlier reproduction, not maintenance
 > steps to rerun on the consumed experiment.
 
@@ -249,4 +249,5 @@ or model selection. See [current results](results.md),
 [archived original evaluation](evaluation_history.md) and
 [publication boundary](data_attribution.md). Final-label access is consumed;
 no current reproduction instruction authorizes retraining, reselection or a
-new final-label read. Next is Phase 6, which remains NOT STARTED.
+new final-label read. The subsequent Phase 6 audit is documented in [robustness](robustness.md);
+Phase 7 remains NOT STARTED.

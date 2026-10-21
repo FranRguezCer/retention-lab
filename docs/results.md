@@ -127,7 +127,8 @@ out-of-cohort generalization; no causal evidence, prevented churn or revenue/ROI
 claim; post-hoc reuse of already-observed final outcomes. Source arrival times,
 label adjudication, history truncation, eligibility coverage and cross-machine
 image identity remain limited as documented. No uncertainty interval or
-statistical significance claim is added. Phase 6 has not started.
+statistical significance claim was added by the Phase 5 comparison. The later
+Phase 6 conditional uncertainty audit is reported separately below.
 
 ## Reproduction and evidence
 
@@ -145,3 +146,25 @@ statistical significance claim is added. Phase 6 has not started.
 - [Archived original evaluation protocol](evaluation_history.md): complete
   original one-shot procedure and then-applicable publication restrictions.
 - [Progress log](../PROGRESS.md): dated execution and verification evidence.
+
+## Phase 6 — Subsequent statistical audit
+
+The [robustness report](robustness.md) and [classified limitations](limitations.md)
+add a descriptive paired subscriber bootstrap using the already-consumed cache.
+They are neither a new independent test nor a model-selection step. Original
+Phase 5 point metrics, the four strategies, v1 evaluation and v2 LR post-hoc
+extension above remain unchanged. No model was refitted, recalibrated or rescored.
+
+At 5/10/20% capacity, HGB−LR Recall differences are respectively 1.23/1.29/6.48
+percentage points; their conditional 95% pointwise percentile intervals are
+[0.73, 1.63], [0.89, 1.72] and [5.94, 7.09] pp. HGB−Rule differences are
+13.95/6.73/8.38 pp, with intervals [12.98, 14.85], [5.91, 7.50] and
+[7.78, 9.08] pp. These describe hypothetical iid subscriber resampling within
+this restricted cohort conditional on frozen models and tie orders—not temporal
+transferability, causal benefit or a second confirmatory evaluation.
+
+See the [small aggregate audit JSON](../artifacts/robustness_v1.json) for all
+three paired comparisons, marginal Recall intervals, fixed seed/configuration,
+Monte Carlo prefix sensitivity and newly computed descriptive final-score
+AP/ROC-AUC. These diagnostics are distinct from the original development
+metrics. They do not replace any original point estimate or reopen selection.

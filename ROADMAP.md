@@ -1,10 +1,10 @@
 # Retention Lab — Incremental Roadmap
 
-> Status: Phases 1–5 DONE; Phases 6–8 NOT STARTED · Updated: 2026-10-20
+> Status: Phases 1–6 DONE; Phases 7–8 NOT STARTED · Updated: 2026-10-21
 > Follow `PROJECT.md` for scope, `AGENTS.md` for conventions and `PROGRESS.md` for dated evidence.
 
-**Next: Phase 6 — Reliability, audit and limitations.** Not started or implemented
-by this documentation maintenance. Existing tests do not constitute Phase 6 completion.
+**Next: Phase 7 — Interactive static demo.** Not started or authorized here.
+Phase 6 evidence: [robustness audit](docs/robustness.md) and [limitations](docs/limitations.md).
 
 | Phase | Status |
 |---|---|
@@ -13,7 +13,7 @@ by this documentation maintenance. Existing tests do not constitute Phase 6 comp
 | 3 — Feature engineering | DONE |
 | 4 — Baselines and ML models | DONE |
 | 5 — Capacity evaluation | DONE |
-| 6 — Reliability and robustness | NOT STARTED |
+| 6 — Reliability and robustness | DONE |
 | 7 — Interactive web demo | NOT STARTED |
 | 8 — Portfolio and storytelling | NOT STARTED |
 
@@ -170,24 +170,25 @@ HGB remains selected. Separate sampled JSON, tables and four-curve PNG follow th
 owner's limited publication authorization and documented conditions review, not
 an asserted express derivative license. Full suite 77/77 and independent
 privacy/integrity/formula/compatibility verification passed. See `docs/results.md`
-and `PROGRESS.md`. The completed comparison is published on `main`. Phase 6 remains NOT STARTED.
+and `PROGRESS.md`. The completed comparison is published on `main`. The subsequent Phase 6 audit is documented below.
 
 ## Phase 6 — Reliability, audit and limitations
 
-**Status: NOT STARTED.** The tasks below remain pending; previous phase tests
-are evidence for those phases, not a completed robustness audit.
+**Status: DONE (2026-10-21).** Evidence and conditional interpretation are in
+[the Phase 6 report](docs/robustness.md); verification commands are recorded in
+`PROGRESS.md`. Historical artifacts remain frozen; no new external temporal test.
 
 **Goal:** make results defensible in a Data Scientist / ML Engineer interview.
 
 **Tasks**
-- [ ] Independently revisit the label-maturity, eligibility and feature-cutoff audit.
-- [ ] Confirm no final-set-driven policy/model selection.
-- [ ] Unit-test formulas and temporal invariants; inspect source-data assumptions.
-- [ ] Compare ranking quality and model diagnostics (PR-AUC/ROC-AUC/calibration if feasible).
-- [ ] Analyze stability / uncertainty (e.g., appropriate subscriber-level resampling) where feasible.
-- [ ] Investigate counterintuitive or exceptionally strong performance.
-- [ ] Record limits from dataset era, sampling, cohort coverage and retrospective design.
-- [ ] Freeze evaluation artifacts used for the public site.
+- [x] Independently revisit the label-maturity, eligibility and feature-cutoff audit.
+- [x] Confirm no final-set-driven policy/model selection.
+- [x] Unit-test formulas and temporal invariants; inspect source-data assumptions.
+- [x] Compare ranking quality and model diagnostics (PR-AUC/ROC-AUC/calibration if feasible).
+- [x] Analyze stability / uncertainty (e.g., appropriate subscriber-level resampling) where feasible.
+- [x] Investigate counterintuitive or exceptionally strong performance.
+- [x] Record limits from dataset era, sampling, cohort coverage and retrospective design.
+- [x] Freeze evaluation artifacts used for the public site.
 
 **Deliverables:** tests, `docs/results.md`, `docs/limitations.md`, validated aggregate artifacts.
 

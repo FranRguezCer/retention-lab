@@ -1,12 +1,12 @@
 # Retention Lab — Project Specification
 
-> Status: **Phases 1–5 DONE — restricted retrospective benchmark; Phase 6 NOT STARTED**
-> Last updated: 2026-10-20
+> Status: **Phases 1–6 DONE — restricted retrospective benchmark; Phases 7–8 NOT STARTED**
+> Last updated: 2026-10-21
 > This document is the source of truth for the **what and why** of the project. See `ROADMAP.md` for phase deliverables and `PROGRESS.md` for actual work status. Working conventions belong in `AGENTS.md`.
 
-**Next: Phase 6 — Reliability, audit and limitations.** Phases 7–8 are NOT STARTED.
+**Next: Phase 7 — Interactive static demo (not authorized here).** Phases 7–8 are NOT STARTED.
 The four-strategy [published comparison](docs/results.md) is complete; the web demo
-and robustness work remain future scope.
+remains future scope; the [Phase 6 audit](docs/robustness.md) is complete.
 
 ## 1. Project in one sentence
 
@@ -155,7 +155,7 @@ Phase 3 was subsequently authorized and verified; its seven-feature schema and
 reproduction contract are in `docs/features.md`. Phase 4 was separately authorized
 and completed with train-only LR and HGB; their private ranking contract is in
 `docs/models.md`. Phase 5 is DONE with the original evaluation preserved and the
-separate public four-strategy post-hoc comparison. Phase 6 is NOT STARTED.
+separate public four-strategy post-hoc comparison. Phase 6 is complete; see `docs/robustness.md` and `docs/limitations.md`.
 See `PROGRESS.md` for the dated evidence.
 
 ## 4. Implemented core and planned product approach

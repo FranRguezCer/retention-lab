@@ -37,12 +37,12 @@ no express license to redistribute data or all derivatives is asserted.
 | 3 — Feature engineering | DONE |
 | 4 — Baselines and ML models | DONE |
 | 5 — Capacity evaluation | DONE |
-| 6 — Reliability and robustness | NOT STARTED |
+| 6 — Reliability and robustness | DONE |
 | 7 — Interactive web demo | NOT STARTED |
 | 8 — Portfolio and storytelling | NOT STARTED |
 
-**Next: Phase 6 — Reliability, audit and limitations.** No web demo is deployed;
-Phase 6 requires separate authorization.
+**Next: Phase 7 — Interactive static demo (not authorized or started).** No web demo is deployed;
+Phase 6 audit is documented below; Phase 7 requires separate authorization.
 
 ## Reproduce the descriptive extension (no raw CSV access)
 
@@ -58,6 +58,13 @@ existing outputs rather than overwrite them. Do not rerun training, selection or
 `evaluate_kkbox.py` for this extension. Original three-strategy evidence stays
 private and byte-identical. Preparation/training commands below document the
 historical workflow, not authorization to run it again on this consumed test.
+
+## Reliability audit
+
+The [post-hoc robustness audit](docs/robustness.md) verifies the frozen results
+and reports conditional subscriber-bootstrap uncertainty. See also the
+[classified limitations](docs/limitations.md). No temporal or causal guarantee
+is implied; the original metrics and models are unchanged.
 
 ## Start here
 
