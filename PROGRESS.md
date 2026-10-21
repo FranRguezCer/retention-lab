@@ -1294,3 +1294,21 @@ widths and separate deployment authorization. No claim that the website is onlin
 - This documentation-only follow-up records completed tasks and observed push;
   its own final remote SHA/worktree readback belongs in the final handoff.
   No PR, merge, force-push, Netlify deployment, Phase 8 or historical JSON change.
+
+## 2026-10-21 — Authorized integration into main
+
+- Developer explicitly authorized merging the verified interactive demo and
+  publishing `main`. Fresh fetch confirmed clean, synchronized feature HEAD
+  `ea0ec3153f8c7e568911d6a69f68604720b1fd49` and local/remote main
+  `787534281c9d53914bb72b17b1935f385db844cc`.
+- `git merge --ff-only feat/retention-interactive-demo` on `main` succeeded.
+  Application bytes are exactly the already verified feature candidate; no
+  conflict resolution, rebasing, forced update or experimental-data change.
+- This passive log update records the integration. Final main push and remote
+  SHA equality are verified separately in the user-facing delivery report.
+- Phases 1–6 DONE; Phase 7 IMPLEMENTED, Netlify deployment/live checks pending;
+  Phase 8 NOT STARTED. No Netlify operation was invoked.
+- Post-integration spot checks: typecheck PASS, frontend 44/44 PASS,
+  `check:build` integrity/privacy PASS and `git diff --check` PASS. Full Python
+  and browser suites were not repeated: application bytes did not change from
+  the previously verified 84/84 Python and 10/10 Chromium candidate.
